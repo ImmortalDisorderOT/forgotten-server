@@ -1,27 +1,3 @@
---[[
-Functions:
-	getAchievementInfoById(achievement_id)
-	getAchievementInfoByName(achievement_name)
-	getSecretAchievements()
-	getPublicAchievements()
-	getAchievements()
-	Player:addAchievement(achievement_id/name[, hideMsg])
-	Player:removeAchievement(achievement_id/name)
-	Player:hasAchievement(achievement_id/name)
-	Player:addAllAchievements([hideMsg])
-	Player:removeAllAchievements()
-	Player:getSecretAchievements()
-	Player:getPublicAchievements()
-	Player:getAchievements()
-	isAchievementSecret(achievement_id/name)
-	Player:getAchievementPoints()
-	Player:addAchievementProgress()
-Storages:
-	PlayerStorageKeys.achievementsBase -- base storage
-	PlayerStorageKeys.achievementsCounter -- this storage will be used to save the process to obtain the certain achievement
-	(Ex: this storage + the id of achievement 'Allowance Collector' to save how many piggy banks has been broken
-]]
-
 achievements =
 {
 	-- 8.6
@@ -655,11 +631,11 @@ function isAchievementSecret(ach)
 	else
 		achievement = getAchievementInfoByName(ach)
 	end
+
 	if not achievement then
 		print("[!] -> Invalid achievement \"" .. ach .. "\".")
 		return false
 	end
-
 	return achievement.secret
 end
 
@@ -670,11 +646,11 @@ function Player.hasAchievement(self, ach)
 	else
 		achievement = getAchievementInfoByName(ach)
 	end
+
 	if not achievement then
 		print("[!] -> Invalid achievement \"" .. ach .. "\".")
 		return false
 	end
-
 	return self:getStorageValue(PlayerStorageKeys.achievementsBase + achievement.id) > 0
 end
 
@@ -695,6 +671,7 @@ function Player.addAchievement(self, ach, hideMsg)
 	else
 		achievement = getAchievementInfoByName(ach)
 	end
+
 	if not achievement then
 		print("[!] -> Invalid achievement \"" .. ach .. "\".")
 		return false
@@ -716,6 +693,7 @@ function Player.removeAchievement(self, ach)
 	else
 		achievement = getAchievementInfoByName(ach)
 	end
+
 	if not achievement then
 		print("[!] -> Invalid achievement \"" .. ach .. "\".")
 		return false
@@ -766,10 +744,10 @@ end
 function Player.getAchievementPoints(self)
 	local points = 0
 	local list = self:getAchievements()
-	if #list > 0 then -- has achievements
+	if #list > 0 then
 		for i = 1, #list do
 			local targetAchievement = getAchievementInfoById(list[i])
-			if targetAchievement.points > 0 then -- avoid achievements with unknow points
+			if targetAchievement.points > 0 then
 				points = points + targetAchievement.points
 			end
 		end

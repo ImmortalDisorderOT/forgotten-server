@@ -1,4 +1,15 @@
+local startupGlobalStorages = {
+	GlobalStorageKeys.TheAncientTombs.AshmunrahSwitchesGlobalStorage,
+	GlobalStorageKeys.TheAncientTombs.DiprathSwitchesGlobalStorage,
+	GlobalStorageKeys.TheAncientTombs.ThalasSwitchesGlobalStorage,
+	GlobalStorageKeys.PitsOfInfernoLevers
+}
+
 function onStartup()
+	print(string.format('>> Loaded %d npcs and spawned %d monsters.\n>> Loaded %d towns with %d houses in total.', Game.getNpcCount(), Game.getMonsterCount(), #Game.getTowns(), #Game.getHouses()))
+	for i = 1, #startupGlobalStorages do
+		Game.setStorageValue(startupGlobalStorages[i], 0)
+	end
 
 	db.query("TRUNCATE TABLE `players_online`")
 	db.asyncQuery("DELETE FROM `guild_wars` WHERE `status` = 0")

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-	<!-- Enchanting -->
+	<!-- Weapons Enchanting (Gems) -->
 	<action fromid="2146" toid="2147" script="others/enchanting.lua" />
 	<action fromid="2149" toid="2150" script="others/enchanting.lua" />
-	<action itemid="2342" script="others/enchanting.lua" />
 	<action fromid="7759" toid="7762" script="others/enchanting.lua" />
-	<action itemid="24739" script="others/enchanting.lua" />
 
 	<!-- Market -->
 	<action itemid="14405" function="market" />
 
 	<!-- Quests -->
-	<action itemid="1740" script="quests/quests.lua" />
-	<action fromid="1747" toid="1749" script="quests/quests.lua" />
-	<action uniqueid="30015" script="quests/annihilator.lua" />
+	<action actionid="2000" script="quests/system.lua" />
+	<action actionid="2016" script="quests/system.lua" />
+	<action actionid="2215" script="quests/system.lua" />
+	<action actionid="10544" script="quests/system.lua" />
+	<action actionid="12374" script="quests/system.lua" />
+	<action actionid="12513" script="quests/system.lua" />
+	<action actionid="26300" script="quests/system.lua" />
+	<action actionid="27300" script="quests/system.lua" />
+	<action actionid="28300" script="quests/system.lua" />
+	<action actionid="2001" script="quests/system_orts.lua" />
 
 	<!-- Tools -->
 	<action itemid="2120" script="tools/rope.lua" />

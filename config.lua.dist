@@ -3,15 +3,15 @@
 worldType = "pvp"
 hotkeyAimbotEnabled = true
 protectionLevel = 1
-killsToRedSkull = 3
-killsToBlackSkull = 6
-pzLocked = 60000
+killsToRedSkull = 5
+killsToBlackSkull = 10
+pzLocked = 30000
 removeChargesFromRunes = true
 removeChargesFromPotions = true
 removeWeaponAmmunition = true
 removeWeaponCharges = true
-timeToDecreaseFrags = 24 * 60 * 60
-whiteSkullTime = 15 * 60
+timeToDecreaseFrags = 12 * 60 * 60
+whiteSkullTime = 7 * 60
 stairJumpExhaustion = 2000
 experienceByKillingPlayers = false
 expFromPlayersLevelRange = 75
@@ -26,10 +26,10 @@ loginProtocolPort = 7171
 gameProtocolPort = 7172
 statusProtocolPort = 7171
 maxPlayers = 0
-onePlayerOnlinePerAccount = true
+onePlayerOnlinePerAccount = false
 allowClones = false
 allowWalkthrough = true
-serverName = "Forgotten"
+serverName = "Immortal Disorder RL Map"
 statusTimeout = 5000
 replaceKickOnLogin = true
 maxPacketsPerSecond = 25
@@ -47,7 +47,7 @@ deathLosePercent = -1
 -- use any other value to disable the rent system
 housePriceEachSQM = 1000
 houseRentPeriod = "never"
-houseOwnedByAccount = false
+houseOwnedByAccount = true
 houseDoorShowPrice = true
 onlyInvitedCanMoveHouseItems = true
 
@@ -57,8 +57,8 @@ timeBetweenExActions = 1000
 
 -- Map
 -- NOTE: set mapName WITHOUT .otbm at the end
-mapName = "forgotten"
-mapAuthor = "Komic"
+mapName = "map"
+mapAuthor = "ORTS"
 
 -- Market
 marketOfferDuration = 30 * 24 * 60 * 60
@@ -99,9 +99,9 @@ showPlayerLogInConsole = true
 
 -- VIP and Depot limits
 -- NOTE: you can set custom limits per group in data/XML/groups.xml
-vipFreeLimit = 20
+vipFreeLimit = 100
 vipPremiumLimit = 100
-depotFreeLimit = 2000
+depotFreeLimit = 10000
 depotPremiumLimit = 15000
 
 -- Quest Tracker limits
@@ -118,9 +118,9 @@ defaultWorldLight = true
 -- NOTE: serverSaveNotifyDuration in minutes
 serverSaveNotifyMessage = true
 serverSaveNotifyDuration = 5
-serverSaveCleanMap = false
+serverSaveCleanMap = true
 serverSaveClose = false
-serverSaveShutdown = true
+serverSaveShutdown = false
 
 -- Experience stages
 -- NOTE: to use a flat experience multiplier, set experienceStages to nil
@@ -128,20 +128,16 @@ serverSaveShutdown = true
 -- maxlevel is OPTIONAL, but is considered infinite by default
 -- to disable stages, create a stage with minlevel 1 and no maxlevel
 experienceStages = {
-	{ minlevel = 1, maxlevel = 8, multiplier = 7 },
-	{ minlevel = 9, maxlevel = 20, multiplier = 6 },
-	{ minlevel = 21, maxlevel = 50, multiplier = 5 },
-	{ minlevel = 51, maxlevel = 100, multiplier = 4 },
-	{ minlevel = 101, multiplier = 3 }
+	{ minlevel = 1, maxlevel = , multiplier = 7 }
 }
 
 -- Rates
 -- NOTE: rateExp is not used if you have enabled stages above
-rateExp = 5
-rateSkill = 3
-rateLoot = 2
-rateMagic = 3
-rateSpawn = 1
+rateExp = 10
+rateSkill = 5
+rateLoot = 5
+rateMagic = 5
+rateSpawn = 2
 
 -- Monster Despawn Config
 -- despawnRange is the amount of floors a monster can be from its spawn position
@@ -154,7 +150,7 @@ removeOnDespawn = true
 walkToSpawnRadius = 15
 
 -- Stamina
-staminaSystem = true
+staminaSystem = false
 timeToRegenMinuteStamina = 3 * 60
 timeToRegenMinutePremiumStamina = 10 * 60
 
@@ -169,7 +165,7 @@ defaultPriority = "high"
 startupDatabaseOptimization = false
 
 -- Status Server Information
-ownerName = ""
+ownerName = "AVaji"
 ownerEmail = ""
-url = "https://otland.net/"
-location = "Sweden"
+url = "https://immortaldisorder.xyz"
+location = "Canada"
