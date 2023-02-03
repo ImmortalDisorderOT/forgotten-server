@@ -128,7 +128,7 @@ serverSaveShutdown = false
 -- maxlevel is OPTIONAL, but is considered infinite by default
 -- to disable stages, create a stage with minlevel 1 and no maxlevel
 experienceStages = {
-	{ minlevel = 1, maxlevel = , multiplier = 7 }
+	{ minlevel = 1, multiplier = 1 }
 }
 
 -- Rates
