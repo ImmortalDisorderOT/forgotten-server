@@ -119,10 +119,17 @@ function door.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				tableCreature.creature:teleportTo(tableCreature.position, true)
 			end
 		end
-	
+		if itemId == 12695 then
+			item:transform(itemId - 3)
+			return true
+		end
 		item:transform(itemId - 1)
 		return true	
 	elseif table.contains(closedDoors, itemId) or table.contains(closedExtraDoors, itemId) or table.contains(closedHouseDoors, itemId) then
+		if itemId == 12692 then
+			item:transform(itemId + 3)
+			return true
+		end
 		item:transform(itemId + 1)
 		return true
 	end

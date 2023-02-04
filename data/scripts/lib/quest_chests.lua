@@ -1,35 +1,18 @@
 -- config for questChests found in actions/scripts/quest_chests
 
+-- example rewards
+--[1] = {type = "item", item = 2160, count = 1}
+--[2] = {type = "experience", amount = 20000}
+--[3] = {type = "outfit", name = "assassin", femaleId = 156, maleId = 152}
+--[4] = {type = "addon", outfit = "nobleman", addonNumber = 1, femaleId = 140, maleId = 132}
+--[5] = {type = "mount", mountName = "Orc", mountId = 20}
+
 questChests = {
-   [48000] = { -- Rotworm Cave Quest
-        questMsg_success = "You have found 10000 gold.",
+   [48000] = {
         levelReq = 0,
-        item_reward = {
-            [1] = {itemid = 2160, count = 1}
-        }       
+        storageUnique = 48000,
+        rewards = {
+            [1] = {type = "item", itemid = 2361, count = 0}
+        }
    }
-   --[48000] = {
-        --questStorage = 10000,
-        --questStatus = 5,
-        --questMsg_success = "You have found the item now go do blah blah blah",
-        --questMsg_fail = "You are not ready to open this chest. Go do blah blah blah"
-        --levelReq = 0,
-        --keyReq = 2143,
-        --expReward = 10000,
-        --item_reward = {
-        --    [1] = {itemid = 1111, count = 1},
-        --    [2] = {itemid = 1111, count = 1}
-        --},
-        --outfit_reward = {
-        --    [1] = {male = 111, female = 111, addons = 0}
-        --},
-        --addon_reward = {
-        --[   1] = {male = 111, female = 111, addons = 1}
-        --},
-        --mount_reward = {
-        --    [1] = {mountId = 1}
-        --}
-       
-   --}
-   
 }

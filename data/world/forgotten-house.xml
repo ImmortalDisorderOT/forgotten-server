@@ -668,7 +668,7 @@
 	<house name="Greenshore Village 4" houseid="2092" entryx="32259" entryy="32041" entryz="7" rent="780" townid="0" size="10" />
 	<house name="Greenshore Village 6" houseid="2093" entryx="32258" entryy="32041" entryz="6" rent="4360" townid="0" size="62" />
 	<house name="Greenshore Village 7" houseid="2094" entryx="32266" entryy="32032" entryz="7" rent="1260" townid="0" size="18" />
-	<house name="The Tibianic" houseid="2095" entryx="32277" entryy="32011" entryz="5" rent="34500" townid="0" size="449" />
+	<house name="The Tibianic" houseid="2095" entryx="32277" entryy="32011" entryz="5" rent="34500" townid="0" size="456" />
 	<house name="Fibula Village 5" houseid="2097" entryx="32171" entryy="32440" entryz="7" rent="1790" townid="0" size="21" />
 	<house name="Fibula Village 4" houseid="2098" entryx="32175" entryy="32440" entryz="7" rent="1790" townid="0" size="21" />
 	<house name="Fibula Village, Tower Flat" houseid="2099" entryx="32159" entryy="32439" entryz="7" rent="5105" townid="0" size="73" />
@@ -1118,4 +1118,13 @@
 	<house name="Rathleton Plaza 4" houseid="2557" entryx="33604" entryy="31915" entryz="6" rent="5005" townid="33" size="104" />
 	<house name="Old Heritage Estate" houseid="2558" entryx="33593" entryy="31915" entryz="6" rent="12075" townid="33" size="241" />
 	<house name="Cistern Ave" houseid="2559" entryx="33588" entryy="31926" entryz="6" rent="3745" townid="33" size="77" />
+	<house name="Immortal Frigate" houseid="2560" entryx="1179" entryy="1097" entryz="5" rent="0" townid="2" size="442" />
+	<house name="Unnamed House #2561" houseid="2561" entryx="1162" entryy="1120" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2562" houseid="2562" entryx="1162" entryy="1121" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2563" houseid="2563" entryx="1155" entryy="1120" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2564" houseid="2564" entryx="1155" entryy="1121" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2565" houseid="2565" entryx="1148" entryy="1120" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2566" houseid="2566" entryx="1148" entryy="1121" entryz="4" rent="0" townid="2" size="16" />
+	<house name="Unnamed House #2567" houseid="2567" entryx="1138" entryy="1120" entryz="4" rent="0" townid="2" size="28" />
+	<house name="Unnamed House #2568" houseid="2568" entryx="1138" entryy="1121" entryz="4" rent="0" townid="2" size="28" />
 </houses>
