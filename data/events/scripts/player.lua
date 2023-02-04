@@ -144,6 +144,10 @@ function Player:onGainExperience(source, exp, rawExp)
 		self:addCondition(soulCondition)
 	end
 
+	if source:getSkull() > SKULL_NONE and uberMonsterTiers[source:getSkull()] then
+		exp = exp * uberMonsterTiers[source:getSkull()].experienceMultipler
+	end
+
 	-- Apply experience stage multiplier
 	exp = exp * Game.getExperienceStage(self:getLevel())
 
