@@ -3,7 +3,7 @@ local TOWN_PORTALS_VERSION = "1.0.1"
 TOWN_PORTALS = {
   creatorOnly = true, -- only portal creator can teleport back to town
   creatorDestroy = true, -- remove Town Portal only when creator teleports back, false = destroy portal when any player teleports back
-  duration = -1, -- in seconds, for how long should created portal be active, -1 = unlimited
+  duration = 300, -- in seconds, for how long should created portal be active, -1 = unlimited
   townText = "Town Portal", -- Text on the portal in a town, nil = nothing
   portalText = nil, -- text on the portal create by a player, nil = Town Name
   townPortals = { -- list of Town Portals in towns that are used to teleport back to player portal

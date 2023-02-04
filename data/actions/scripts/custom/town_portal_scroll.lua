@@ -1,4 +1,8 @@
 function onUse(player, item, fromPosition, target, toPosition, isHotkey)
+  if player:isPzLocked() then
+    player:sendTextMessage(MESSAGE_STATUS_WARNING, "You cannot use a portal scroll while in battle")
+    return false
+  end
   local portalId = getFreePortalId()
   if portalId ~= nil then
     local portalPos = getClosePosition(player:getPosition())
