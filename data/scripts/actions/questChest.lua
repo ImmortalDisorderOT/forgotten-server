@@ -51,8 +51,11 @@ function advanceChest.onUse(player, item, fromPosition, itemEx, toPosition)
                 local count = math.max(0, questChests[questChestId].rewards[i].count)
 
                 player:addItem(itemid, count)
-
-            player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You earned " .. count .. "x " .. getItemName(itemid))
+                if count > 0 then
+                    player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You earned " .. count .."x "  .. getItemName(itemid) .. "s")
+                else 
+                    player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You earned a(n) "  .. getItemName(itemid))
+                end
         end
 
         -----------------------------------------------------------------------------------
