@@ -27,8 +27,31 @@ local WAYPOINTS = {
   [6] = {
     name = "Ab Dendriel",
     position = Position(32732, 31633, 7)
+  },
+  [7] = {
+    name = "Liberty Bay",
+    position = Position(32313, 32824, 7)
+  },
+  [8] = {
+    name = "Port Hope",
+    position = Position(32595, 32741, 7)
+  },
+  [9] = {
+    name = "Ankrahmun",
+    position = Position(33194, 32857, 8)
+  },
+  [10] = {
+    name = "Darashia",
+    position = Position(33211, 32456, 1)
+  },
+  [11] = {
+    name = "Svargrond",
+    position = Position(32208, 31133, 7)
+  },
+  [12] = {
+    name = "Yalahar",
+    position = Position(32785, 31276, 7)
   }
-
 }
 
 function onStepIn(player, item, position, fromPosition)
