@@ -24,12 +24,18 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
       TOWN_PORTALS_PLAYERS[cid].portalId = portalId
       
       local portalItemId = player:getStorageValue(PlayerStorageKeys.teleportType)
+      local portalItem = nil
       if portalItemId == -1 then
-        local portalItem = Game.createItem(1387, 1, portalPos)
+        portalItem = Game.createItem(1387, 1, portalPos)
       else 
-        local portalItem = Game.createItem(player:getStorageValue(PlayerStorageKeys.teleportType), 1, portalPos)
+        portalItem = Game.createItem(player:getStorageValue(PlayerStorageKeys.teleportType), 1, portalPos)
       end
-      portalItem:setActionId(5624)
+      if portalItem then
+        portalItem:setActionId(5624)
+      else
+        player:sendTextMessage(MESSAGE_STATUS_WARNING, "Something went wrong, please contact admin")
+        return false
+      end
 
       TOWN_PORTALS_ACTIVE[portalId] = {}
       TOWN_PORTALS_ACTIVE[portalId].item = portalItem
