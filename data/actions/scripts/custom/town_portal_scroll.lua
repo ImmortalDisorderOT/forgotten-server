@@ -19,7 +19,12 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
       TOWN_PORTALS_PLAYERS[cid] = {}
       TOWN_PORTALS_PLAYERS[cid].portalId = portalId
       
-      local portalItem = Game.createItem(player:getStorageValue(PlayerStorageKeys.teleportType), 1, portalPos)
+      local portalItemId = player:getStorageValue(PlayerStorageKeys.teleportType)
+      if portalItemId == -1 then
+        local portalItem = Game.createItem(1387, 1, portalPos)
+      else 
+        local portalItem = Game.createItem(player:getStorageValue(PlayerStorageKeys.teleportType), 1, portalPos)
+      end
       portalItem:setActionId(5624)
 
       TOWN_PORTALS_ACTIVE[portalId] = {}
