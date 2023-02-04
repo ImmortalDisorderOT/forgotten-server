@@ -147,7 +147,8 @@ function CrystalsAction.onUse(player, item, fromPosition, target, toPosition, is
             if itemType then
                 local weaponType = itemType:getWeaponType()
                 if target:identify(player, itemType, weaponType) then
-                    item:remove(1)
+                    --TODO: Add below line to have ID scroll not infinite
+                    --item:remove(1)
                 else
                     player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
                 end

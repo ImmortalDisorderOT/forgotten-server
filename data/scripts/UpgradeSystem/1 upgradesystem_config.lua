@@ -30,7 +30,7 @@ US_CONFIG = {
   CRYSTAL_EXTRACTOR = 42930, -- Crystal Extractor item id
   CRYSTAL_FOSSIL = 42929, -- Crystal Fossil item id
   --
-  IDENTIFY_UPGRADE_LEVEL = false, -- if true, roll random upgrade level when identifing an item
+  IDENTIFY_UPGRADE_LEVEL = true, -- if true, roll random upgrade level when identifing an item
   UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 100, [6] = 100, [7] = 100, [8] = 100, [9] = 100, [10] = 100}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
   UPGRADE_LEVEL_DESTROY = 11, -- at which upgrade level should it break if failed, for example if = 7 then upgrading from +6 to +7-9 can destroy item on failure.
   UPGRADE_DESTROY_CHANCE = {}, -- chance for the item to break at given upgrade level
@@ -61,9 +61,9 @@ US_CONFIG = {
   --
   CRYSTAL_FOSSIL_DROP_CHANCE = 8, -- 1:X chance that Crystal Fossil will drop from monster, X means that approximately every X monster will drop Crystal Fossil
   CRYSTAL_FOSSIL_DROP_LEVEL = 25, -- X monster level needed to drop Crystal Fossil
-  UNIDENTIFIED_DROP_CHANCE = 1, -- 1:X chance that item in monster corpse will be unidentified, X means that approximately every X item will be unidentified
-  CRYSTAL_BREAK_CHANCE = 5, -- 1:X chance that Crystal will break when extracted from Fossil, X means that approximately every X Crystal will break
-  UNIQUE_CHANCE = 1, -- 1:X chance that unidentified item will become Unique, X means that approximately every X unidentified item will become unique
+  UNIDENTIFIED_DROP_CHANCE = 4, -- 1:X chance that item in monster corpse will be unidentified, X means that approximately every X item will be unidentified
+  CRYSTAL_BREAK_CHANCE = 6, -- 1:X chance that Crystal will break when extracted from Fossil, X means that approximately every X Crystal will break
+  UNIQUE_CHANCE = 64, -- 1:X chance that unidentified item will become Unique, X means that approximately every X unidentified item will become unique
   REQUIRE_LEVEL = false, -- block equipping items with higher Item Level than Player Level
   RARITY = {
     [COMMON] = {
