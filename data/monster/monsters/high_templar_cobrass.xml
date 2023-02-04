@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="High Templar Cobrass" nameDescription="High Templar Cobrass" race="blood" experience="515" speed="174">
 	<health now="410" max="410" />
-	<look type="113" corpse="4251" />
+	<look type="113" corpse="43056" />
 	<targetchange interval="5000" chance="0" />
 	<flags>
 		<flag summonable="0" />

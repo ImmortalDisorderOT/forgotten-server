@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="World Bug" namedescription="a world bug" race="venom" experience="50" speed="240">
 	<health now="270" max="270" />
-	<look type="45" corpse="5990" />
+	<look type="45" corpse="43056" />
 	<targetchange interval="2000" chance="0" />
 	<flags>
 		<flag summonable="0" />

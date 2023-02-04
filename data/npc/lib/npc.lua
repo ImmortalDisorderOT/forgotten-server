@@ -1,8 +1,5 @@
 -- Including the Advanced NPC System
 dofile('data/npc/lib/npcsystem/npcsystem.lua')
-dofile('data/npc/lib/npcsystem/customModules.lua')
-
-isPlayerPremiumCallback = Player.isPremium
 
 function msgcontains(message, keyword)
 	local message, keyword = message:lower(), keyword:lower()
@@ -16,12 +13,11 @@ end
 function doNpcSellItem(cid, itemid, amount, subType, ignoreCap, inBackpacks, backpack)
 	local amount = amount or 1
 	local subType = subType or 0
-
+	local item = 0
 	if ItemType(itemid):isStackable() then
-		local stuff
 		if inBackpacks then
 			stuff = Game.createItem(backpack, 1)
-			stuff:addItem(itemid, math.min(100, amount))
+			item = stuff:addItem(itemid, math.min(100, amount))
 		else
 			stuff = Game.createItem(itemid, math.min(100, amount))
 		end
@@ -108,7 +104,7 @@ function getCount(string)
 	local b, e = string:find("%d+")
 	local tonumber = tonumber(string:sub(b, e))
 	if tonumber > 2 ^ 32 - 1 then
-		print("Warning: Casting value to 32bit to prevent crash\n" .. debug.traceback())
+		print("Warning: Casting value to 32bit to prevent crash\n"..debug.traceback())
 	end
 	return b and e and math.min(2 ^ 32 - 1, tonumber) or -1
 end
@@ -121,7 +117,7 @@ function getMoneyCount(string)
 	local b, e = string:find("%d+")
 	local tonumber = tonumber(string:sub(b, e))
 	if tonumber > 2 ^ 32 - 1 then
-		print("Warning: Casting value to 32bit to prevent crash\n" .. debug.traceback())
+		print("Warning: Casting value to 32bit to prevent crash\n"..debug.traceback())
 	end
 	local money = b and e and math.min(2 ^ 32 - 1, tonumber) or -1
 	if isValidMoney(money) then
@@ -131,15 +127,10 @@ function getMoneyCount(string)
 end
 
 function getMoneyWeight(money)
-	local weight, currencyItems = 0, Game.getCurrencyItems()
-	for index = #currencyItems, 1, -1 do
-		local currency = currencyItems[index]
-		local worth = currency:getWorth()
-		local currencyCoins = math.floor(money / worth)
-		if currencyCoins > 0 then
-			money = money - (currencyCoins * worth)
-			weight = weight + currency:getWeight(currencyCoins)
-		end
-	end
-	return weight
+	local gold = money
+	local crystal = math.floor(gold / 10000)
+	gold = gold - crystal * 10000
+	local platinum = math.floor(gold / 100)
+	gold = gold - platinum * 100
+	return (ItemType(ITEM_CRYSTAL_COIN):getWeight() * crystal) + (ItemType(ITEM_PLATINUM_COIN):getWeight() * platinum) + (ItemType(ITEM_GOLD_COIN):getWeight() * gold)
 end

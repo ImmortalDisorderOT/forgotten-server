@@ -4,7 +4,6 @@
 #include "otpch.h"
 
 #include "protocolstatus.h"
-
 #include "configmanager.h"
 #include "game.h"
 #include "outputmessage.h"
@@ -12,11 +11,10 @@
 extern ConfigManager g_config;
 extern Game g_game;
 
-std::map<Connection::Address, int64_t> ProtocolStatus::ipConnectMap;
+std::map<uint32_t, int64_t> ProtocolStatus::ipConnectMap;
 const uint64_t ProtocolStatus::start = OTSYS_TIME();
 
-enum RequestedInfo_t : uint16_t
-{
+enum RequestedInfo_t : uint16_t {
 	REQUEST_BASIC_SERVER_INFO = 1 << 0,
 	REQUEST_OWNER_SERVER_INFO = 1 << 1,
 	REQUEST_MISC_SERVER_INFO = 1 << 2,
@@ -29,43 +27,40 @@ enum RequestedInfo_t : uint16_t
 
 void ProtocolStatus::onRecvFirstMessage(NetworkMessage& msg)
 {
-	const static auto acceptorAddress = Connection::Address::from_string(g_config.getString(ConfigManager::IP));
-
-	const auto& ip = getIP();
-
-	if (!ip.is_loopback() && ip != acceptorAddress) {
-		if (auto it = ipConnectMap.find(ip);
-		    it != ipConnectMap.end() &&
-		    (OTSYS_TIME() < (it->second + g_config.getNumber(ConfigManager::STATUSQUERY_TIMEOUT)))) {
-			disconnect();
-			return;
+	uint32_t ip = getIP();
+	if (ip != 0x0100007F) {
+		std::string ipStr = convertIPToString(ip);
+		if (ipStr != g_config.getString(ConfigManager::IP)) {
+			std::map<uint32_t, int64_t>::const_iterator it = ipConnectMap.find(ip);
+			if (it != ipConnectMap.end() && (OTSYS_TIME() < (it->second + g_config.getNumber(ConfigManager::STATUSQUERY_TIMEOUT)))) {
+				disconnect();
+				return;
+			}
 		}
 	}
 
 	ipConnectMap[ip] = OTSYS_TIME();
 
 	switch (msg.getByte()) {
-		// XML info protocol
+		//XML info protocol
 		case 0xFF: {
 			if (msg.getString(4) == "info") {
-				g_dispatcher.addTask([thisPtr = std::static_pointer_cast<ProtocolStatus>(shared_from_this())]() {
-					thisPtr->sendStatusString();
-				});
+				g_dispatcher.addTask(createTask(std::bind(&ProtocolStatus::sendStatusString,
+									  std::static_pointer_cast<ProtocolStatus>(shared_from_this()))));
 				return;
 			}
 			break;
 		}
 
-		// Another ServerInfo protocol
+		//Another ServerInfo protocol
 		case 0x01: {
 			uint16_t requestedInfo = msg.get<uint16_t>(); // only a Byte is necessary, though we could add new info here
 			std::string characterName;
 			if (requestedInfo & REQUEST_PLAYER_STATUS_INFO) {
 				characterName = msg.getString();
 			}
-			g_dispatcher.addTask(
-			    [=, thisPtr = std::static_pointer_cast<ProtocolStatus>(shared_from_this()),
-			     characterName = std::move(characterName)]() { thisPtr->sendInfo(requestedInfo, characterName); });
+			g_dispatcher.addTask(createTask(std::bind(&ProtocolStatus::sendInfo, std::static_pointer_cast<ProtocolStatus>(shared_from_this()),
+								  requestedInfo, characterName)));
 			return;
 		}
 
@@ -133,7 +128,7 @@ void ProtocolStatus::sendStatusString()
 	map.append_attribute("height") = std::to_string(mapHeight).c_str();
 
 	pugi::xml_node motd = tsqp.append_child("motd");
-	motd.text() = "N/A";
+	motd.text() = g_config.getString(ConfigManager::MOTD).c_str();
 
 	std::ostringstream ss;
 	doc.save(ss, "", pugi::format_raw);
@@ -163,7 +158,7 @@ void ProtocolStatus::sendInfo(uint16_t requestedInfo, const std::string& charact
 
 	if (requestedInfo & REQUEST_MISC_SERVER_INFO) {
 		output->addByte(0x12);
-		output->addString("N/A"); // MOTD
+		output->addString(g_config.getString(ConfigManager::MOTD));
 		output->addString(g_config.getString(ConfigManager::LOCATION));
 		output->addString(g_config.getString(ConfigManager::URL));
 		output->add<uint64_t>((OTSYS_TIME() - ProtocolStatus::start) / 1000);
@@ -199,7 +194,7 @@ void ProtocolStatus::sendInfo(uint16_t requestedInfo, const std::string& charact
 
 	if (requestedInfo & REQUEST_PLAYER_STATUS_INFO) {
 		output->addByte(0x22); // players info - online status info of a player
-		if (g_game.getPlayerByName(characterName)) {
+		if (g_game.getPlayerByName(characterName) != nullptr) {
 			output->addByte(0x01);
 		} else {
 			output->addByte(0x00);

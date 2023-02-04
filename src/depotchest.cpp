@@ -4,18 +4,16 @@
 #include "otpch.h"
 
 #include "depotchest.h"
-
 #include "tools.h"
 
-DepotChest::DepotChest(uint16_t type, bool paginated /*= true*/) :
-    Container{type, items[type].maxItems, true, paginated}
-{}
+DepotChest::DepotChest(uint16_t type) :
+	Container(type), maxDepotItems(2000) {}
 
-ReturnValue DepotChest::queryAdd(int32_t index, const Thing& thing, uint32_t count, uint32_t flags,
-                                 Creature* actor /* = nullptr*/) const
+ReturnValue DepotChest::queryAdd(int32_t index, const Thing& thing, uint32_t count,
+		uint32_t flags, Creature* actor/* = nullptr*/) const
 {
 	const Item* item = thing.getItem();
-	if (!item) {
+	if (item == nullptr) {
 		return RETURNVALUE_NOTPOSSIBLE;
 	}
 
@@ -46,7 +44,7 @@ ReturnValue DepotChest::queryAdd(int32_t index, const Thing& thing, uint32_t cou
 void DepotChest::postAddNotification(Thing* thing, const Cylinder* oldParent, int32_t index, cylinderlink_t)
 {
 	Cylinder* parent = getParent();
-	if (parent) {
+	if (parent != nullptr) {
 		parent->postAddNotification(thing, oldParent, index, LINK_PARENT);
 	}
 }
@@ -54,7 +52,7 @@ void DepotChest::postAddNotification(Thing* thing, const Cylinder* oldParent, in
 void DepotChest::postRemoveNotification(Thing* thing, const Cylinder* newParent, int32_t index, cylinderlink_t)
 {
 	Cylinder* parent = getParent();
-	if (parent) {
+	if (parent != nullptr) {
 		parent->postRemoveNotification(thing, newParent, index, LINK_PARENT);
 	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Infected Weeper" nameDescription="an infected weeper" race="fire" experience="4800" speed="250">
 	<health now="6800" max="6800" />
-	<look type="489" corpse="17251" />
+	<look type="489" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

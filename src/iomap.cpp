@@ -5,30 +5,37 @@
 
 #include "iomap.h"
 
-#include "housetile.h"
+#include "bed.h"
+
+#include "game.h"
+
+extern Game g_game;
+
+
+#include <fmt/format.h>
 
 /*
-        OTBM_ROOTV1
-        |
-        |--- OTBM_MAP_DATA
-        |	|
-        |	|--- OTBM_TILE_AREA
-        |	|	|--- OTBM_TILE
-        |	|	|--- OTBM_TILE_SQUARE (not implemented)
-        |	|	|--- OTBM_TILE_REF (not implemented)
-        |	|	|--- OTBM_HOUSETILE
-        |	|
-        |	|--- OTBM_SPAWNS (not implemented)
-        |	|	|--- OTBM_SPAWN_AREA (not implemented)
-        |	|	|--- OTBM_MONSTER (not implemented)
-        |	|
-        |	|--- OTBM_TOWNS
-        |	|	|--- OTBM_TOWN
-        |	|
-        |	|--- OTBM_WAYPOINTS
-        |		|--- OTBM_WAYPOINT
-        |
-        |--- OTBM_ITEM_DEF (not implemented)
+	OTBM_ROOTV1
+	|
+	|--- OTBM_MAP_DATA
+	|	|
+	|	|--- OTBM_TILE_AREA
+	|	|	|--- OTBM_TILE
+	|	|	|--- OTBM_TILE_SQUARE (not implemented)
+	|	|	|--- OTBM_TILE_REF (not implemented)
+	|	|	|--- OTBM_HOUSETILE
+	|	|
+	|	|--- OTBM_SPAWNS (not implemented)
+	|	|	|--- OTBM_SPAWN_AREA (not implemented)
+	|	|	|--- OTBM_MONSTER (not implemented)
+	|	|
+	|	|--- OTBM_TOWNS
+	|	|	|--- OTBM_TOWN
+	|	|
+	|	|--- OTBM_WAYPOINTS
+	|		|--- OTBM_WAYPOINT
+	|
+	|--- OTBM_ITEM_DEF (not implemented)
 */
 
 Tile* IOMap::createTile(Item*& ground, Item* item, uint16_t x, uint16_t y, uint8_t z)
@@ -50,7 +57,7 @@ Tile* IOMap::createTile(Item*& ground, Item* item, uint16_t x, uint16_t y, uint8
 	return tile;
 }
 
-bool IOMap::loadMap(Map* map, const std::string& fileName)
+bool IOMap::loadMap(Map* map, const std::string& fileName, const Position& pos, bool unload)
 {
 	int64_t start = OTSYS_TIME();
 	try {
@@ -71,11 +78,10 @@ bool IOMap::loadMap(Map* map, const std::string& fileName)
 
 		uint32_t headerVersion = root_header.version;
 		if (headerVersion == 0) {
-			// In otbm version 1 the count variable after splashes/fluidcontainers and stackables are saved as
-			// attributes instead, this solves a lot of problems with items that are changed
-			// (stackable/charges/fluidcontainer/splash) during an update.
-			setLastErrorString(
-			    "This map need to be upgraded by using the latest map editor version to be able to load correctly.");
+			//In otbm version 1 the count variable after splashes/fluidcontainers and stackables
+			//are saved as attributes instead, this solves a lot of problems with items
+			//that are changed (stackable/charges/fluidcontainer/splash) during an update.
+			setLastErrorString("This map need to be upgraded by using the latest map editor version to be able to load correctly.");
 			return false;
 		}
 
@@ -85,14 +91,12 @@ bool IOMap::loadMap(Map* map, const std::string& fileName)
 		}
 
 		if (root_header.majorVersionItems < 3) {
-			setLastErrorString(
-			    "This map need to be upgraded by using the latest map editor version to be able to load correctly.");
+			setLastErrorString("This map need to be upgraded by using the latest map editor version to be able to load correctly.");
 			return false;
 		}
 
 		if (root_header.majorVersionItems > Item::items.majorVersion) {
-			setLastErrorString(
-			    "The map was saved with a different items.otb version, an upgraded items.otb is required.");
+			setLastErrorString("The map was saved with a different items.otb version, an upgraded items.otb is required.");
 			return false;
 		}
 
@@ -121,7 +125,7 @@ bool IOMap::loadMap(Map* map, const std::string& fileName)
 
 		for (auto& mapDataNode : mapNode.children) {
 			if (mapDataNode.type == OTBM_TILE_AREA) {
-				if (!parseTileArea(loader, mapDataNode, *map)) {
+				if (!parseTileArea(loader, mapDataNode, *map, pos, unload)) {
 					return false;
 				}
 			} else if (mapDataNode.type == OTBM_TOWNS) {
@@ -195,7 +199,7 @@ bool IOMap::parseMapDataAttributes(OTB::Loader& loader, const OTB::Node& mapNode
 	return true;
 }
 
-bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Map& map)
+bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Map& map, const Position& pos, bool unload)
 {
 	PropStream propStream;
 	if (!loader.getProps(tileAreaNode, propStream)) {
@@ -211,7 +215,7 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 
 	uint16_t base_x = area_coord.x;
 	uint16_t base_y = area_coord.y;
-	uint16_t z = area_coord.z;
+	uint16_t base_z = area_coord.z;
 
 	for (auto& tileNode : tileAreaNode.children) {
 		if (tileNode.type != OTBM_TILE && tileNode.type != OTBM_HOUSETILE) {
@@ -230,8 +234,30 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 			return false;
 		}
 
-		uint16_t x = base_x + tile_coord.x;
-		uint16_t y = base_y + tile_coord.y;
+		uint16_t x = base_x + tile_coord.x + pos.x;
+		uint16_t y = base_y + tile_coord.y + pos.y;
+		uint16_t z = base_z + pos.z;
+
+		if (unload) {
+			Tile* tile = map.getTile(Position(x, y, z));
+			TileItemVector* items = tile->getItemList();
+			if (items) {
+				TileItemVector item_list = *items;
+				if (!item_list.size() == 0) {
+					for (Item* item : item_list) {
+						if (item) {
+							g_game.internalRemoveItem(item);
+						}
+					}
+				}
+			}
+
+			Item* ground = tile->getGround();
+			if (ground) {
+				g_game.internalRemoveItem(ground);
+			}
+			continue;
+		}
 
 		bool isHouseTile = false;
 		House* house = nullptr;
@@ -246,39 +272,42 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 				return false;
 			}
 
-			house = map.houses.addHouse(houseId);
-			if (!house) {
-				setLastErrorString(
-				    fmt::format("[x:{:d}, y:{:d}, z:{:d}] Could not create house id: {:d}", x, y, z, houseId));
-				return false;
-			}
+			if (!unload) {
+				house = map.houses.addHouse(houseId);
+				if (!house) {
+					setLastErrorString(fmt::format("[x:{:d}, y:{:d}, z:{:d}] Could not create house id: {:d}", x, y, z, houseId));
+					return false;
+				}
 
-			tile = new HouseTile(x, y, z, house);
-			house->addTile(static_cast<HouseTile*>(tile));
-			isHouseTile = true;
+				tile = new HouseTile(x, y, z, house);
+				house->addTile(static_cast<HouseTile*>(tile));
+				isHouseTile = true;
+			}
 		}
 
 		uint8_t attribute;
-		// read tile attributes
+		//read tile attributes
 		while (propStream.read<uint8_t>(attribute)) {
 			switch (attribute) {
 				case OTBM_ATTR_TILE_FLAGS: {
-					uint32_t flags;
-					if (!propStream.read<uint32_t>(flags)) {
-						setLastErrorString(fmt::format("[x:{:d}, y:{:d}, z:{:d}] Failed to read tile flags.", x, y, z));
-						return false;
-					}
+					if (!unload) {
+						uint32_t flags;
+						if (!propStream.read<uint32_t>(flags)) {
+							setLastErrorString(fmt::format("[x:{:d}, y:{:d}, z:{:d}] Failed to read tile flags.", x, y, z));
+							return false;
+						}
 
-					if ((flags & OTBM_TILEFLAG_PROTECTIONZONE) != 0) {
-						tileflags |= TILESTATE_PROTECTIONZONE;
-					} else if ((flags & OTBM_TILEFLAG_NOPVPZONE) != 0) {
-						tileflags |= TILESTATE_NOPVPZONE;
-					} else if ((flags & OTBM_TILEFLAG_PVPZONE) != 0) {
-						tileflags |= TILESTATE_PVPZONE;
-					}
+						if ((flags & OTBM_TILEFLAG_PROTECTIONZONE) != 0) {
+							tileflags |= TILESTATE_PROTECTIONZONE;
+						} else if ((flags & OTBM_TILEFLAG_NOPVPZONE) != 0) {
+							tileflags |= TILESTATE_NOPVPZONE;
+						} else if ((flags & OTBM_TILEFLAG_PVPZONE) != 0) {
+							tileflags |= TILESTATE_PVPZONE;
+						}
 
-					if ((flags & OTBM_TILEFLAG_NOLOGOUT) != 0) {
-						tileflags |= TILESTATE_NOLOGOUT;
+						if ((flags & OTBM_TILEFLAG_NOLOGOUT) != 0) {
+							tileflags |= TILESTATE_NOLOGOUT;
+						}
 					}
 					break;
 				}
@@ -291,9 +320,7 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 					}
 
 					if (isHouseTile && item->isMoveable()) {
-						std::cout << "[Warning - IOMap::loadMap] Moveable item with ID: " << item->getID()
-						          << ", in house: " << house->getId() << ", at position [x: " << x << ", y: " << y
-						          << ", z: " << z << "]." << std::endl;
+						std::cout << "[Warning - IOMap::loadMap] Moveable item with ID: " << item->getID() << ", in house: " << house->getId() << ", at position [x: " << x << ", y: " << y << ", z: " << z << "]." << std::endl;
 						delete item;
 					} else {
 						if (item->getItemCount() == 0) {
@@ -342,16 +369,13 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 			}
 
 			if (!item->unserializeItemNode(loader, itemNode, stream)) {
-				setLastErrorString(
-				    fmt::format("[x:{:d}, y:{:d}, z:{:d}] Failed to load item {:d}.", x, y, z, item->getID()));
+				setLastErrorString(fmt::format("[x:{:d}, y:{:d}, z:{:d}] Failed to load item {:d}.", x, y, z, item->getID()));
 				delete item;
 				return false;
 			}
 
 			if (isHouseTile && item->isMoveable()) {
-				std::cout << "[Warning - IOMap::loadMap] Moveable item with ID: " << item->getID()
-				          << ", in house: " << house->getId() << ", at position [x: " << x << ", y: " << y
-				          << ", z: " << z << "]." << std::endl;
+				std::cout << "[Warning - IOMap::loadMap] Moveable item with ID: " << item->getID() << ", in house: " << house->getId() << ", at position [x: " << x << ", y: " << y << ", z: " << z << "]." << std::endl;
 				delete item;
 			} else {
 				if (item->getItemCount() == 0) {
@@ -460,3 +484,4 @@ bool IOMap::parseWaypoints(OTB::Loader& loader, const OTB::Node& waypointsNode, 
 	}
 	return true;
 }
+

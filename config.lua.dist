@@ -3,15 +3,15 @@
 worldType = "pvp"
 hotkeyAimbotEnabled = true
 protectionLevel = 1
-killsToRedSkull = 5
-killsToBlackSkull = 10
+killsToRedSkull = 3
+killsToBlackSkull = 6
 pzLocked = 30000
-removeChargesFromRunes = true
-removeChargesFromPotions = true
-removeWeaponAmmunition = true
-removeWeaponCharges = true
-timeToDecreaseFrags = 12 * 60 * 60
-whiteSkullTime = 7 * 60
+removeChargesFromRunes = false
+removeChargesFromPotions = false
+removeWeaponAmmunition = false
+removeWeaponCharges = false
+timeToDecreaseFrags = 6 * 60 * 60
+whiteSkullTime = 5 * 60
 stairJumpExhaustion = 2000
 experienceByKillingPlayers = false
 expFromPlayersLevelRange = 75
@@ -19,21 +19,20 @@ expFromPlayersLevelRange = 75
 -- Connection Config
 -- NOTE: maxPlayers set to 0 means no limit
 -- NOTE: allowWalkthrough is only applicable to players
--- NOTE: two-factor auth requires token and timestamp in session key
 ip = "127.0.0.1"
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
 gameProtocolPort = 7172
 statusProtocolPort = 7171
 maxPlayers = 0
-onePlayerOnlinePerAccount = false
+motd = "Welcome to The Forgotten Server!"
+onePlayerOnlinePerAccount = true
 allowClones = false
 allowWalkthrough = true
 serverName = "Immortal Disorder RL Map"
 statusTimeout = 5000
 replaceKickOnLogin = true
-maxPacketsPerSecond = 25
-enableTwoFactorAuth = true
+maxPacketsPerSecond = 50
 
 -- Deaths
 -- NOTE: Leave deathLosePercent as -1 if you want to use the default
@@ -57,8 +56,8 @@ timeBetweenExActions = 1000
 
 -- Map
 -- NOTE: set mapName WITHOUT .otbm at the end
-mapName = "map"
-mapAuthor = "ORTS"
+mapName = "forgotten"
+mapAuthor = "Komic"
 
 -- Market
 marketOfferDuration = 30 * 24 * 60 * 60
@@ -81,32 +80,27 @@ mysqlSock = ""
 -- NOTE: forceMonsterTypesOnLoad loads all monster types on startup to validate them.
 -- You can disable it to save some memory if you don't see any errors at startup.
 allowChangeOutfit = true
-freePremium = false
+freePremium = true
 kickIdlePlayerAfterMinutes = 15
 maxMessageBuffer = 4
 emoteSpells = false
 classicEquipmentSlots = false
-classicAttackSpeed = false
+classicAttackSpeed = true
 showScriptsLogInConsole = false
 showOnlineStatusInCharlist = false
 yellMinimumLevel = 2
 yellAlwaysAllowPremium = false
-minimumLevelToSendPrivate = 1
-premiumToSendPrivate = false
 forceMonsterTypesOnLoad = true
 cleanProtectionZones = false
+luaItemDesc = false
 showPlayerLogInConsole = true
 
 -- VIP and Depot limits
 -- NOTE: you can set custom limits per group in data/XML/groups.xml
-vipFreeLimit = 100
+vipFreeLimit = 20
 vipPremiumLimit = 100
-depotFreeLimit = 10000
-depotPremiumLimit = 15000
-
--- Quest Tracker limits
-questTrackerFreeLimit = 10
-questTrackerPremiumLimit = 15
+depotFreeLimit = 2000
+depotPremiumLimit = 10000
 
 -- World Light
 -- NOTE: if defaultWorldLight is set to true the world light algorithm will
@@ -118,9 +112,9 @@ defaultWorldLight = true
 -- NOTE: serverSaveNotifyDuration in minutes
 serverSaveNotifyMessage = true
 serverSaveNotifyDuration = 5
-serverSaveCleanMap = true
+serverSaveCleanMap = false
 serverSaveClose = false
-serverSaveShutdown = false
+serverSaveShutdown = true
 
 -- Experience stages
 -- NOTE: to use a flat experience multiplier, set experienceStages to nil
@@ -128,16 +122,20 @@ serverSaveShutdown = false
 -- maxlevel is OPTIONAL, but is considered infinite by default
 -- to disable stages, create a stage with minlevel 1 and no maxlevel
 experienceStages = {
-	{ minlevel = 1, multiplier = 1 }
+	{ minlevel = 1, maxlevel = 8, multiplier = 7 },
+	{ minlevel = 9, maxlevel = 20, multiplier = 6 },
+	{ minlevel = 21, maxlevel = 50, multiplier = 5 },
+	{ minlevel = 51, maxlevel = 100, multiplier = 4 },
+	{ minlevel = 101, multiplier = 3 }
 }
 
 -- Rates
 -- NOTE: rateExp is not used if you have enabled stages above
 rateExp = 10
 rateSkill = 5
-rateLoot = 5
+rateLoot = 2
 rateMagic = 5
-rateSpawn = 2
+rateSpawn = 1
 
 -- Monster Despawn Config
 -- despawnRange is the amount of floors a monster can be from its spawn position
@@ -151,8 +149,6 @@ walkToSpawnRadius = 15
 
 -- Stamina
 staminaSystem = false
-timeToRegenMinuteStamina = 3 * 60
-timeToRegenMinutePremiumStamina = 10 * 60
 
 -- Scripts
 warnUnsafeScripts = true
@@ -165,7 +161,7 @@ defaultPriority = "high"
 startupDatabaseOptimization = false
 
 -- Status Server Information
-ownerName = "AVaji"
+ownerName = "Avaji"
 ownerEmail = ""
 url = "https://immortaldisorder.xyz"
 location = "Canada"

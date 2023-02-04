@@ -4,9 +4,11 @@
 #include "otpch.h"
 
 #include "protocolold.h"
+#include "outputmessage.h"
 
 #include "game.h"
-#include "outputmessage.h"
+
+#include <fmt/format.h>
 
 extern Game g_game;
 
@@ -27,7 +29,7 @@ void ProtocolOld::onRecvFirstMessage(NetworkMessage& msg)
 		return;
 	}
 
-	/*uint16_t clientOS =*/msg.get<uint16_t>();
+	/*uint16_t clientOS =*/ msg.get<uint16_t>();
 	uint16_t version = msg.get<uint16_t>();
 	msg.skipBytes(12);
 
@@ -50,7 +52,7 @@ void ProtocolOld::onRecvFirstMessage(NetworkMessage& msg)
 	setXTEAKey(std::move(key));
 
 	if (version <= 822) {
-		setChecksumMode(CHECKSUM_DISABLED);
+		disableChecksum();
 	}
 
 	disconnectClient(fmt::format("Only clients with protocol {:s} allowed!", CLIENT_VERSION_STR));

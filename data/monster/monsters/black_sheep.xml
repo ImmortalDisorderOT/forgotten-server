@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Black Sheep" namedescription="a black sheep" race="blood" experience="0" speed="116" manacost="250">
 	<health now="20" max="20" />
-	<look type="13" corpse="5994" />
+	<look type="13" corpse="43056" />
 	<targetchange interval="4000" chance="20" />
 	<flags>
 		<flag summonable="1" />

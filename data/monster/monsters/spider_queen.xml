@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Spider Queen" nameDescription="a spider queen" race="venom" experience="120" speed="280">
 	<health now="10000" max="10000" />
-	<look type="219" corpse="6060" />
+	<look type="219" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

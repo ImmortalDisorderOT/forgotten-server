@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Lizard Magistratus" nameDescription="a lizard magistratus" race="blood" experience="2000" speed="200">
 	<health now="8000" max="8000" />
-	<look type="115" corpse="6041" />
+	<look type="115" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

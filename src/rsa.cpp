@@ -7,7 +7,10 @@
 
 #include <cryptopp/base64.h>
 #include <cryptopp/osrng.h>
+#include <fmt/color.h>
+
 #include <fstream>
+#include <sstream>
 
 static CryptoPP::AutoSeededRandomPool prng;
 
@@ -34,9 +37,13 @@ void RSA::loadPEM(const std::string& filename)
 	}
 
 	std::ostringstream oss;
-	for (std::string line; std::getline(file, line); oss << line)
-		;
+	for (std::string line; std::getline(file, line); oss << line);
 	std::string key = oss.str();
+
+	// fixes "Missing RSA private key footer." error
+	key.erase(0, key.find_first_not_of(" \t\f\v\n\r"));
+	key.erase(key.find_last_not_of(" \t\f\v\n\r") + 1);
+
 
 	auto headerIndex = key.find(header);
 	if (headerIndex == std::string::npos) {

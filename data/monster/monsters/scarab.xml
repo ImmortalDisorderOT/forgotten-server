@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Scarab" nameDescription="a scarab" race="venom" experience="120" speed="160" manacost="395">
 	<health now="320" max="320" />
-	<look type="83" corpse="6024" />
+	<look type="83" corpse="43056" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="1" />

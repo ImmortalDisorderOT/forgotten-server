@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Gazer" nameDescription="a gazer" race="venom" experience="90" speed="140">
 	<health now="120" max="120" />
-	<look type="109" corpse="6036" />
+	<look type="109" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

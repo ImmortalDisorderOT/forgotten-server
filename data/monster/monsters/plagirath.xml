@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Plagirath" nameDescription="Plagirath" race="venom" experience="50000" speed="320">
 	<health now="290000" max="290000" />
-	<look type="862" head="83" body="61" legs="98" feet="79" addons="1" corpse="25151" />
+	<look type="862" head="83" body="61" legs="98" feet="79" addons="1" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

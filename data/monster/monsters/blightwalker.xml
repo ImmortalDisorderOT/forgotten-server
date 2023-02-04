@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Blightwalker" nameDescription="a blightwalker" race="undead" experience="5850" speed="250">
 	<health now="8900" max="8900" />
-	<look type="246" corpse="6354" />
+	<look type="246" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

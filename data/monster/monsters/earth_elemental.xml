@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Earth Elemental" nameDescription="an earth elemental" race="undead" experience="450" speed="220">
 	<health now="650" max="650" />
-	<look type="301" corpse="8933" />
+	<look type="301" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

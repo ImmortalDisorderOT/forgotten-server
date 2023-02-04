@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Zomba" nameDescription="Zomba" race="blood" experience="300" speed="180">
 	<health now="300" max="300" />
-	<look type="41" corpse="5986" />
+	<look type="41" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

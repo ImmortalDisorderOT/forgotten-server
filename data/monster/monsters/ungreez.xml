@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Ungreez" nameDescription="Ungreez" race="fire" experience="500" speed="330">
 	<health now="8200" max="8200" />
-	<look type="35" corpse="5995" />
+	<look type="35" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

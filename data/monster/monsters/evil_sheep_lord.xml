@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Evil Sheep Lord" nameDescription="an evil sheep lord" race="blood" experience="340" speed="300">
 	<health now="400" max="400" />
-	<look type="13" corpse="5994" />
+	<look type="13" corpse="43056" />
 	<targetchange interval="2000" chance="20" />
 	<flags>
 		<flag summonable="0" />

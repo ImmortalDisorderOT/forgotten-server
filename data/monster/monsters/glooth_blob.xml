@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Glooth Blob" nameDescription="a glooth blob" race="venom" experience="700" speed="160">
 	<health now="750" max="750" />
-	<look type="614" corpse="23479" />
+	<look type="614" corpse="43056" />
 	<targetchange interval="2000" chance="3" />
 	<flags>
 		<flag summonable="0" />

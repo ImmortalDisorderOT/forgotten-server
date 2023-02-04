@@ -5,12 +5,15 @@
 
 #include "protocollogin.h"
 
-#include "ban.h"
-#include "configmanager.h"
-#include "game.h"
-#include "iologindata.h"
 #include "outputmessage.h"
 #include "tasks.h"
+
+#include "configmanager.h"
+#include "iologindata.h"
+#include "ban.h"
+#include "game.h"
+
+#include <fmt/format.h>
 
 extern ConfigManager g_config;
 extern Game g_game;
@@ -26,8 +29,7 @@ void ProtocolLogin::disconnectClient(const std::string& message, uint16_t versio
 	disconnect();
 }
 
-void ProtocolLogin::getCharacterList(const std::string& accountName, const std::string& password,
-                                     const std::string& token, uint16_t version)
+void ProtocolLogin::getCharacterList(const std::string& accountName, const std::string& password, const std::string& token, uint16_t version)
 {
 	Account account;
 	if (!IOLoginData::loginserverAuthentication(accountName, password, account)) {
@@ -39,9 +41,7 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 
 	auto output = OutputMessagePool::getOutputMessage();
 	if (!account.key.empty()) {
-		if (token.empty() ||
-		    !(token == generateToken(account.key, ticks) || token == generateToken(account.key, ticks - 1) ||
-		      token == generateToken(account.key, ticks + 1))) {
+		if (token.empty() || !(token == generateToken(account.key, ticks) || token == generateToken(account.key, ticks - 1) || token == generateToken(account.key, ticks + 1))) {
 			output->addByte(0x0D);
 			output->addByte(0);
 			send(output);
@@ -52,11 +52,18 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 		output->addByte(0);
 	}
 
-	// Add session key
+	const std::string& motd = g_config.getString(ConfigManager::MOTD);
+	if (!motd.empty()) {
+		//Add MOTD
+		output->addByte(0x14);
+		output->addString(fmt::format("{:d}\n{:s}", g_game.getMotdNum(), motd));
+	}
+
+	//Add session key
 	output->addByte(0x28);
 	output->addString(accountName + "\n" + password + "\n" + token + "\n" + std::to_string(ticks));
 
-	// Add char list
+	//Add char list
 	output->addByte(0x64);
 
 	uint8_t size = std::min<size_t>(std::numeric_limits<uint8_t>::max(), account.characters.size());
@@ -89,9 +96,34 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 			output->addByte(0);
 		}
 		output->addString(character);
+
+		// code to add outfit information to character list
+		//Database& db = Database::getInstance();
+		//DBResult_ptr result = db.storeQuery(fmt::format("SELECT `lookbody`, `lookfeet`, `lookhead`, `looklegs`, `looktype`, `lookaddons`, `lookshader`, `lookwings`, `lookaura`, `looktitle` FROM `players` WHERE `name` = {:s} AND `deletion` = 0", db.escapeString(character)));
+		
+		//Outfit_t newOutfit;
+		//newOutfit.lookType = msg.get<uint16_t>();
+		//newOutfit.lookHead = msg.getByte();
+		//newOutfit.lookBody = msg.getByte();
+		//newOutfit.lookLegs = msg.getByte();
+		//newOutfit.lookFeet = msg.getByte();
+		//newOutfit.lookAddons = msg.getByte();
+		//newOutfit.lookMount = msg.get<uint16_t>();
+		//newOutfit.lookWings = msg.get<uint16_t>();
+		//newOutfit.lookAura = msg.get<uint16_t>();
+		//std::string shaderName = msg.getString();
+		//Shader* shader = g_game.shaders.getShaderByName(shaderName);
+		//newOutfit.lookShader = shader ? shader->id : 0;
+		//std::string titleName = msg.getString();
+		//Title* title = g_game.titles.getTitleByName(titleName);
+		//newOutfit.lookTitle = title ? title->id : 0;
+
+
+		//Player* player = g_game.getPlayerByName(character);
+		//Outfit_t* outfit = player->getCurrentOutfit();
 	}
 
-	// Add premium days
+	//Add premium days
 	output->addByte(0);
 	if (g_config.getBoolean(ConfigManager::FREE_PREMIUM)) {
 		output->addByte(1);
@@ -106,7 +138,6 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 	disconnect();
 }
 
-// Character list request
 void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 {
 	if (g_game.getGameState() == GAME_STATE_SHUTDOWN) {
@@ -117,15 +148,6 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 	msg.skipBytes(2); // client OS
 
 	uint16_t version = msg.get<uint16_t>();
-	if (version <= 822) {
-		setChecksumMode(CHECKSUM_DISABLED);
-	}
-
-	if (version <= 760) {
-		disconnectClient(fmt::format("Only clients with protocol {:s} allowed!", CLIENT_VERSION_STR), version);
-		return;
-	}
-
 	if (version >= 971) {
 		msg.skipBytes(17);
 	} else {
@@ -137,6 +159,11 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 	 * 12 bytes: dat, spr, pic signatures (4 bytes each)
 	 * 1 byte: 0
 	 */
+
+	if (version <= 760) {
+		disconnectClient(fmt::format("Only clients with protocol {:s} allowed!", CLIENT_VERSION_STR), version);
+		return;
+	}
 
 	if (!Protocol::RSA_decrypt(msg)) {
 		disconnect();
@@ -177,9 +204,7 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 			banInfo.reason = "(none)";
 		}
 
-		disconnectClient(fmt::format("Your IP has been banned until {:s} by {:s}.\n\nReason specified:\n{:s}",
-		                             formatDateShort(banInfo.expiresAt), banInfo.bannedBy, banInfo.reason),
-		                 version);
+		disconnectClient(fmt::format("Your IP has been banned until {:s} by {:s}.\n\nReason specified:\n{:s}", formatDateShort(banInfo.expiresAt), banInfo.bannedBy, banInfo.reason), version);
 		return;
 	}
 
@@ -204,8 +229,6 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 
 	std::string authToken = msg.getString();
 
-	g_dispatcher.addTask(
-	    [=, thisPtr = std::static_pointer_cast<ProtocolLogin>(shared_from_this()), accountName = std::move(accountName),
-	     password = std::move(password),
-	     authToken = std::move(authToken)]() { thisPtr->getCharacterList(accountName, password, authToken, version); });
+	auto thisPtr = std::static_pointer_cast<ProtocolLogin>(shared_from_this());
+	g_dispatcher.addTask(createTask(std::bind(&ProtocolLogin::getCharacterList, thisPtr, accountName, password, authToken, version)));
 }

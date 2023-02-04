@@ -3,26 +3,26 @@
 
 #include "otpch.h"
 
-#include "configmanager.h"
-#include "databasemanager.h"
-#include "databasetasks.h"
-#include "game.h"
-#include "iomarket.h"
-#include "monsters.h"
-#include "outfit.h"
-#include "protocollogin.h"
-#include "protocolold.h"
-#include "protocolstatus.h"
-#include "rsa.h"
-#include "scheduler.h"
-#include "script.h"
-#include "scriptmanager.h"
 #include "server.h"
 
-#include <fstream>
+#include "game.h"
 
+#include "iomarket.h"
+
+#include "configmanager.h"
+#include "scriptmanager.h"
+#include "rsa.h"
+#include "protocolold.h"
+#include "protocollogin.h"
+#include "protocolstatus.h"
+#include "databasemanager.h"
+#include "scheduler.h"
+#include "databasetasks.h"
+#include "script.h"
+#include <fstream>
+#include <fmt/color.h>
 #if __has_include("gitmetadata.h")
-#include "gitmetadata.h"
+	#include "gitmetadata.h"
 #endif
 
 DatabaseTasks g_databaseTasks;
@@ -57,48 +57,10 @@ bool argumentsHandler(const StringVector& args);
 	exit(-1);
 }
 
-namespace anniversary {
-
-fmt::color paintA = fmt::color(0xFABC01);
-fmt::color paintB = fmt::color(0x955A26);
-fmt::color paintC = fmt::color(0x0000C0);
-fmt::color paintD = fmt::color(0x006500);
-
-std::string colorA(const std::string text) { return fmt::format(fg(paintA), text); }
-
-std::string colorB(const std::string text) { return fmt::format(fg(paintB), text); }
-
-std::string colorC(const std::string text) { return fmt::format(fg(paintC), text); }
-
-std::string colorD(const std::string text) { return fmt::format(fg(paintD), text); }
-
-void celebrate()
-{
-	// clang-format off
-	std::cout << std::endl;
-	std::cout << colorA("          ") << "          " << colorA("    ") << "                           " << colorB("   .  .  ,----.") << std::endl;
-	std::cout << colorA("          ") << "          " << colorA("    ") << "                           " << colorB("  /|_/| /      ',") << std::endl;
-	std::cout << colorA("          ") << "          " << colorA("#`  ") << "                 ''+#.     " << colorB(" /") << ", ," << colorB(" )/  ,;'' .'") << std::endl;
-	std::cout << colorA("   .####. ") << "   .#.    " << colorA("#|  ") << "                    +#.    " << colorB("(y_ )  |  ;...;' ") << std::endl;
-	std::cout << colorA("  .##  ##.") << " ######'  " << colorA("#|  ") << "    _+  '##_###.    ,+##   " << colorB(" ") << "\"" << colorB("| |  \\. '.") << std::endl;
-	std::cout << colorA("  ##    ##") << "  ##'     " << colorA("#|  ") << "    ##.  ###''|#, .#'  '#, " << colorB("(") << colorC("#") << colorD("#") << colorB("(/   )  ;") << std::endl;
-	std::cout << colorA("  ##    ##") << "  ##      " << colorA("#|  ") << "   # #.  ##   .#' #'    #' " << colorB(" ") << colorD("#") << colorC("#") << colorB(" ..  |. .'") << std::endl;
-	std::cout << colorA("  `##  ##`") << "  `##  ,# " << colorA("#|  ") << "  #==#.  ##  .#'  '#   #'  " << colorB(" \\_(  ._|--'") << std::endl;
-	std::cout << colorA("   `####` ") << "   `###`  " << colorA("##==") << " #    #. ##  |##.  '###'   " << colorB(" '--'--'''") << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "   \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" Happy 15th anniversary! \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"" << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
-	// clang-format on
-}
-
-} // namespace anniversary
-
 int main(int argc, char* argv[])
 {
 	StringVector args = StringVector(argv, argv + argc);
-	if (argc > 1 && !argumentsHandler(args)) {
+	if(argc > 1 && !argumentsHandler(args)) {
 		return 0;
 	}
 
@@ -110,14 +72,12 @@ int main(int argc, char* argv[])
 	g_dispatcher.start();
 	g_scheduler.start();
 
-	g_dispatcher.addTask([=, services = &serviceManager]() { mainLoader(argc, argv, services); });
+	g_dispatcher.addTask(createTask(std::bind(mainLoader, argc, argv, &serviceManager)));
 
 	g_loaderSignal.wait(g_loaderUniqueLock);
 
 	if (serviceManager.is_running()) {
-		anniversary::celebrate();
-		std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " Server Online!" << std::endl
-		          << std::endl;
+		std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " Server Online!" << std::endl << std::endl;
 		serviceManager.run();
 	} else {
 		std::cout << ">> No services running. The server is NOT online." << std::endl;
@@ -136,10 +96,10 @@ void printServerVersion()
 {
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	std::cout << STATUS_SERVER_NAME << " - Version " << GIT_DESCRIBE << std::endl;
-	std::cout << "Git SHA1 " << GIT_SHORT_SHA1 << " dated " << GIT_COMMIT_DATE_ISO8601 << std::endl;
-#if GIT_IS_DIRTY
+	std::cout << "Git SHA1 " << GIT_SHORT_SHA1  << " dated " << GIT_COMMIT_DATE_ISO8601 << std::endl;
+	#if GIT_IS_DIRTY
 	std::cout << "*** DIRTY - NOT OFFICIAL RELEASE ***" << std::endl;
-#endif
+	#endif
 #else
 	std::cout << STATUS_SERVER_NAME << " - Version " << STATUS_SERVER_VERSION << std::endl;
 #endif
@@ -159,7 +119,7 @@ void printServerVersion()
 #if defined(LUAJIT_VERSION)
 	std::cout << "Linked with " << LUAJIT_VERSION << " for Lua support" << std::endl;
 #else
-	std::cout << "Linked with " << LUA_RELEASE << " for Lua support" << std::endl;
+	std::cout << "Linked with " << LUA_RELEASE << " for Lua support"  << std::endl;
 #endif
 	std::cout << std::endl;
 
@@ -170,19 +130,12 @@ void printServerVersion()
 
 void mainLoader(int, char*[], ServiceManager* services)
 {
-	// dispatcher thread
+	//dispatcher thread
 	g_game.setGameState(GAME_STATE_STARTUP);
 
 	srand(static_cast<unsigned int>(OTSYS_TIME()));
 #ifdef _WIN32
 	SetConsoleTitle(STATUS_SERVER_NAME);
-
-	// fixes a problem with escape characters not being processed in Windows consoles
-	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	DWORD dwMode = 0;
-	GetConsoleMode(hOut, &dwMode);
-	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-	SetConsoleMode(hOut, dwMode);
 #endif
 
 	printServerVersion();
@@ -212,18 +165,18 @@ void mainLoader(int, char*[], ServiceManager* services)
 
 #ifdef _WIN32
 	const std::string& defaultPriority = g_config.getString(ConfigManager::DEFAULT_PRIORITY);
-	if (caseInsensitiveEqual(defaultPriority, "high")) {
+	if (strcasecmp(defaultPriority.c_str(), "high") == 0) {
 		SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
-	} else if (caseInsensitiveEqual(defaultPriority, "above-normal")) {
+	} else if (strcasecmp(defaultPriority.c_str(), "above-normal") == 0) {
 		SetPriorityClass(GetCurrentProcess(), ABOVE_NORMAL_PRIORITY_CLASS);
 	}
 #endif
 
-	// set RSA key
+	//set RSA key
 	std::cout << ">> Loading RSA key " << std::endl;
 	try {
 		g_RSA.loadPEM("key.pem");
-	} catch (const std::exception& e) {
+	} catch(const std::exception& e) {
 		startupErrorMessage(e.what());
 		return;
 	}
@@ -241,8 +194,7 @@ void mainLoader(int, char*[], ServiceManager* services)
 	std::cout << ">> Running database manager" << std::endl;
 
 	if (!DatabaseManager::isDatabaseSetup()) {
-		startupErrorMessage(
-		    "The database you have specified in config.lua is empty, please import the schema.sql to your database.");
+		startupErrorMessage("The database you have specified in config.lua is empty, please import the schema.sql to your database.");
 		return;
 	}
 	g_databaseTasks.start();
@@ -253,7 +205,7 @@ void mainLoader(int, char*[], ServiceManager* services)
 		std::cout << "> No tables were optimized." << std::endl;
 	}
 
-	// load vocations
+	//load vocations
 	std::cout << ">> Loading vocations" << std::endl;
 	if (!g_vocations.loadFromXml()) {
 		startupErrorMessage("Unable to load vocations!");
@@ -261,14 +213,11 @@ void mainLoader(int, char*[], ServiceManager* services)
 	}
 
 	// load item data
-	std::cout << ">> Loading items... ";
+	std::cout << ">> Loading items" << std::endl;
 	if (!Item::items.loadFromOtb("data/items/items.otb")) {
 		startupErrorMessage("Unable to load items (OTB)!");
 		return;
 	}
-	std::cout << fmt::format("OTB v{:d}.{:d}.{:d}", Item::items.majorVersion, Item::items.minorVersion,
-	                         Item::items.buildNumber)
-	          << std::endl;
 
 	if (!Item::items.loadFromXml()) {
 		startupErrorMessage("Unable to load items (XML)!");
@@ -306,7 +255,7 @@ void mainLoader(int, char*[], ServiceManager* services)
 	}
 
 	std::cout << ">> Checking world type... " << std::flush;
-	std::string worldType = boost::algorithm::to_lower_copy(g_config.getString(ConfigManager::WORLD_TYPE));
+	std::string worldType = asLowerCaseString(g_config.getString(ConfigManager::WORLD_TYPE));
 	if (worldType == "pvp") {
 		g_game.setWorldType(WORLD_TYPE_PVP);
 	} else if (worldType == "no-pvp") {
@@ -315,12 +264,10 @@ void mainLoader(int, char*[], ServiceManager* services)
 		g_game.setWorldType(WORLD_TYPE_PVP_ENFORCED);
 	} else {
 		std::cout << std::endl;
-		startupErrorMessage(
-		    fmt::format("Unknown world type: {:s}, valid world types are: pvp, no-pvp and pvp-enforced.",
-		                g_config.getString(ConfigManager::WORLD_TYPE)));
+		startupErrorMessage(fmt::format("Unknown world type: {:s}, valid world types are: pvp, no-pvp and pvp-enforced.", g_config.getString(ConfigManager::WORLD_TYPE)));
 		return;
 	}
-	std::cout << boost::algorithm::to_upper_copy(worldType) << std::endl;
+	std::cout << asUpperCaseString(worldType) << std::endl;
 
 	std::cout << ">> Loading map" << std::endl;
 	if (!g_game.loadMainMap(g_config.getString(ConfigManager::MAP_NAME))) {
@@ -342,7 +289,7 @@ void mainLoader(int, char*[], ServiceManager* services)
 	services->add<ProtocolOld>(static_cast<uint16_t>(g_config.getNumber(ConfigManager::LOGIN_PORT)));
 
 	RentPeriod_t rentPeriod;
-	std::string strRentPeriod = boost::algorithm::to_lower_copy(g_config.getString(ConfigManager::HOUSE_RENT_PERIOD));
+	std::string strRentPeriod = asLowerCaseString(g_config.getString(ConfigManager::HOUSE_RENT_PERIOD));
 
 	if (strRentPeriod == "yearly") {
 		rentPeriod = RENTPERIOD_YEARLY;
@@ -365,8 +312,7 @@ void mainLoader(int, char*[], ServiceManager* services)
 
 #ifndef _WIN32
 	if (getuid() == 0 || geteuid() == 0) {
-		std::cout << "> Warning: " << STATUS_SERVER_NAME
-		          << " has been executed as root user, please consider running it as a normal user." << std::endl;
+		std::cout << "> Warning: " << STATUS_SERVER_NAME << " has been executed as root user, please consider running it as a normal user." << std::endl;
 	}
 #endif
 
@@ -380,12 +326,12 @@ bool argumentsHandler(const StringVector& args)
 	for (const auto& arg : args) {
 		if (arg == "--help") {
 			std::clog << "Usage:\n"
-			             "\n"
-			             "\t--config=$1\t\tAlternate configuration file path.\n"
-			             "\t--ip=$1\t\t\tIP address of the server.\n"
-			             "\t\t\t\tShould be equal to the global IP.\n"
-			             "\t--login-port=$1\tPort for login server to listen on.\n"
-			             "\t--game-port=$1\tPort for game server to listen on.\n";
+			"\n"
+			"\t--config=$1\t\tAlternate configuration file path.\n"
+			"\t--ip=$1\t\t\tIP address of the server.\n"
+			"\t\t\t\tShould be equal to the global IP.\n"
+			"\t--login-port=$1\tPort for login server to listen on.\n"
+			"\t--game-port=$1\tPort for game server to listen on.\n";
 			return false;
 		} else if (arg == "--version") {
 			printServerVersion();

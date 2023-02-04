@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="The Bloodtusk" nameDescription="The Bloodtusk" race="blood" experience="300" speed="190">
 	<health now="600" max="600" />
-	<look type="199" corpse="6074" />
+	<look type="199" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

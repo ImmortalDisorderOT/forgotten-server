@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Hyaena" nameDescription="a hyaena" race="blood" experience="20" speed="196" manacost="275">
 	<health now="60" max="60" />
-	<look type="94" corpse="6026" />
+	<look type="94" corpse="43056" />
 	<targetchange interval="5000" chance="0" />
 	<flags>
 		<flag summonable="1" />

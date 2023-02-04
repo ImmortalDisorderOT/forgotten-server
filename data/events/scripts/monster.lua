@@ -1,16 +1,16 @@
 function Monster:onDropLoot(corpse)
-	local player = Player(corpse:getCorpseOwner())
-	if player then
-		player:updateKillTracker(self, corpse)
-	end
-	if EventCallback.onDropLoot then
-		EventCallback.onDropLoot(self, corpse)
+	if hasEventCallback(EVENT_CALLBACK_ONDROPLOOT) then
+		EventCallback(EVENT_CALLBACK_ONDROPLOOT, self, corpse)
 	end
 end
 
 function Monster:onSpawn(position, startup, artificial)
-	if EventCallback.onSpawn then
-		return EventCallback.onSpawn(self, position, startup, artificial)
+	self:registerEvent("orbloot")
+	self:registerEvent("uberSpawner")
+	self:registerEvent("lootbageffect")
+	if hasEventCallback(EVENT_CALLBACK_ONSPAWN) then
+		return EventCallback(EVENT_CALLBACK_ONSPAWN, self, position, startup, artificial)
+	else
+		return true
 	end
-	return true
 end

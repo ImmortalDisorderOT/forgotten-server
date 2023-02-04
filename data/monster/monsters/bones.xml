@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Bones" nameDescription="Bones" race="undead" experience="3750" speed="300">
 	<health now="9500" max="9500" />
-	<look type="231" corpse="6306" />
+	<look type="231" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

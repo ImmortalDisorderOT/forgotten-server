@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Elvira Hammerthrust" nameDescription="Elvira Hammerthrust" race="blood" experience="165" speed="103">
 	<health now="245" max="245" />
-	<look type="70" corpse="6013" />
+	<look type="70" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

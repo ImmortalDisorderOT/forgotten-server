@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Glooth Anemone" nameDescription="a glooth anemone" race="venom" experience="1800" speed="180">
 	<health now="2400" max="2400" />
-	<look type="604" corpse="23359" />
+	<look type="604" corpse="43056" />
 	<targetchange interval="2000" chance="3" />
 	<flags>
 		<flag summonable="0" />

@@ -2,7 +2,7 @@
 <monster name="Shadow Hound" nameDescription="a shadow hound" experience="600" speed="360" race="blood">
 	<health now="555" max="555" />
 	<targetchange speed="0" chance="8" />
-	<look type="322" corpse="9923" />
+	<look type="322" corpse="43056" />
 	<flags>
 		<flag summonable="0" />
 		<flag attackable="1" />
@@ -17,7 +17,7 @@
 		<flag runonhealth="0" />
 	</flags>
 	<attacks>
-		<attack name="melee" interval="2000" min="0" max="-350" />
+		<attack name="melee" interval="2000" chance="100" min="0" max="-350" />
 		<attack name="fire" interval="2000" chance="24" min="-60" max="-160">
 			<attribute key="shootEffect" value="fire" />
 			<attribute key="areaEffect" value="fireattack" />

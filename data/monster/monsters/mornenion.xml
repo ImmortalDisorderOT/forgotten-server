@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Mornenion" nameDescription="Mornenion" race="blood" experience="115" speed="110">
 	<health now="190" max="190" />
-	<look type="64" corpse="6012" />
+	<look type="64" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

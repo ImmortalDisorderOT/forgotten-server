@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Carrion Worm" nameDescription="a carrion worm" race="blood" experience="70" speed="160" manacost="380">
 	<health now="145" max="145" />
-	<look type="192" corpse="6069" />
+	<look type="192" corpse="43056" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="0" />

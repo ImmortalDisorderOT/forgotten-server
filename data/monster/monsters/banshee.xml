@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Banshee" nameDescription="a banshee" race="undead" experience="900" speed="220">
 	<health now="1000" max="1000" />
-	<look type="78" corpse="6019" />
+	<look type="78" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

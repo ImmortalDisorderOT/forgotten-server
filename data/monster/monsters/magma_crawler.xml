@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Magma Crawler" nameDescription="a magma crawler" race="fire" experience="2700" speed="220">
 	<health now="4800" max="4800" />
-	<look type="492" corpse="17336" />
+	<look type="492" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="The Fettered Shatterer" nameDescription="The Fettered Shatterer" race="fire" experience="58000" speed="320">
 	<health now="220000" max="220000" />
-	<look type="842" head="77" body="132" legs="20" feet="0" addons="0" corpse="6068" />
+	<look type="842" head="77" body="132" legs="20" feet="0" addons="0" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />
@@ -21,7 +21,7 @@
 		<flag isboss="1" />
 	</flags>
 	<attacks>
-		<attack name="melee" interval="2000" min="0" max="-3000" />
+		<attack name="melee" interval="2000" min="-200" max="-3000" />
 		<attack name="manadrain" interval="2000" chance="10" range="7" min="-200" max="-1000" />
 		<attack name="physical" interval="3000" chance="44" range="7" min="-400" max="-2000">
 			<attribute key="shootEffect" value="whirlwindsword" />

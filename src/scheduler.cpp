@@ -4,6 +4,8 @@
 #include "otpch.h"
 
 #include "scheduler.h"
+#include <boost/asio/post.hpp>
+#include <memory>
 
 uint32_t Scheduler::addEvent(SchedulerTask* task)
 {
@@ -62,4 +64,7 @@ void Scheduler::shutdown()
 	});
 }
 
-SchedulerTask* createSchedulerTask(uint32_t delay, TaskFunc&& f) { return new SchedulerTask(delay, std::move(f)); }
+SchedulerTask* createSchedulerTask(uint32_t delay, TaskFunc&& f)
+{
+	return new SchedulerTask(delay, std::move(f));
+}

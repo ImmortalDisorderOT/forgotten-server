@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Gravedigger" nameDescription="a gravedigger" race="blood" experience="950" speed="230">
 	<health now="1500" max="1500" />
-	<look type="558" corpse="21279" />
+	<look type="558" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

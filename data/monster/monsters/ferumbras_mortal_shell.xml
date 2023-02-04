@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Ferumbras Mortal Shell" nameDescription="Ferumbras Mortal Shell" race="venom" experience="100000" speed="390">
 	<health now="300000" max="300000" />
-	<look type="229" corpse="6078" />
+	<look type="229" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag isboss="1" />

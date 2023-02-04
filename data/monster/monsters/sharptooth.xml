@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Sharptooth" nameDescription="Sharptooth" race="blood" experience="1600" speed="290">
 	<health now="2500" max="2500" />
-	<look type="20" corpse="6067" />
+	<look type="20" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

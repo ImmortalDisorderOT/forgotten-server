@@ -34,12 +34,6 @@
 	<talkaction words="/hide" script="hide.lua" />
 	<talkaction words="/reload" separator=" " script="reload.lua" />
 	<talkaction words="/raid" separator=" " script="force_raid.lua" />
-	<talkaction words="/mounts" separator=" " script="all_mounts.lua" />
-	<talkaction words="/addons" separator=" " script="all_addons.lua" />
-
-	<!-- achievements commands -->
-	<talkaction words="/addach" separator=" " script="achievements.lua" />
-	<talkaction words="/removeach" separator=" " script="achievements.lua" />
 
 	<!-- player talkactions -->
 	<talkaction words="!buypremium" script="buyprem.lua" />
@@ -48,7 +42,7 @@
 	<talkaction words="!leavehouse" script="leavehouse.lua" />
 	<talkaction words="!changesex" script="changesex.lua" />
 	<talkaction words="!uptime" script="uptime.lua" />
-	<talkaction words="!deathlist" separator=" " script="deathlist.lua" />
+	<talkaction words="!deathlist" script="deathlist.lua" />
 	<talkaction words="!kills" script="kills.lua" />
 	<talkaction words="!online;/online" script="online.lua" />
 	<talkaction words="!serverinfo" script="serverinfo.lua" />

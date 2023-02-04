@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Shaburak Lord" nameDescription="a shaburak lord" race="fire" experience="1200" speed="230">
 	<health now="2100" max="2100" />
-	<look type="409" corpse="13958" />
+	<look type="409" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

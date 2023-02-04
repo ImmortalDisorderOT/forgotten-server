@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Swamp Troll" nameDescription="a swamp troll" race="blood" experience="25" speed="128" manacost="320">
 	<health now="55" max="55" />
-	<look type="76" corpse="6018" />
+	<look type="76" corpse="43056" />
 	<targetchange interval="5000" chance="0" />
 	<flags>
 		<flag summonable="1" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Mummy" nameDescription="a mummy" race="undead" experience="150" speed="150">
 	<health now="240" max="240" />
-	<look type="65" corpse="6004" />
+	<look type="65" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

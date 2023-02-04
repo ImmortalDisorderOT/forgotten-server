@@ -28,6 +28,15 @@ local reloadTypes = {
 
 	["mount"] = RELOAD_TYPE_MOUNTS,
 	["mounts"] = RELOAD_TYPE_MOUNTS,
+	
+	["aura"] = RELOAD_TYPE_AURAS,
+	["auras"] = RELOAD_TYPE_AURAS,
+	
+	["wing"] = RELOAD_TYPE_WINGS,
+	["wings"] = RELOAD_TYPE_WINGS,
+
+	["shader"] = RELOAD_TYPE_SHADERS,
+	["shaders"] = RELOAD_TYPE_SHADERS,
 
 	["move"] = RELOAD_TYPE_MOVEMENTS,
 	["movement"] = RELOAD_TYPE_MOVEMENTS,
@@ -43,7 +52,7 @@ local reloadTypes = {
 	["raids"] = RELOAD_TYPE_RAIDS,
 
 	["spell"] = RELOAD_TYPE_SPELLS,
-	["spells"] = RELOAD_TYPE_SPELLS,
+	["spells"] =  RELOAD_TYPE_SPELLS,
 
 	["talk"] = RELOAD_TYPE_TALKACTIONS,
 	["talkaction"] = RELOAD_TYPE_TALKACTIONS,
@@ -69,19 +78,16 @@ function onSay(player, words, param)
 
 	local reloadType = reloadTypes[param:lower()]
 	if not reloadType then
-		player:sendTextMessage(MESSAGE_INFO_DESCR, "Reload type not found.")
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Reload type not found.")
 		return false
 	end
 
-	-- need to clear EventCallbackData or we end up having duplicated events on /reload scripts
-	if reloadType == RELOAD_TYPE_SCRIPTS or reloadType == RELOAD_TYPE_ALL then
-		EventCallbackData = {}
-		for i = 1, EVENT_CALLBACK_LAST do
-			EventCallbackData[i] = {}
-		end
+	-- need to clear EventCallback.data or we end up having duplicated events on /reload scripts
+	if table.contains({RELOAD_TYPE_SCRIPTS, RELOAD_TYPE_ALL}, reloadType) then
+		EventCallback:clear()
 	end
 
 	Game.reload(reloadType)
-	player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("Reloaded %s.", param:lower()))
+	player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("Reloaded %s.", param:lower()))
 	return false
 end

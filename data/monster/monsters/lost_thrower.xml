@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Lost Thrower" nameDescription="a lost thrower" race="blood" experience="1200" speed="220">
 	<health now="1700" max="1700" />
-	<look type="539" corpse="19998" />
+	<look type="539" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

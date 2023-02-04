@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Teleskor" nameDescription="Teleskor" race="undead" experience="70" speed="150">
 	<health now="80" max="80" />
-	<look type="298" corpse="5972" />
+	<look type="298" corpse="43056" />
 	<targetchange interval="4000" chance="5" />
 	<flags>
 		<flag summonable="0" />

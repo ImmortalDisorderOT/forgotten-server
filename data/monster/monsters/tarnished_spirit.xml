@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Tarnished Spirit" nameDescription="a tarnished spirit" race="undead" experience="120" speed="180">
 	<health now="150" max="150" />
-	<look type="566" corpse="21366" />
+	<look type="566" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

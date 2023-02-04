@@ -46,16 +46,8 @@ ec.onLook = function(self, thing, position, distance, description)
 
 		if thing:isCreature() then
 			if thing:isPlayer() then
-				description = string.format("%s\nGUID: %s", description, thing:getGuid())
 				description = string.format("%s\nIP: %s.", description, Game.convertIpToString(thing:getIp()))
 			end
-		end
-	end
-	if thing:isItem() then
-		if thing.actionid == 5640 then
-			description = description .. "a honeyflower patch."
-		elseif thing.actionid == 5641 then
-			description = description .. "a banana palm."
 		end
 	end
 	return description

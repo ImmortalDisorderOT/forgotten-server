@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Versperoth" nameDescription="Versperoth" race="blood" experience="20000" speed="0">
 	<health now="100000" max="100000" />
-	<look type="295" corpse="0" />
+	<look type="295" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

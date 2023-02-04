@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Terofar" nameDescription="Terofar" race="fire" experience="24000" speed="440">
 	<health now="40000" max="40000" />
-	<look type="12" head="19" body="0" legs="77" feet="79" corpse="6068" />
+	<look type="12" head="19" body="0" legs="77" feet="79" corpse="43056" />
 	<targetchange interval="2000" chance="25" />
 	<flags>
 		<flag summonable="0" />

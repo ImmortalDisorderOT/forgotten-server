@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="The Evil Eye" nameDescription="The Evil Eye" race="blood" experience="750" speed="240">
 	<health now="1200" max="1200" />
-	<look type="210" corpse="6037" />
+	<look type="210" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

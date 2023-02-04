@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Marsh Stalker" nameDescription="a marsh stalker" race="blood" experience="50" speed="210">
 	<health now="100" max="100" />
-	<look type="530" corpse="19708" />
+	<look type="530" corpse="43056" />
 	<targetchange interval="5000" chance="0" />
 	<flags>
 		<flag summonable="0" />

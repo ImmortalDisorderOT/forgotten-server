@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Rat" nameDescription="a rat" race="blood" experience="5" speed="134" manacost="200">
 	<health now="20" max="20" />
-	<look type="21" corpse="5964" />
+	<look type="21" corpse="43056" />
+	<level min="5" max="100" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="1" />

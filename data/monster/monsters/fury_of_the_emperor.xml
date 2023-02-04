@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Fury of the Emperor" nameDescription="Fury of the Emperor" race="undead" experience="26600" speed="450">
 	<health now="28800" max="28800" />
-	<look type="351" corpse="0" />
+	<look type="351" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

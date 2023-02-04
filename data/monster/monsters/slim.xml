@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Slim" nameDescription="Slim" race="undead" experience="580" speed="200">
 	<health now="1025" max="1025" />
-	<look type="101" corpse="7349" />
+	<look type="101" corpse="43056" />
 	<flags>
 		<flag summonable="0" />
 		<flag attackable="1" />

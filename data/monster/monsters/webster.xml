@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Webster" nameDescription="Webster" race="undead" experience="1200" speed="290">
 	<health now="2950" max="2950" />
-	<look type="263" corpse="7349" />
+	<look type="263" corpse="43056" />
 	<flags>
 		<flag summonable="0" />
 		<flag attackable="1" />

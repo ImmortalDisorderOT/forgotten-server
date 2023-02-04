@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Bog Frog" namedescription="a bog frog" race="blood" experience="0" speed="200" manacost="305">
 	<health now="25" max="25" />
-	<look type="412" corpse="6079" />
+	<look type="412" corpse="43056" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="0" />

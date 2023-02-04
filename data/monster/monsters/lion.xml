@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Lion" nameDescription="a lion" race="blood" experience="30" speed="190" manacost="320">
 	<health now="80" max="80" />
-	<look type="41" corpse="5986" />
+	<look type="41" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="1" />
@@ -33,8 +33,8 @@
 		<voice sentence="Groarrr!" />
 	</voices>
 	<loot>
-		<item id="2666" name="meat" chance="45327" />
-		<item id="2671" name="ham" chance="19265" />
-		<item id="10608" name="lion's mane" chance="1148" />
+		<item name="meat" countmax="4" chance="45000" />
+		<item name="ham" countmax="2" chance="18430" />
+		<item name="lion's mane" chance="1400" />
 	</loot>
 </monster>

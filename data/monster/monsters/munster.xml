@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Munster" nameDescription="Munster" race="blood" experience="35" speed="200" manacost="250">
 	<health now="58" max="58" />
-	<look type="56" corpse="2813" />
+	<look type="56" corpse="43056" />
 	<targetchange interval="60000" chance="0" />
 	<flags>
 		<flag summonable="1" />

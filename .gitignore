@@ -177,11 +177,14 @@ pip-log.txt
 .*.swp
 .*.swo
 
-# Notepad++ backups
-*.bak
-
 #############
 ## TFS / OT
 #############
 config.lua
-map.otbm
+.dockerignore
+.editorconfig
+TODO.txt
+*.bat
+
+## Ignoring map file due to size (make sure you zip...)
+forgotten.otbm

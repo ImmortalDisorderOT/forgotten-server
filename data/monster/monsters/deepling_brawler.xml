@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Deepling Brawler" nameDescription="a deepling brawler" race="blood" experience="260" speed="190">
 	<health now="380" max="380" />
-	<look type="470" corpse="13840" />
+	<look type="470" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

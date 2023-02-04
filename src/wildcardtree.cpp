@@ -3,10 +3,9 @@
 
 #include "otpch.h"
 
-#include "wildcardtree.h"
-
 #include <stack>
-#include <tuple>
+
+#include "wildcardtree.h"
 
 WildcardTreeNode* WildcardTreeNode::getChild(char ch)
 {
@@ -34,8 +33,8 @@ WildcardTreeNode* WildcardTreeNode::addChild(char ch, bool breakpoint)
 			child->breakpoint = true;
 		}
 	} else {
-		auto pair =
-		    children.emplace(std::piecewise_construct, std::forward_as_tuple(ch), std::forward_as_tuple(breakpoint));
+		auto pair = children.emplace(std::piecewise_construct,
+				std::forward_as_tuple(ch), std::forward_as_tuple(breakpoint));
 		child = &pair.first->second;
 	}
 	return child;

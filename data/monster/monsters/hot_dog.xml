@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Hot Dog" nameDescription="a hot dog" race="blood" experience="190" speed="300" manacost="220">
 	<health now="505" max="505" />
-	<look type="32" corpse="5971" />
+	<look type="32" corpse="43056" />
 	<targetchange interval="2000" chance="0" />
 	<flags>
 		<flag summonable="0" />

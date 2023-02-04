@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Deathbine" nameDescription="Deathbine" race="venom" experience="340" speed="240">
 	<health now="525" max="525" />
-	<look type="120" corpse="6047" />
+	<look type="120" corpse="43056" />
 	<targetchange interval="5000" chance="8" />
 	<flags>
 		<flag summonable="0" />

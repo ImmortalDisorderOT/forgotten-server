@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Marid" nameDescription="a marid" race="blood" experience="410" speed="234">
 	<health now="550" max="550" />
-	<look type="104" corpse="6033" />
+	<look type="104" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />

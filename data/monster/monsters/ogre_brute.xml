@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Ogre Brute" nameDescription="an ogre brute" race="blood" experience="800" speed="102">
 	<health now="1000" max="1000" />
-	<look type="857" corpse="24799" />
+	<look type="857" corpse="43056" />
 	<targetchange interval="2000" chance="5" />
 	<flags>
 		<flag summonable="0" />

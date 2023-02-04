@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monster name="Dwarf Geomancer" nameDescription="a dwarf geomancer" race="blood" experience="265" speed="200">
 	<health now="380" max="380" />
-	<look type="66" corpse="6015" />
+	<look type="66" corpse="43056" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="0" />
