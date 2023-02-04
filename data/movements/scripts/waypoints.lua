@@ -51,6 +51,10 @@ local WAYPOINTS = {
   [12] = {
     name = "Yalahar",
     position = Position(32785, 31276, 7)
+  },
+  [13] = {
+    name = "Edron",
+    position = Position(33220, 31814, 8)
   }
 }
 
