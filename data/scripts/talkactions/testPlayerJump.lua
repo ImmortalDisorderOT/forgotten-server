@@ -4,7 +4,10 @@ local talk = TalkAction("/testjump", "!testjump")
 
 
 function talk.onSay(player, words, param)
-
+    
+	if not player:getGroup():getAccess()  then
+		return true
+	end
     local AreaX = 13 -- X range who will receive "jump packet" (all players in X range)
     local AreaY = 8 -- Y range who will receive "jump packet" (all players in Y range)
 

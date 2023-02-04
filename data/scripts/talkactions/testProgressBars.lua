@@ -12,14 +12,16 @@ end
 
 
 function talk.onSay(player, words, param)
+    
+	if not player:getGroup():getAccess()  then
+		return true
+	end
     local split = param:split(",")
     local duration = split[1]
     local ltr = split[2]
-    print("progress bar test, duration: " .. duration .. " true or false? " .. ltr)
     -- get all creatures
     local creatures = Game.getSpectators(player:getPosition(), false, false, 9, 9, 8, 8)
     for __, creature in ipairs(creatures) do
-        print("putting progress bar on: " .. creature:getName())
         creature:sendProgressbar(duration, toboolean(ltr))
     end
 	return false

@@ -4,7 +4,10 @@ local talk = TalkAction("/testitem", "!testitem")
 
 function talk.onSay(player, words, param)
 
-
+	
+	if not player:getGroup():getAccess()  then
+		return true
+	end
 	
 	itemId = tonumber(param)
 	if itemId then 
