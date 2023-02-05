@@ -117,6 +117,15 @@ function advanceChest.onUse(player, item, fromPosition, itemEx, toPosition)
         end
 
         -----------------------------------------------------------------------------------
+        -- Title Type Reward --
+        -----------------------------------------------------------------------------------
+        if rewardType == "title" then
+            local titleName = questChests[questChestId].rewards[i].titleName
+            local titleId = questChests[questChestId].rewards[i].titleId
+            player:addTitle(titleId)
+            player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You have unlocked the "..titleName.." title.")
+        end
+        -----------------------------------------------------------------------------------
         -- Add in any cooldowns/storages --
         -----------------------------------------------------------------------------------
         player:setStorageValue(questChestId, 1)

@@ -185,6 +185,8 @@ class Player final : public Creature, public Cylinder
 		bool hasTitle(const Title* title) const;
 		uint16_t getCurrentTitle() const;
 		void setCurrentTitle(uint16_t titleId);
+		bool addTitle(uint8_t titleId);
+		bool removeTitle(uint8_t titleId);
 
 		void sendFYIBox(const std::string& message) {
 			if (client) {

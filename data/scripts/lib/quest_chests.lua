@@ -6,6 +6,7 @@
 --[3] = {type = "outfit", name = "assassin", femaleId = 156, maleId = 152}
 --[4] = {type = "addon", outfit = "nobleman", addonNumber = 1, femaleId = 140, maleId = 132}
 --[5] = {type = "mount", mountName = "Orc", mountId = 20}
+--[6] = {type = "title", mountName = "Maxe Maniac", mountId = 1}
 
 questChests = {
    [48000] = {
@@ -19,8 +20,15 @@ questChests = {
     levelReq = 0,
     storageUnique = 48001,
     rewards = {
-        [1] = {type = "item", itemid = 2160, count = 100},
+        [1] = {type = "item", itemid = 2160, count = 10},
         [2] = {type = "experience", amount = 1000000}
-    }
-}
+        }
+    },
+    [48002] = {
+     levelReq = 0,
+     storageUnique = 48002,
+     rewards = {
+         [1] = {type = "title", titleName = "Maze Maniac", titleId = 1}
+        }
+     }
 }

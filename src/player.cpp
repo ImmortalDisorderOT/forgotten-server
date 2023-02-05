@@ -4419,6 +4419,54 @@ uint16_t Player::getCurrentShader() const
 	return 0;
 }
 
+bool Player::addTitle(uint8_t titleId)
+{
+	if (!g_game.titles.getTitleByID(titleId)) {
+		return false;
+	}
+
+	const uint8_t tmpTitleId = titleId - 1;
+	const uint32_t key = PSTRG_TITLES_RANGE_START + (tmpTitleId / 31);
+
+	int32_t value;
+	if (getStorageValue(key, value)) {
+		value |= (1 << (tmpTitleId % 31));
+	} else {
+		value = (1 << (tmpTitleId % 31));
+	}
+
+	addStorageValue(key, value);
+	return true;
+}
+
+bool Player::removeTitle(uint8_t titleId)
+{
+	if (!g_game.titles.getTitleByID(titleId)) {
+		return false;
+	}
+
+	const uint8_t tmpTitleId = titleId - 1;
+	const uint32_t key = PSTRG_TITLES_RANGE_START + (tmpTitleId / 31);
+
+	int32_t value;
+	if (!getStorageValue(key, value)) {
+		return true;
+	}
+
+	value &= ~(1 << (tmpTitleId % 31));
+	addStorageValue(key, value);
+
+	if (getCurrentTitle() == titleId) {
+		if (hasTitle()) {
+			defaultOutfit.lookTitle = 0;
+			g_game.internalCreatureChangeOutfit(this, defaultOutfit);
+		}
+		setCurrentTitle(0);
+	}
+
+	return true;
+}
+
 bool Player::hasTitle(const Title* title) const
 {
 	if (isAccessPlayer()) {

@@ -1000,6 +1000,10 @@ class LuaScriptInterface
 		static int luaPlayerRemoveMount(lua_State* L);
 		static int luaPlayerHasMount(lua_State* L);
 
+		static int luaPlayerAddTitle(lua_State* L);
+		static int luaPlayerRemoveTitle(lua_State* L);
+		static int luaPlayerHasTitle(lua_State* L);
+
 		static int luaPlayerGetPremiumEndsAt(lua_State* L);
 		static int luaPlayerSetPremiumEndsAt(lua_State* L);
 

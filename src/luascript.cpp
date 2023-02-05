@@ -2530,6 +2530,11 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "getAttackSpeed", LuaScriptInterface::luaPlayerGetAttackSpeed);
     registerMethod("Player", "setAttackSpeed", LuaScriptInterface::luaPlayerSetAttackSpeed);
 
+	// adding / removing titles
+	registerMethod("Player", "addTitle", LuaScriptInterface::luaPlayerAddTitle);
+	registerMethod("Player", "removeTitle", LuaScriptInterface::luaPlayerRemoveTitle);
+	registerMethod("Player", "hasTitle", LuaScriptInterface::luaPlayerHasTitle);
+
 	registerMethod("Player", "getStoreInbox", LuaScriptInterface::luaPlayerGetStoreInbox);
 
 	// Monster
@@ -9807,6 +9812,76 @@ int LuaScriptInterface::luaPlayerHasMount(lua_State* L) {
 
 	if (mount) {
 		pushBoolean(L, player->hasMount(mount));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Titles
+int LuaScriptInterface::luaPlayerAddTitle(lua_State* L) {
+	// player:addTitle(titleId or titleName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t titleId;
+	if (isNumber(L, 2)) {
+		titleId = getNumber<uint8_t>(L, 2);
+	} else {
+		Title* title = g_game.titles.getTitleByName(getString(L, 2));
+		if (!title) {
+			lua_pushnil(L);
+			return 1;
+		}
+		titleId = title->id;
+	}
+	pushBoolean(L, player->addTitle(titleId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerRemoveTitle(lua_State* L) {
+	// player:removeTitle(titleId or titleName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t titleId;
+	if (isNumber(L, 2)) {
+		titleId = getNumber<uint8_t>(L, 2);
+	} else {
+		Title* title = g_game.titles.getTitleByName(getString(L, 2));
+		if (!title) {
+			lua_pushnil(L);
+			return 1;
+		}
+		titleId = title->id;
+	}
+	pushBoolean(L, player->removeTitle(titleId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasTitle(lua_State* L) {
+	// player:hasTitle(titleId or titleName)
+	const Player* player = getUserdata<const Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Title* title = nullptr;
+	if (isNumber(L, 2)) {
+		title = g_game.titles.getTitleByID(getNumber<uint8_t>(L, 2));
+	} else {
+		title = g_game.titles.getTitleByName(getString(L, 2));
+	}
+
+	if (title) {
+		pushBoolean(L, player->hasTitle(title));
 	} else {
 		lua_pushnil(L);
 	}

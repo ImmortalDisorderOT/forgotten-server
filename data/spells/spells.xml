@@ -74,7 +74,7 @@
         <vocation name="Sorcerer" />
     </instant>
     <!-- Test of Xikini's face target https://otland.net/threads/turncreaturetowardposition-tfs-1-3-lua-function.276538/ -->
-	<instant group="attack" spellid="513" name="exori mas" words="exori mas" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="custom/facetarget.lua">
+	<instant group="attack" spellid="513" name="Face Target" words="Face Target" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="custom/facetarget.lua">
         <vocation name="Sorcerer" />
     </instant>
 	
