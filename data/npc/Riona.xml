@@ -4,6 +4,6 @@
 	<look type="138" head="57" body="59" legs="40" feet="76" addons="0" />
 	<parameters>
 		<parameter key="module_shop" value="1" />
-		<parameter key="shop_buyable" value="backpack,1988,20;pick,2553,10;shovel,2554,20;rope,2120,50" />
+		<parameter key="shop_buyable" value="crystal extractor,2557,1000;identify scroll,43402,100;amulet of loss,2173,10000;backpack,1988,20;pick,2553,10;shovel,2554,20;rope,2120,50;worm,3976,1;fishing rod,2580,50;" />
 	</parameters>
 </npc>

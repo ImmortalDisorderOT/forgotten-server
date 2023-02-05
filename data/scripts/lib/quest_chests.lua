@@ -14,5 +14,13 @@ questChests = {
         rewards = {
             [1] = {type = "item", itemid = 2361, count = 0}
         }
-   }
+   },
+   [48001] = {
+    levelReq = 0,
+    storageUnique = 48001,
+    rewards = {
+        [1] = {type = "item", itemid = 2160, count = 100},
+        [2] = {type = "experience", amount = 1000000}
+    }
+}
 }

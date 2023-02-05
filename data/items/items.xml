@@ -4280,8 +4280,8 @@
 	<item id="2556" article="a" name="wooden hammer">
 		<attribute key="weight" value="600" />
 	</item>
-	<item id="2557" article="a" name="hammer">
-		<attribute key="weight" value="1150" />
+	<item id="2557" article="a" name="crystal extractor">
+		<attribute key="weight" value="1000" />
 	</item>
 	<item id="2558" article="a" name="saw">
 		<attribute key="weight" value="1000" />

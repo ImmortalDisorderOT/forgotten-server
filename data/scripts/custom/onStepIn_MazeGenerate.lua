@@ -5,10 +5,10 @@
 
 local config = {
     actionid = 65200, -- action id for the tile when the player steps in
-    fromPos = Position(1304, 1111, 7), -- top left corner
-	toPos = Position(1330, 1135, 7), -- bottom right corner
+    fromPos = Position(798, 975, 7), -- top left corner
+	toPos = Position(902, 1063, 7), -- bottom right corner
     itemid = 10747, -- itemID of the maze
-	duration = 7000 -- how long is one maze iteration
+	duration = 15000 -- how long is one maze iteration
 }
 
 local mazeToggled = false

@@ -27,11 +27,11 @@ US_CONFIG = {
   ITEM_VOID_CRYSTAL = 42906, -- Void Crystal item id
   ITEM_SCROLL_IDENTIFY = 43402, -- Scrol of Identification item id scroll 
   ITEM_UPGRADE_CATALYST = 42983, -- Upgrade Catalyst item id 
-  CRYSTAL_EXTRACTOR = 42930, -- Crystal Extractor item id
+  CRYSTAL_EXTRACTOR = 2557, -- Crystal Extractor item id
   CRYSTAL_FOSSIL = 42929, -- Crystal Fossil item id
   --
-  IDENTIFY_UPGRADE_LEVEL = true, -- if true, roll random upgrade level when identifing an item
-  UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 100, [6] = 100, [7] = 100, [8] = 100, [9] = 100, [10] = 100}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
+  IDENTIFY_UPGRADE_LEVEL = false, -- if true, roll random upgrade level when identifing an item
+  UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 80, [6] = 80, [7] = 70, [8] = 50, [9] = 50, [10] = 20}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
   UPGRADE_LEVEL_DESTROY = 11, -- at which upgrade level should it break if failed, for example if = 7 then upgrading from +6 to +7-9 can destroy item on failure.
   UPGRADE_DESTROY_CHANCE = {}, -- chance for the item to break at given upgrade level
   --
@@ -47,11 +47,11 @@ US_CONFIG = {
   HITCHANCE_PER_ITEM_LEVEL = 10, -- every X Item Level +HITCHANCE_FROM_ITEM_LEVEL hit chance
   HITCHANCE_FROM_ITEM_LEVEL = 1, -- +X bonus hit chance for every HITCHANCE_PER_ITEM_LEVEL
   --
-  ITEM_LEVEL_PER_ATTACK = 6, -- +1 to Item Level for every X Attack in item
-  ITEM_LEVEL_PER_DEFENSE = 15, -- +1 to Item Level for every X Defense in item
-  ITEM_LEVEL_PER_ARMOR = 10, -- +1 to Item Level for every X Armor in item
+  ITEM_LEVEL_PER_ATTACK = 5, -- +1 to Item Level for every X Attack in item
+  ITEM_LEVEL_PER_DEFENSE = 13, -- +1 to Item Level for every X Defense in item
+  ITEM_LEVEL_PER_ARMOR = 8, -- +1 to Item Level for every X Armor in item
   ITEM_LEVEL_PER_HITCHANCE = 3, -- +1 to Item Level for every X Hit Chance in item
-  ITEM_LEVEL_PER_UPGRADE = 4, -- additional item level per upgrade level
+  ITEM_LEVEL_PER_UPGRADE = 5, -- additional item level per upgrade level
   --
   ATTACK_PER_UPGRADE = 2, -- amount of bonus attack per upgrade level
   DEFENSE_PER_UPGRADE = 2, -- amount of bonus defense per upgrade level
