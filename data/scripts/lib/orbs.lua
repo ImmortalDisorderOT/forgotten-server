@@ -29,11 +29,11 @@ orbs = {
                     },
                     {
                         type = "gold",
-                        chance = 25,
+                        chance = 10,
                         text = "Money!",
                         effect = 224,
-                        min = 500,  -- min money gained
-                        max = 5000 -- max money gained
+                        min = 100,  -- min money gained
+                        max = 1000 -- max money gained
                     }
                 }   
             }

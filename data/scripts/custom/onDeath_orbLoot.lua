@@ -4,7 +4,7 @@
 -- TODO: make meaningful orbs
 
 local config = {
-    orbTicks = 4, -- ticks, time is (timeBetweenOrbs * 1000) seconds, reduce to a lower number if orbs are being auto looted
+    orbTicks = 10, -- ticks, time is (timeBetweenOrbs * 1000) seconds, reduce to a lower number if orbs are being auto looted
     timeBetweenOrbs = 1000, -- time in milliseconds
     looter = 1, -- 1 = random player who damaged mod, 2 = most damage killer 3 = killer
     maxOrbs = 2, -- max orbs to spawn (rolls 1 .. max and then each orb has a chance to spawn defined by config.chance (who doesnt want to get lucky and see like 10 orbs?))
@@ -180,7 +180,14 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
     if creature:isPlayer() or creature:getMaster() then 
         return true 
     end
-    
+    -- check if mob has skull
+    local skull
+
+    if creature:getSkull() > SKULL_NONE then
+        skull = creature:getSkull()
+    else
+        return true
+    end
 
     local tier
 
@@ -219,13 +226,6 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
 
     -- get position of where the mob died
     local position = creature:getPosition()
-
-    -- check if mob has skull
-    local skull
-
-    if creature:getSkull() > SKULL_NONE then
-        skull = creature:getSkull()
-    end
 
     local orbsRolled
 
