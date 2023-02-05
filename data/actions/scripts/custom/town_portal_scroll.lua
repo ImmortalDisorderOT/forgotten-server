@@ -1,6 +1,6 @@
 function onUse(player, item, fromPosition, target, toPosition, isHotkey)
-  if player:isPzLocked() then
-    player:sendTextMessage(MESSAGE_STATUS_WARNING, "You cannot use a portal scroll while in battle")
+  if player:isPzLocked() or player:hasCondition(CONDITION_INFIGHT) then
+    player:sendTextMessage(MESSAGE_STATUS_WARNING, "You cannot use a town portal while in battle")
     return false
   end
   local portalId = getFreePortalId()

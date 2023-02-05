@@ -7,7 +7,7 @@ TOWN_PORTALS = {
   townText = "Town Portal", -- Text on the portal in a town, nil = nothing
   portalText = nil, -- text on the portal create by a player, nil = Town Name
   townPortals = { -- list of Town Portals in towns that are used to teleport back to player portal
-    Position(1003, 1000, 7)
+    Position(1160, 1116, 7)
   }
 }
 
