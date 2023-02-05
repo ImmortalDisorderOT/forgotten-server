@@ -5,60 +5,60 @@
 
     <!-- That missile spam by Infernum -->
     <instant group="attack" spellid="501" name="Missiles" words="Missiles" level="1" mana="1" premium="0" selftarget="1" cooldown="1" groupcooldown="1" needlearn="0" script="shade/missiles.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <!-- Volatile Spiderling by Nightwolf https://otland.net/threads/sharing-knowledge-on-lua-possibilities.277266/ -->
     <instant group="attack" spellid="511" name="Volatile Spiderling" words="Volatile Spiderling" lvl="1" mana="1" prem="0" aggressive="1" needlearn="0" script="shade/volatilespiderling.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <!-- Stormcaller -->
 
     <!-- Energy Rain by Levi999x -->
     <instant group="attack" spellid="500" name="Energy Rain" words="Energy Rain" level="1" mana="1" premium="0" selftarget="1" cooldown="1" groupcooldown="1" needlearn="0" script="stormcaller/energyrain.lua">
-		<vocation name="Sorcerer" />
+		<vocation name="Tester" />
     </instant>
 	<!-- Thunder Storm by Leo32 -  https://otland.net/threads/tfs-1-x-thunder-storm.268239/ -->
     <instant group="attack" spellid="503" name="Thunder Storm" words="thunder storm" lvl="1" mana="1" prem="0" aggressive="0" cooldown="1" groupcooldown="1" needlearn="0" script="stormcaller/thunderstorm.lua">
-		<vocation name="Sorcerer" />
+		<vocation name="Tester" />
     </instant>
     <!-- Chain Lightning by Nightwolf https://otland.net/threads/sharing-knowledge-on-lua-possibilities.277266/ -->
     <!-- in rev scripts -->
 
     <!-- Magic Missile by Leo32 -  https://otland.net/threads/tfs-1-x-magic-missile.268185/ -->
     <instant group="attack" spellid="504" name="Magic Missile" words="Magic Missile" lvl="1" mana="1" prem="0" aggressive="0" cooldown="1" groupcooldown="1" needlearn="0" script="stormcaller/magicmissiles.lua">
-		<vocation name="Sorcerer" />
+		<vocation name="Tester" />
     </instant>
 
 
     <!-- Pyromancer -->
 
     <instant group="attack" spellid="507" name="Fire Rain" words="Fire Rain" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="pyromancer/firerain.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <instant group="attack" spellid="508" name="Apocalypse" words="Apocalypse" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="pyromancer/apocalypse.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <!-- Pyromania by Nightwolf https://otland.net/threads/sharing-knowledge-on-lua-possibilities.277266/ -->
     <instant group="attack" spellid="510" name="Pyromania" words="Pyromania" lvl="1" mana="1" prem="0" aggressive="1" needlearn="0" needtarget="1" script="pyromancer/pyromania.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <!-- Archer -->
 
     <!-- Scatter Shot by Nightwolf https://otland.net/threads/sharing-knowledge-on-lua-possibilities.277266/ -->
     <instant group="attack" spellid="512" name="Scatter Shot" words="Scatter Shot" lvl="1" mana="1" prem="0" aggressive="1" needlearn="0" script="archer/scattershot.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <!-- Warrior -->
 
     <!-- Sword Dance by Levi999x -->
     <instant group="attack" spellid="502" name="Sword Dance" words="Sword Dance" level="1" mana="1" premium="0" selftarget="1" cooldown="1" groupcooldown="1" needlearn="0" script="warrior/sworddance.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
 
@@ -67,15 +67,15 @@
 
     <!-- Teleport by Leo32 https://otland.net/threads/tfs-1-x-player-teleport.268303/ -->
     <instant group="support" spellid="505" name="Teleport" words="teleport" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="custom/teleport.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 
     <instant group="attack" spellid="506" name="Burning Expansion" words="Burning Expansion" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="custom/burningexpansion.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
     <!-- Test of Xikini's face target https://otland.net/threads/turncreaturetowardposition-tfs-1-3-lua-function.276538/ -->
 	<instant group="attack" spellid="513" name="Face Target" words="Face Target" lvl="1" mana="1" prem="0" aggressive="0" needlearn="0" script="custom/facetarget.lua">
-        <vocation name="Sorcerer" />
+        <vocation name="Tester" />
     </instant>
 	
 	<!-- Attack Spells -->

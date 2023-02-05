@@ -1,7 +1,7 @@
 -- TODO: fix the wave... can't seem to get it to do the drection the player is facing
 
 local spell = Spell(SPELL_INSTANT)
-spell:id(601)
+spell:id(2)
 
 spell:level(1)
 spell:magicLevel(0)
@@ -16,7 +16,7 @@ spell:groupCooldown(2 * 1000)
 spell:needTarget(false)
 spell:isAggressive(true)
 
-spell:vocation("shade")
+spell:vocation("Tester")
 
 local combat = Combat()
 combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)

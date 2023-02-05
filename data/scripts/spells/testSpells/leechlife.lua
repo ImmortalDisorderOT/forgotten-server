@@ -14,7 +14,7 @@ spell:groupCooldown(2 * 1000)
 spell:needTarget(false)
 spell:isAggressive(true)
 
-spell:vocation("Sorcerer")
+spell:vocation("Tester")
 
 local combat = Combat()
 combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_DEATHDAMAGE)

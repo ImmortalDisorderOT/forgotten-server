@@ -90,4 +90,14 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
+	<vocation id="9" clientid="5" name="Tester" description="a tester" gaincap="50" gainhp="50" gainmana="50" gainhpticks="2" gainhpamount="50" gainmanaticks="4" gainmanaamount="50" manamultiplier="1" attackspeed="2000" basespeed="400" soulmax="200" gainsoulticks="15" fromvoc="9">
+		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
+		<skill id="0" multiplier="1.1" />
+		<skill id="1" multiplier="1.1" />
+		<skill id="2" multiplier="1.1" />
+		<skill id="3" multiplier="1.1" />
+		<skill id="4" multiplier="1.1" />
+		<skill id="5" multiplier="1.1" />
+		<skill id="6" multiplier="1.1" />
+	</vocation>
 </vocations>

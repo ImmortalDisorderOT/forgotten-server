@@ -10,7 +10,7 @@ spell:level(1)
 spell:mana(20)
 spell:magicLevel(0)
 spell:needLearn(false)
-spell:vocation("Sorcerer")
+spell:vocation("Tester")
 
 local combat = Combat()
 combat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MAGIC_GREEN)

@@ -14,7 +14,7 @@ spell:cooldown(4 * 1000)
 spell:groupCooldown(2 * 1000)
 spell:isAggressive(true)
 
-spell:vocation("Sorcerer")
+spell:vocation("Tester")
 
 
 local config = {

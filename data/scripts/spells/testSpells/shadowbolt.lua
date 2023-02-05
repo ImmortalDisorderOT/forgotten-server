@@ -14,7 +14,7 @@ spell:needTarget(true)
 spell:isAggressive(true)
 spell:isBlockingWalls(true)
 spell:needLearn(false)
-spell:vocation("Sorcerer")
+spell:vocation("Tester")
 
 local minMissiles = 2
 
