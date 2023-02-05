@@ -49,11 +49,25 @@ function advanceChest.onUse(player, item, fromPosition, itemEx, toPosition)
         if rewardType == "item" then
                 local itemid = questChests[questChestId].rewards[i].itemid
                 local count = math.max(0, questChests[questChestId].rewards[i].count)
+                local itemLevel, itemRarity
+                if questChests[questChestId].rewards[i].itemlevel then
+                    itemLevel = questChests[questChestId].rewards[i].itemlevel
+                end
+                if questChests[questChestId].rewards[i].itemrarity then
+                    itemRarity = questChests[questChestId].rewards[i].itemrarity
+                end
 
-                player:addItem(itemid, count)
+                local item = player:addItem(itemid, count)
+                if itemLevel and item then
+                    item:setItemLevel(itemLevel, true)
+                end
+
+                if itemRarity and item then
+                    item:setRarity(itemRarity)
+                end
                 if count > 0 then
                     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You earned " .. count .."x "  .. getItemName(itemid) .. "s")
-                else 
+                else
                     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You earned a(n) "  .. getItemName(itemid))
                 end
         end

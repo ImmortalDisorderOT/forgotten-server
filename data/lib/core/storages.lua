@@ -27,6 +27,68 @@ PlayerStorageKeys = {
 
 	achievementsBase = 300000,
 	achievementsCounter = 20000,
+
+	
+	PitsOfInferno = {
+		ShortcutHub = 8819,
+		ShortcutLevers = 8818,
+		Pumin = 50096,
+
+		WeaponReward = 10544,
+
+		ThroneInfernatil = 2080,
+		ThroneTafariel = 2081,
+		ThroneVerminor = 2082,
+		ThroneApocalypse = 2083,
+		ThroneBazir = 2084,
+		ThroneAshfalor = 2085,
+		ThronePumin = 2086
+	},
+	
+	SvargrondArena = {
+		Arena = 1100,
+		Pit = 1101,
+
+		QuestLogGreenhorn = 50140,
+		QuestLogScrapper = 50141,
+		QuestLogWarlord = 50142,
+
+		RewardGreenhorn = 26300,
+		RewardScrapper = 27300,
+		RewardWarlord = 28300,
+
+		TrophyGreenhorn = 1103,
+		TrophyScrapper = 1105,
+		TrophyWarlord = 1107,
+
+		-- Reward Doors
+		Greenhorn = 26100,
+		Scrapper = 27100,
+		Warlord = 28100
+	},
+
+	
+	TheInquisition = {
+		Questline = 12160, -- Storage through the Quest
+		Mission01 = 12161,
+		Mission02 = 12162,
+		Mission03 = 12163,
+		Mission04 = 12164,
+		Mission05 = 12165,
+		Mission06 = 12166,
+		Mission07 = 12167,
+		GrofGuard = 12170,
+		KulagGuard = 12171,
+		MilesGuard = 12172,
+		TimGuard = 12173,
+		WalterGuard = 12174,
+		StorkusVampiredust = 12175,
+		EnterTeleport = 12176,
+		Reward = 12177,
+		RewardRoomText = 12178
+	},
+	
+
 }
 
 GlobalStorageKeys = {

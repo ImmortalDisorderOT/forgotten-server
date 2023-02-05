@@ -41864,45 +41864,62 @@
 	<!-- custom below here -->
 	<item id="42929" article="a" name="crystal fossil">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="There is unknown crystal inside, try to use crystal extractor." />
 	</item>
 	<item id="42930" article="a" name="crystal extractor">
 		<attribute key="weight" value="10" />
 	</item>
 	
 	<item id="42901" article="an" name="upgrade crystal">
+		<attribute key="description" value="Can be used on a piece of equipment for a chance to upgrade it." />
 		<attribute key="weight" value="10" />
 	</item>
+
 	<item id="42902" article="an" name="enhancement crystal">
+		<attribute key="description" value="Can be used on a piece of equipment to add random attribute." />
 		<attribute key="weight" value="10" />
 	</item>
+
 	<item id="42903" article="an" name="alteration crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Can be used on a piece of equipment to remove last attribute." />
 	</item>
+
 	<item id="42904" article="a" name="cleansing crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Can be used on a piece of equipment to remove all attributes." />
 	</item>
+
 	<item id="42905" article="a" name="fortune crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Can be used on a piece of equipment to change value of last attribute." />
 	</item>
+
 	<item id="42998" article="a" name="faith crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Can be used on a piece of equipment to change values of all attributes." />
 	</item>
 	
 	<item id="42906" article="a" name="void crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Used to transform item into random Unique type." />
 	</item>
 	
 	<item id="42907" article="a" name="mirror crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Used to make a copy of any item. Copies can't be modified and mirrored again." />
 	</item>
 	<item id="42908" article="a" name="mind crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Used to extract all attributes and values and store in that crystal. Can be used again to place these attributes to a new item." />
 	</item>
 	<item id="42909" article="a" name="limitless crystal">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Used to remove Item Level requirement to equip given item." />
 	</item>
 	<item id="42983" article="an" name="upgrade catalyst">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="" />
 	</item>
 	
 	<item id="43056" article="a" name="bag of loot">
@@ -41922,6 +41939,7 @@
 	
 	<item id="43402" article="an" name="Identify Scroll">
 		<attribute key="weight" value="10" />
+		<attribute key="description" value="Can be used on unidentified item to reveal hidden attributes." />
 	</item>
 
 	<item id="43193" article="a" name="Deep Mire Map">
