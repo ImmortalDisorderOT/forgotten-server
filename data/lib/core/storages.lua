@@ -23,6 +23,8 @@ PlayerStorageKeys = {
 
 	teleportType = 30051,
 
+	usedOfflineSkillTrainer = 30100,
+
 	achievementsBase = 300000,
 	achievementsCounter = 20000,
 }

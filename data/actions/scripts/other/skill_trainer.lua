@@ -18,6 +18,7 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	player:setOfflineTrainingSkill(skill)
+	player:setStorageValue(PlayerStorageKeys.usedOfflineSkillTrainer, 1)
 	player:remove()
 	return true
 end
