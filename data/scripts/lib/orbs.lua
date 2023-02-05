@@ -7,9 +7,9 @@ orbs = {
                 orblist = {
                     {
                         type = "loot",
-                        chance = 10,
+                        chance = 50,
                         text = "Crystals!",
-                        effect = 222, 
+                        effect = 222,
                         tiers = {
                                 -- A random number is rolled between 1 to 10000. 
                                 -- [chance_lower, chance_higher] = {itemList = {itemid, amount_min, amount_max, chance} } chance is always out of 10000
@@ -29,11 +29,11 @@ orbs = {
                     },
                     {
                         type = "gold",
-                        chance = 10,
+                        chance = 25,
                         text = "Money!",
                         effect = 224,
-                        min = 10,  -- min money gained
-                        max = 100 -- max money gained
+                        min = 500,  -- min money gained
+                        max = 5000 -- max money gained
                     }
                 }   
             }

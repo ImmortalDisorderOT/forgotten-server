@@ -20,8 +20,6 @@ mapsArea = {topLeft = Position(4000, 4000, 7),
                                     offsetX = 400,
                                     offsetY = 0
                             }
-                            
-
             }
         }
 

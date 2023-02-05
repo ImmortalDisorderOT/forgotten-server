@@ -30,4 +30,13 @@ PlayerStorageKeys = {
 }
 
 GlobalStorageKeys = {
+	expBoostedRate = 17585,
+	expBoostedTime = 17589,
+
+	skillBoostedRate = 17586,
+	skillBoostedTime = 17590,
+
+	orbBoostedRate = 17587,
+	orbBoostedTime = 17591,
+
 }
