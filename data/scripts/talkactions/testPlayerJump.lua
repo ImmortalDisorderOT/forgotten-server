@@ -5,9 +5,6 @@ local talk = TalkAction("/testjump", "!testjump")
 
 function talk.onSay(player, words, param)
     
-	if not player:getGroup():getAccess()  then
-		return true
-	end
     local AreaX = 13 -- X range who will receive "jump packet" (all players in X range)
     local AreaY = 8 -- Y range who will receive "jump packet" (all players in Y range)
 
@@ -17,11 +14,11 @@ function talk.onSay(player, words, param)
         return nil
     end
 
-    -- Release of function // JumpCreature (self, creatureID, jumpHeight, jumpDuration, jumpStraight(true or false))
+    -- JumpCreature (self, creatureID, jumpHeight, jumpDuration, jumpStraight(true or false))
     for index, spectator in ipairs(spectators) do
         if spectator:getId() ~= player then
             playerID = player:getId()
-            spectator:JumpCreature(playerID,100,1000,1)
+            spectator:JumpCreature(playerID, 100, 1000, true)
         end
     end
 
