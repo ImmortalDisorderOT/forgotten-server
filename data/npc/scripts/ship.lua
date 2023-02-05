@@ -9,6 +9,8 @@ function onThink()                          npcHandler:onThink()                
 
 keywordHandler:addKeyword({'captain'}, StdModule.say, {npcHandler = npcHandler, text = 'I am the captain of this sailing-ship.'})
 keywordHandler:addKeyword({'trip'}, StdModule.say, {npcHandler = npcHandler, text = 'Where do you want to go? To Liberty Bay, Port Hope, Ankrahmun, Darashia, Edron, Svargrond, or Yalahar?'})
+keywordHandler:addKeyword({'travel'}, StdModule.say, {npcHandler = npcHandler, text = 'Where do you want to go? To Liberty Bay, Port Hope, Ankrahmun, Darashia, Edron, Svargrond, or Yalahar?'})
+keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Where do you want to go? To Liberty Bay, Port Hope, Ankrahmun, Darashia, Edron, Svargrond, or Yalahar?'})
 keywordHandler:addKeyword({'ice'}, StdModule.say, {npcHandler = npcHandler, text = 'I\'m sorry, but we don\'t serve the routes to the Ice Islands.'})
 
 local node1 = keywordHandler:addKeyword({'liberty bay'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'Do you seek a passage to Liberty Bay for 100 gold?'})

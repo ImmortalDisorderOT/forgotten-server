@@ -5,6 +5,28 @@
 	<parameters>
 		<parameter key="module_shop" value="1" />
 		<parameter key="shop_sellable" value="crossbow,2455,150;bow,2456,130" />
-		<parameter key="shop_buyable" value="crossbow,2455,360;bow,2456,200;poison arrow,2545,18;bolt,2543,3;arrow,2544,2" />
+		<parameter key="shop_buyable" value="
+		crossbow,2455,360;
+		bow,2456,200;
+		arrow,2544,5;
+		poison arrow,2545,10;
+		burst arrow,2546,10;
+		sniper arrow,7364,10;
+		onyx arrow,7365,10;
+		flash arrow,7838,10;
+		shiver arrow,7839,10;
+		flaming arrow,7840,10;
+		earth arrow,7850,10;
+		envenomed arrow,18437,10;
+		crystalline arrow,18304,20;
+		diamond arrow,28413,20;
+		bolt,2543,5;
+		piecercing bolt,7363,10;
+		vortex bolt,15649,10;
+		power bolt,2547,10;
+		drill bolt,18436,10;
+		prismatic bolt,18435,10;
+		infernal bolt,6529,20
+		spectral bolt,28414,80;" />
 	</parameters>
 </npc>

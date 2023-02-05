@@ -38067,7 +38067,7 @@
 		<attribute key="attack" value="48" />
 		<attribute key="range" value="4" />
 		<attribute key="elementEarth" value="2" />
-		<attribute key="shootType" value="leafstar" />
+		<attribute key="shootType" value="throwingstar" />
 	</item>
 	<item id="28392" name="swan feathers" />
 	<item id="28393" article="a" name="rainbow quartz" />
@@ -38092,14 +38092,14 @@
 		<attribute key="weaponType" value="ammunition" />
 		<attribute key="ammoType" value="arrow" />
 		<attribute key="attack" value="37" />
-		<attribute key="shootType" value="diamondarrow" />
+		<attribute key="shootType" value="arrow" />
 	</item>
 	<item id="28414" article="a" name="spectral bolt">
 		<attribute key="weight" value="90" />
 		<attribute key="weaponType" value="ammunition" />
 		<attribute key="ammoType" value="bolt" />
 		<attribute key="attack" value="78" />
-		<attribute key="shootType" value="spectralbolt" />
+		<attribute key="shootType" value="bolt" />
 	</item>
 	<item id="28415" article="a" name="royal star">
 		<attribute key="weight" value="220" />
@@ -38107,7 +38107,7 @@
 		<attribute key="attack" value="64" />
 		<attribute key="range" value="4" />
 		<attribute key="elementFire" value="2" />
-		<attribute key="shootType" value="royalstar" />
+		<attribute key="shootType" value="throwingstar" />
 	</item>
 	<item id="28416" article="a" name="wand of darkness" />
 	<item id="28417" name="strange colours" />
@@ -41107,14 +41107,14 @@
 		<attribute key="weaponType" value="ammunition" />
 		<attribute key="ammoType" value="arrow" />
 		<attribute key="attack" value="37" />
-		<attribute key="shootType" value="diamondarrow" />
+		<attribute key="shootType" value="arrow" />
 	</item>
 	<item id="38558" article="a" name="spectral bolt">
 		<attribute key="weight" value="90" />
 		<attribute key="weaponType" value="ammunition" />
 		<attribute key="ammoType" value="bolt" />
 		<attribute key="attack" value="78" />
-		<attribute key="shootType" value="spectralbolt" />
+		<attribute key="shootType" value="bolt" />
 	</item>
 	<item id="38564" article="a" name="rope-ladder" />
 	<item fromid="38565" toid="38566" name="chaos critical dice" />
