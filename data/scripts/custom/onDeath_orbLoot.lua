@@ -96,15 +96,12 @@ local function giveReward(pid, orb)
     elseif orb.type == "gold" then
         local amountToGive = math.random(orb.min, orb.max) -- roll min and max amount
         player:setBankBalance(player:getBankBalance() + amountToGive) -- set in bank
-        player:sendTextMessage(MESSAGE_INFO_DESCR, amountToGive .. " deposited into your bank account!") -- tell player
-
+        player:sendTextMessage(MESSAGE_INFO_DESCR, amountToGive .. " gold deposited into your bank account!") -- tell player
     elseif orb.type == "experience" then
         local amountToGive = math.random(orb.min, orb.max) -- rol min and max amount
         doPlayerAddExp(pid, amountToGive) -- give exp
         player:sendTextMessage(MESSAGE_INFO_DESCR, "You gained "  ..  amountToGive .. " experience!") -- tell player
-
     else
-
         player:sendTextMessage(MESSAGE_INFO_DESCR, "CONFIGURATION IS INCORRECT, REPORT TO AN ADMIN") -- something is wrong
     end
 
@@ -164,7 +161,6 @@ local function rollOrbs(orbList, maxOrbs, skull)
             chance = orb.chance
         end
         local roll = math.random(100)
-        print(roll)
         if chance >= roll then
             table.insert(orbs, orb)
         end

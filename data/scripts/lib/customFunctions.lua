@@ -44,7 +44,7 @@ function createTeleport(position, destination, playerId)
 		end
     end
 
-    local teleportItem = Game.createItem(teleportId, 1, position) 
+    local teleportItem = Game.createItem(teleportId, 1, position)
     teleportItem:setDestination(destination)
 end
 
@@ -99,4 +99,10 @@ function doGenerateMaze(fromPos, toPos, itemid, duration)
         end
     end
     doMoveCell(startPos)
+end
+
+function annouceEvent(msg)
+    for _, targetPlayer in ipairs(Game.getPlayers()) do
+		targetPlayer:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, msg)
+	end
 end
