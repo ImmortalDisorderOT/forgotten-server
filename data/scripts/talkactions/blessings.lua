@@ -3,8 +3,16 @@ local talk = TalkAction("/bless", "!bless")
 
 
 function talk.onSay(player, words, param)
-	local cost = 50000
 
+	for i = 1, 5 do
+		if player:hasBlessing(i) then
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE,"You already have been blessed")
+			return false
+		end
+	end
+	
+	local cost = 50000
+	
 	if not player:removeTotalMoney(cost) then
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE,"You don't have enough money for blessing.")
 	else
