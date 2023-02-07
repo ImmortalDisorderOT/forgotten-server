@@ -118,7 +118,7 @@ local function trySpawnEI()
     createTeleport(EI_Config.teleportToIslandPos, EI_Areas[EI_CurrRaid.currentIsland.type].teleportPos)
 
     EI_CurrRaid.activeRaid = true
-
+    EI_CurrRaid.currentWave = 1
     spawnEI_Wave()
 
     EI_CurrRaid.clearEvent = addEvent(clearEI, EI_Config.islandTotalTimer)

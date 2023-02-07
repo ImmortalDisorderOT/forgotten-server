@@ -27,48 +27,48 @@ EI_Raids = {
         [1] = {
             name = "Undeads",
             averageLevel = 0,
-            waves = 5,
+            waves = 15,
             monsters = {"ghoul"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
-            bossWave = 4,
-            bossHealthMulti = 5,
+            bossWave = 10,
+            bossHealthMulti = 10,
         }
     },
     ["fireisland"] = {
         [1] = {
             name = "Undeads",
             averageLevel = 0,
-            waves = 5,
+            waves = 15,
             monsters = {"ghoul"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
-            bossWave = 4,
-            bossHealthMulti = 5,
+            bossWave = 10,
+            bossHealthMulti = 10,
         }
     },
     ["iceisland"] = {
         [1] = {
             name = "Undeads",
             averageLevel = 0,
-            waves = 5,
+            waves = 15,
             monsters = {"ghoul"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
-            bossWave = 4,
-            bossHealthMulti = 5,
+            bossWave = 10,
+            bossHealthMulti = 10,
         }
     },
     ["grassisland"] = {
         [1] = {
             name = "Undeads",
             averageLevel = 0,
-            waves = 5,
+            waves = 15,
             monsters = {"ghoul"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
-            bossWave = 4,
-            bossHealthMulti = 5,
+            bossWave = 10,
+            bossHealthMulti = 10,
         }
     }
 }

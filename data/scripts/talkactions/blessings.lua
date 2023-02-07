@@ -8,7 +8,9 @@ function talk.onSay(player, words, param)
 	if not player:removeTotalMoney(cost) then
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE,"You don't have enough money for blessing.")
 	else
-		player:addBlessing(6)
+		for i = 1, 5 do
+			player:addBlessing(i)
+		end
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE,"You have been blessed")
 	end
 	return false
