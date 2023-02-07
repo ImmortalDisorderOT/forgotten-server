@@ -1,3 +1,5 @@
+print(">> Loaded Endurance Islands")
+
 local function getClosestFreePosition(position)
     local maxRadius = 1
 
