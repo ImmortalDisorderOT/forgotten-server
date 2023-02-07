@@ -58,3 +58,17 @@ function annouceLevel.onAdvance(player, skill, oldLevel, newLevel)
 end
 
 annouceLevel:register()
+
+
+local autoBroadcast = GlobalEvent("AutoBroadcast")
+
+function autoBroadcast.onThink(interval, lastExecution)
+    local messages = {
+    "Bugs? Errors? Suggestions? Shoot a message in the discord!",
+    }
+    Game.broadcastMessage(messages[math.random(#messages)], MESSAGE_EVENT_ADVANCE)
+    return true
+end
+
+autoBroadcast:interval(600000)
+autoBroadcast:register()

@@ -2,7 +2,7 @@
 
 Maps system written by Avaji
 
-from ownage
+one suggestion - 
 "I can’t remember the server name but one system had just a few different maps but based on difficulty 
 it would load different monsters into it. I guess somewhat similar to Rangers dungeon system. But all the loot you would get at the end of the dungeon. It would fill a room at the end with the loot you made from the dungeon"
 
