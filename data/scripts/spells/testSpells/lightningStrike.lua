@@ -14,7 +14,8 @@ spell:cooldown(4 * 1000)
 spell:groupCooldown(2 * 1000)
 spell:isAggressive(true)
 
-spell:vocation("Tester")
+spell:vocation("Sorcerer")
+spell:vocation("Master Sorcerer")
 
 
 local config = {
@@ -29,8 +30,8 @@ combat:setParameter(COMBAT_PARAM_TYPE, config.combat)
 combat:setArea(createCombatArea(AREA_CIRCLE5X5))
 
 function onGetFormulaValues(player, level, magicLevel)
-	local min = (level / 5) + (magicLevel * 2.2) + 12
 	local max = (level / 5) + (magicLevel * 3.4) + 21
+	local min = (level / 5) + (magicLevel * 2.2) + 12
 	return -min, -max
 end
 

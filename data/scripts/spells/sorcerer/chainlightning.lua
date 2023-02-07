@@ -1,9 +1,9 @@
 local spell = Spell(SPELL_INSTANT)
 spell:id(1)
 
-spell:level(1)
+spell:level(60)
 spell:magicLevel(0)
-spell:mana(20)
+spell:mana(100)
 
 spell:name("Chain Lightning")
 spell:words("Chain Lightning")
@@ -14,7 +14,8 @@ spell:groupCooldown(2 * 1000)
 spell:needTarget(true)
 spell:isAggressive(true)
 
-spell:vocation("Tester")
+spell:vocation("Sorcerer")
+spell:vocation("Master Sorcerer")
 
 local combat = Combat()
 
@@ -25,8 +26,10 @@ function onGetFormulaValues(cid, level, maglevel)
     local base = 15
     local variation = 5
 
-    local min = math.max((base - variation), ((3 * maglevel + 2 * level) * (base - variation) / 100))
-    local max = math.max((base + variation), ((3 * maglevel + 2 * level) * (base + variation) / 100))
+    --local min = math.max((base - variation), ((level / 5) + (3 * maglevel + 2 * level) * (base - variation)))
+   -- local max = math.max((base + variation), ((level / 5) + (3 * maglevel + 2 * level) * (base + variation)))
+	local min = (level / 5) + (maglevel * 4.3) + 32
+	local max = (level / 5) + (maglevel * 7.4) + 48
 
     return -min, -max
 end
@@ -68,6 +71,7 @@ end
 
 function spell.onCastSpell(player, variant)
     local maglevel = player:getMagicLevel()
+	local level = player:getLevel()
     local hits = math.max(3, 3 + math.floor(math.random(maglevel/15, maglevel/10)))
     doBlast(player.uid, player:getPosition(), variantToNumber(variant), hits)
     return true

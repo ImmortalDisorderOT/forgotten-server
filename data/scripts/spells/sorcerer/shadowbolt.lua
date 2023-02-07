@@ -6,15 +6,16 @@ spell:group("attack")
 spell:cooldown(4 * 1000)
 spell:groupCooldown(2 * 1000)
 spell:id(3)
-spell:level(1)
-spell:mana(20)
+spell:level(60)
+spell:mana(100)
 spell:range(4)
 spell:magicLevel(0)
 spell:needTarget(true)
 spell:isAggressive(true)
 spell:isBlockingWalls(true)
 spell:needLearn(false)
-spell:vocation("Tester")
+spell:vocation("Sorcerer")
+spell:vocation("Master Sorcerer")
 
 local minMissiles = 2
 
@@ -26,8 +27,8 @@ function onGetFormulaValues(player, level, magicLevel)
     local base = 30
     local variation = 10
 
-    local min = math.max((base - variation), ((3 * magicLevel + 2 * level) * (base - variation) / 100))
-    local max = math.max((base + variation), ((3 * magicLevel + 2 * level) * (base + variation) / 100))
+	local min = (level / 5) + (magicLevel * 2.3) + 32
+	local max = (level / 4) + (magicLevel * 4.4) + 48
 
     return -min, -max
 end
