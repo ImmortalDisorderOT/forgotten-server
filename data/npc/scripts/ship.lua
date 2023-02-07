@@ -39,6 +39,7 @@ addTravelKeyword('gray island', 150, Position(33196, 31984, 7))
 addTravelKeyword('thais', 130, Position(32310, 32210, 6))
 addTravelKeyword('carlin', 80, Position(32387, 31820, 6))
 addTravelKeyword('venore', 90, Position(32954, 32022, 6))
+addTravelKeyword('oramond minos', 200, Position(33565, 31951, 13))
 
 
 for _, destination in ipairs(destinations) do
