@@ -6,22 +6,12 @@
 local config = {
     orbTicks = 3, -- ticks, time is (timeBetweenOrbs * 1000) seconds, reduce to a lower number if orbs are being auto looted
     timeBetweenOrbs = 1000, -- time in milliseconds
-    looter = 1, -- 1 = random player who damaged mod, 2 = most damage killer 3 = killer
+    looter = 4, -- 1 = random player who damaged mod, 2 = most damage killer 3 = killer, 4 = all players get chance for orbs
     maxOrbs = 2, -- max orbs to spawn (rolls 1 .. max and then each orb has a chance to spawn defined by config.chance (who doesnt want to get lucky and see like 10 orbs?))
     autoLoot = true -- set to true if you want players to auto loot the orb, if false, they must stand on the orb 
 }
 
 -- list of orbs are now in a lib file, found in lib/custom
-
-local function sendRandom(r)
-    return math.random(-r, r)
-end
-
-local function tablelength(T)
-  local count = 0
-  for _ in pairs(T) do count = count + 1 end
-  return count
-end
 
 local function getClosestFreePosition(position, creature)
     local maxRadius = 2
@@ -162,6 +152,7 @@ local function rollOrbs(orbList, maxOrbs, skull)
         end
         local roll = math.random(100)
         if chance >= roll then
+            print("inserted orb to spawn")
             table.insert(orbs, orb)
         end
 	end
@@ -201,21 +192,26 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
 
     -- pid getting ready for playerID
     local pid
+    local pids = {}
 
     -- getting pid of person who will get the orb, based on config.looter
     if config.looter <= 1 then 
-        local pids = {}
         for cid, _ in pairs(creature:getDamageMap()) do
             table.insert(pids, cid)
         end
         pid = pids[math.random(1, tablelength(pids))]
+        pids = nil
     elseif config.looter == 2 then
         pid = mostDamageKiller:getId()
-    elseif config.looter >= 3 then
+    elseif config.looter == 3 then
         pid = killer:getId()
+    elseif config.looter == 4 then
+        for cid, _ in pairs(creature:getDamageMap()) do
+            table.insert(pids, cid)
+        end
     end -- pid is now set to the player who gets the orb
 
-    if not pid then
+    if not pid and not pids then
         return true
     end
 
@@ -223,23 +219,37 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
     -- get position of where the mob died
     local position = creature:getPosition()
 
-    local orbsRolled
+    local orbsRolled = {}
 
     if skull then
-        orbsRolled = rollOrbs(orbs[tier].orblist, config.maxOrbs + uberMonsterTiers[skull].possibleExtraOrbs, skull)
+        if pids then
+            for _, playerId in ipairs(pids) do
+                orbsRolled[playerId] = rollOrbs(orbs[tier].orblist, config.maxOrbs + uberMonsterTiers[skull].possibleExtraOrbs, skull)
+            end
+        elseif pid then
+            orbsRolled[pid] = rollOrbs(orbs[tier].orblist, config.maxOrbs + uberMonsterTiers[skull].possibleExtraOrbs, skull)
+        end
     else
-        orbsRolled = rollOrbs(orbs[tier].orblist, config.maxOrbs)
+        if pids then
+            for _, playerId in ipairs(pids) do
+                orbsRolled[playerId] = rollOrbs(orbs[tier].orblist, config.maxOrbs)
+            end
+        elseif pid then
+            orbsRolled[pid] = rollOrbs(orbs[tier].orblist, config.maxOrbs)
+        end
     end
 
-    if orbsRolled and #orbsRolled > 0 then
-        for i, orb in pairs(orbsRolled) do
-            local orbPos = getRndOrbPosition(position, creature)
-            local orbPlayer = Player(pid)
+    if orbsRolled then
+        for playerId, orbs in pairs(orbsRolled) do
+            for __, orb in pairs(orbs) do
+                local orbPos = getRndOrbPosition(position, creature)
+                local orbPlayer = Player(playerId)
 
-            orbPlayer:say(orb.text, TALKTYPE_MONSTER_SAY, false, orbPlayer, orbPos)
-            orbPos:sendMagicEffect(orb.effect, orbPlayer)
+                orbPlayer:say(orb.text, TALKTYPE_MONSTER_SAY, false, orbPlayer, orbPos)
+                orbPos:sendMagicEffect(orb.effect, orbPlayer)
 
-            addEvent(sendOrbEffect, config.timeBetweenOrbs, orbPos, pid, orb)
+                addEvent(sendOrbEffect, config.timeBetweenOrbs, orbPos, playerId, orb)
+            end
         end
     end
 
