@@ -2,6 +2,7 @@
 
 -- example rewards
 --[1] = {type = "item", item = 2160, count = 1, itemlevel = 0, itemrarity = 1}
+-- rarites
 --COMMON = 1
 --RARE = 2
 --EPIC = 3

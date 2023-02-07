@@ -37826,12 +37826,36 @@
 	<item fromid="27671" toid="27678" article="a" name="ramp" />
 	<item id="27693" article="a" name="wall" />
 	<item id="27702" name="lush meadow" />
-	<item fromid="27703" toid="27704" article="a" name="death portal" />
-	<item fromid="27705" toid="27706" article="an" name="earth portal" />
-	<item fromid="27707" toid="27708" article="an" name="energy portal" />
-	<item fromid="27709" toid="27710" article="a" name="fire portal" />
-	<item fromid="27711" toid="27712" article="a" name="holy portal" />
-	<item fromid="27713" toid="27714" article="an" name="ice portal" />
+	<item fromid="27703" toid="27704" article="a" name="death portal"  >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
+	<item fromid="27705" toid="27706" article="an" name="earth portal" >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
+	<item fromid="27707" toid="27708" article="an" name="energy portal" >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
+	<item fromid="27709" toid="27710" article="a" name="fire portal" >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
+	<item fromid="27711" toid="27712" article="a" name="holy portal" >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
+	<item fromid="27713" toid="27714" article="an" name="ice portal" >
+		<attribute key="description" value="You can see the other side through it." />
+		<attribute key="type" value="teleport" />
+		<attribute key="effect" value="teleport" />
+	</item>
 	<item id="27715" article="an" name="inert astral shaper rune" />
 	<item fromid="27716" toid="27717" article="an" name="imbuing shrine" />
 	<item id="27718" article="a" name="Pinata Dragon" />
