@@ -23,7 +23,7 @@ local announceDeath = CreatureEvent("announceDeath")
 
 function announceDeath.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
     if creature:isPlayer() then
-        local msg = creature:getName() .. " has bheen killed by " .. killer:getName() .. "!"
+        local msg = creature:getName() .. " has been killed by " .. killer:getName() .. "!"
         annouceEvent(msg)
     end
 

@@ -31,7 +31,8 @@ US_CONFIG = {
   CRYSTAL_FOSSIL = 42929, -- Crystal Fossil item id
   --
   IDENTIFY_UPGRADE_LEVEL = false, -- if true, roll random upgrade level when identifing an item
-  UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 80, [6] = 80, [7] = 70, [8] = 50, [9] = 50, [10] = 20}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
+  UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 80, [6] = 80, [7] = 70, [8] = 50, [9] = 35, [10] = 20}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
+  --UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 100, [4] = 100, [5] = 100, [6] = 100, [7] = 100, [8] = 100, [9] = 100, [10] = 100}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
   UPGRADE_LEVEL_DESTROY = 11, -- at which upgrade level should it break if failed, for example if = 7 then upgrading from +6 to +7-9 can destroy item on failure.
   UPGRADE_DESTROY_CHANCE = {}, -- chance for the item to break at given upgrade level
   --

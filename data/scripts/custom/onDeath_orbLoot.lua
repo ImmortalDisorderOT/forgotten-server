@@ -4,11 +4,11 @@
 -- TODO: make meaningful orbs
 
 local config = {
-    orbTicks = 10, -- ticks, time is (timeBetweenOrbs * 1000) seconds, reduce to a lower number if orbs are being auto looted
+    orbTicks = 3, -- ticks, time is (timeBetweenOrbs * 1000) seconds, reduce to a lower number if orbs are being auto looted
     timeBetweenOrbs = 1000, -- time in milliseconds
     looter = 1, -- 1 = random player who damaged mod, 2 = most damage killer 3 = killer
     maxOrbs = 2, -- max orbs to spawn (rolls 1 .. max and then each orb has a chance to spawn defined by config.chance (who doesnt want to get lucky and see like 10 orbs?))
-    autoLoot = false -- set to true if you want players to auto loot the orb, if false, they must stand on the orb 
+    autoLoot = true -- set to true if you want players to auto loot the orb, if false, they must stand on the orb 
 }
 
 -- list of orbs are now in a lib file, found in lib/custom

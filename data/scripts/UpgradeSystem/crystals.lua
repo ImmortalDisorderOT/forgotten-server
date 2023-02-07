@@ -59,6 +59,11 @@ function CrystalsAction.onUse(player, item, fromPosition, target, toPosition, is
                 if target:getItemLevel() == 0 then
                     target:setItemLevel(1, true)
                 end
+                if upgrade > 7 then
+                    local rarity = US_CONFIG.RARITY[target:getRarityId()].name
+                    local annouceMsg = player:getName() .. " has upgrade their " .. rarity .. " " .. target:getName() .. " to upgrade level " .. upgrade .. "!"
+                    annouceEvent(annouceMsg)
+                end
             else
                 player:sendTextMessage(MESSAGE_STATUS_WARNING, "Maximum upgrade level reached!")
             end
@@ -149,6 +154,10 @@ function CrystalsAction.onUse(player, item, fromPosition, target, toPosition, is
                 if target:identify(player, itemType, weaponType) then
                     --TODO: Add below line to have ID scroll not infinite
                     --item:remove(1)
+                    if self:getRarityId() > RARE then
+                        local annouceMsg = player:getName() .. " has identified a " .. self:getRarity() .. " " .. target:getName() .."!"
+                        annouceEvent(annouceMsg)
+                    end
                 else
                     player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
                 end
