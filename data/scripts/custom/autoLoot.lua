@@ -127,7 +127,7 @@ function ec.onDropLoot(monster, corpse)
     -- have to addEvent because the itemLevel needs to roll first
     addEvent(
         lootCorpse,
-        50,
+        30,
         corpse:getPosition()
     )
 end

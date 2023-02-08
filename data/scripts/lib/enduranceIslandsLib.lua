@@ -90,7 +90,7 @@ EI_Raids = {
             boss = "orshabaal",
             skull = SKULL_WHITE,
             bossWave = 10,
-            bossHealthMulti = 20,
+            bossHealthMulti = 15,
         }
     },
     ["iceisland"] = {
@@ -139,6 +139,17 @@ EI_Raids = {
             skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
+        },
+        [3] = {
+            name = "Wizards",
+            averageLevel = 0,
+            waves = 15,
+            monsters = {"warlock", "necromancer", "infernalist"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "ferumbras",
+            skull = SKULL_WHITE,
+            bossWave = 10,
+            bossHealthMulti = 15,
         }
     }
 }
