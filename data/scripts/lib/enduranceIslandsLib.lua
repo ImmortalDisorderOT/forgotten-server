@@ -50,12 +50,12 @@ EI_Raids = {
             name = "Minotaurs",
             averageLevel = 0,
             waves = 10,
-            monsters = {"minotaur", "minotaur archer", "minotaur mage"},
+            monsters = {"minotaur", "minotaur archer", "minotaur mage", "minotaur guard"},
             maxMobs = 6, -- max mobs per spawn orb
-            boss = "minotaur guard",
+            boss = "general murius",
             skull = SKULL_BLACK,
             bossWave = 8,
-            bossHealthMulti = 10,
+            bossHealthMulti = 15,
         }
     },
     ["fireisland"] = {
