@@ -1,7 +1,8 @@
 local talk = TalkAction("/pos", "!pos")
 
 function talk.onSay(player, words, param)
-	if player:getGroup():getAccess() and param ~= "" then
+	--if player:getGroup():getAccess() and param ~= "" then
+	if param ~= "" then
 		local split = param:split(",")
 		player:teleportTo(Position(split[1], split[2], split[3]))
 	else
