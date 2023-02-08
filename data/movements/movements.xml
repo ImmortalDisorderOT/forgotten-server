@@ -1431,4 +1431,72 @@
 	<movevent event="DeEquip" itemid="25411" slot="shield" function="onDeEquipItem" />
 	<movevent event="Equip" itemid="25414" slot="shield" level="200" function="onEquipItem" />
 	<movevent event="DeEquip" itemid="25414" slot="shield" function="onDeEquipItem" />
+
+	<!-- Ammunition -->
+		<!-- Arrows -->
+	<movevent event="Equip" itemid="7850" slot="ammo" level="20" function="onEquipItem"> <!-- Earth Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="7840" slot="ammo" level="20" function="onEquipItem"> <!-- Flaming Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="7838" slot="ammo" level="20" function="onEquipItem"> <!-- Flash Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="7839" slot="ammo" level="20" function="onEquipItem"> <!-- Shiver Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="15648" slot="ammo" level="30" function="onEquipItem"> <!-- Tarsal Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="7365" slot="ammo" level="40" function="onEquipItem"> <!-- Onyx Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="18437" slot="ammo" level="70" function="onEquipItem"> <!-- Envenomed Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="18304" slot="ammo" level="90" function="onEquipItem"> <!-- Crystalline Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="28413" slot="ammo" level="150" function="onEquipItem"> <!-- Diamond Arrow -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+		<!-- Bolts -->
+	<movevent event="Equip" itemid="7363" slot="ammo" level="30" function="onEquipItem"> <!-- Piercing Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="15649" slot="ammo" level="40" function="onEquipItem"> <!-- Vortex Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="2547" slot="ammo" level="55" function="onEquipItem"> <!-- Power Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="18436" slot="ammo" level="70" function="onEquipItem"> <!-- Drill Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="18435" slot="ammo" level="90" function="onEquipItem"> <!-- Prismatic Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="6529" slot="ammo" level="110" function="onEquipItem"> <!-- Infernal Bolt -->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
+	<movevent event="Equip" itemid="28414" slot="ammo" level="150" function="onEquipItem"><!-- Spectral Bolt-->
+		<vocation name="Paladin" />
+		<vocation name="Royal Paladin" showInDescription="0" />
+	</movevent>
 </movements>
