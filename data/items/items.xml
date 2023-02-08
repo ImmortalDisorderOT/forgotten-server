@@ -39498,20 +39498,20 @@
 	<item fromid="33402" toid="33405" article="an" name="archway" />
 	<item fromid="33406" toid="33409" article="a" name="railing" />
 	<item fromid="33410" toid="33411" article="a" name="window" />
-	<item id="33412" article="a" name"ramp" />
-	<item id="33413" article="a" name"ramp">
+	<item id="33412" article="a" name="ramp" />
+	<item id="33413" article="a" name="ramp">
 		<attribute key="floorchange" value="north" />
 	</item>
-	<item id="33413" article="a" name"ramp" />
-	<item id="33415" article="a" name"ramp">
+	<item id="33413" article="a" name="ramp" />
+	<item id="33415" article="a" name="ramp">
 		<attribute key="floorchange" value="west" />
 	</item>
-	<item id="33416" article="a" name"ramp" />
-	<item id="33417" article="a" name"ramp">
+	<item id="33416" article="a" name="ramp" />
+	<item id="33417" article="a" name="ramp">
 		<attribute key="floorchange" value="east" />
 	</item>
-	<item id="33418" article="a" name"ramp" />
-	<item id="33419" article="a" name"ramp">
+	<item id="33418" article="a" name="ramp" />
+	<item id="33419" article="a" name="ramp">
 		<attribute key="floorchange" value="south" />
 	</item>
 	<item fromid="33420" toid="33427" article="a" name="broken wall" />
