@@ -1,5 +1,5 @@
 -- change freely as required
-EI_Config = {
+enduranceIslandConfig = {
     timeBetweenWaves = 1 * (1000 *  60), -- time between wave spawns
     islandEndTimer = 5 * (1000 *  60), -- time for portal to reward room
     islandTotalTimer = 30 * (1000 *  60), -- monsters will be on the map for 30 minutes (reduce lag)
@@ -7,11 +7,11 @@ EI_Config = {
     rewardRoomPosition = Position(1402, 848, 7), -- position of reward room
     teleportToIslandPos =  Position(1166, 1116, 7), -- this is the position for creating a teleport to get to the island
     requiredNumOfPlayers = 2, -- less then 2 players, no island
-    spawnRadius = 3, -- radius from a position in EI_Areas
+    spawnRadius = 3, -- radius from a position in enduranceIslandAreas
 }
 
 -- don't touch 
-EI_CurrRaid = {
+enduranceIslandCurrRaid = {
     activeRaid = false,
     currentWave = 0,
     currentIsland = {type = nil, index = 0},
@@ -19,10 +19,10 @@ EI_CurrRaid = {
     waveEvent = nil,
 }
 
-EI_Types = {"sandisland", "fireisland", "iceisland", "grassisland"}
+enduranceIslandTypes = {"sandisland", "fireisland", "iceisland", "grassisland"}
 
 -- change raid monster/bosses here
-EI_Raids = {
+enduranceIslandRaids = {
     ["sandisland"] = {
         [1] = {
             name = "Undeads",
@@ -155,7 +155,7 @@ EI_Raids = {
 }
 
 -- only edit if island changes
-EI_Areas = {
+enduranceIslandAreas = {
     ["sandisland"] = {
         topLeft = Position(1219, 916, 7),
         bottomRight = Position(1278, 1043, 7),

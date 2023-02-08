@@ -28,15 +28,15 @@ local function getClosestFreePosition(position)
     return Position()
 end
 
-local function spawnEI_Wave()
+local function spawnEnduranceIslandWave()
 
-    local currentIsland = EI_CurrRaid.currentIsland.type
-    local currentRaid = EI_CurrRaid.currentIsland.index
-    local mobs = EI_Raids[currentIsland][currentRaid].monsters
-    local spawnRadius = EI_Config.spawnRadius
-    local maxMobs = EI_Raids[currentIsland][currentRaid].maxMobs
+    local currentIsland = enduranceIslandCurrRaid.currentIsland.type
+    local currentRaid = enduranceIslandCurrRaid.currentIsland.index
+    local mobs = enduranceIslandRaids[currentIsland][currentRaid].monsters
+    local spawnRadius = enduranceIslandConfig.spawnRadius
+    local maxMobs = enduranceIslandRaids[currentIsland][currentRaid].maxMobs
 
-    for __, spawn in ipairs(EI_Areas[currentIsland].monsterSpawns) do
+    for __, spawn in ipairs(enduranceIslandAreas[currentIsland].monsterSpawns) do
         for i=1, maxMobs do
             local positionMob = getClosestFreePosition(Position(spawn.x + sendRandom(spawnRadius), spawn.y + sendRandom(spawnRadius), spawn.z))
             local monster = Game.createMonster(mobs[math.random(#mobs)], positionMob, false, true)
@@ -47,28 +47,28 @@ local function spawnEI_Wave()
     end
 
     -- spawn boss
-    if EI_CurrRaid.currentWave == EI_Raids[currentIsland][currentRaid].bossWave then
-        local bossSpawnPos = EI_Areas[currentIsland].bossSpawnPos
-        local monster = Game.createMonster(EI_Raids[currentIsland][currentRaid].boss, bossSpawnPos, false, true)
+    if enduranceIslandCurrRaid.currentWave == enduranceIslandRaids[currentIsland][currentRaid].bossWave then
+        local bossSpawnPos = enduranceIslandAreas[currentIsland].bossSpawnPos
+        local monster = Game.createMonster(enduranceIslandRaids[currentIsland][currentRaid].boss, bossSpawnPos, false, true)
         monster:registerEvent("EnduranceBossKill")
-        monster:setSkull(EI_Raids[currentIsland][currentRaid].skull)
-        monster:setMaxHealth(monster:getMaxHealth() * EI_Raids[currentIsland][currentRaid].bossHealthMulti)
+        monster:setSkull(enduranceIslandRaids[currentIsland][currentRaid].skull)
+        monster:setMaxHealth(monster:getMaxHealth() * enduranceIslandRaids[currentIsland][currentRaid].bossHealthMulti)
         monster:setHealth(monster:getMaxHealth())
         Game.broadcastMessage("The endurance island guardian has awoken!", MESSAGE_STATUS_WARNING)
     end
-    if not (EI_CurrRaid.currentWave == EI_Raids[currentIsland][currentRaid].waves) then
-        EI_CurrRaid.currentWave = EI_CurrRaid.currentWave + 1
-        EI_CurrRaid.waveEvent = addEvent(spawnEI_Wave, EI_Config.timeBetweenWaves)
+    if not (enduranceIslandCurrRaid.currentWave == enduranceIslandRaids[currentIsland][currentRaid].waves) then
+        enduranceIslandCurrRaid.currentWave = enduranceIslandCurrRaid.currentWave + 1
+        enduranceIslandCurrRaid.waveEvent = addEvent(spawnEnduranceIslandWave, enduranceIslandConfig.timeBetweenWaves)
     else
         Game.broadcastMessage("The endurance island seems to be growing quietier...", MESSAGE_STATUS_WARNING)
     end
 end
 
 
-local function clearEI()
-    local centerPos = EI_Areas[EI_CurrRaid.currentIsland.type].centerPos
-    local xRange = EI_Areas[EI_CurrRaid.currentIsland.type].xRange
-    local yRange = EI_Areas[EI_CurrRaid.currentIsland.type].yRange
+local function clearEnduranceIsland()
+    local centerPos = enduranceIslandAreas[enduranceIslandCurrRaid.currentIsland.type].centerPos
+    local xRange = enduranceIslandAreas[enduranceIslandCurrRaid.currentIsland.type].xRange
+    local yRange = enduranceIslandAreas[enduranceIslandCurrRaid.currentIsland.type].yRange
 
     local mobsLeft = getSpectators(centerPos, xRange, yRange)
 
@@ -83,24 +83,24 @@ local function clearEI()
         end
     end
 
-    removeTeleport(EI_Config.teleportToIslandPos)
+    removeTeleport(enduranceIslandConfig.teleportToIslandPos)
 
-    EI_CurrRaid.activeRaid = false
-    EI_CurrRaid.currentWave = 0
-    EI_CurrRaid.currentIsland = {type = nil, index = 0}
+    enduranceIslandCurrRaid.activeRaid = false
+    enduranceIslandCurrRaid.currentWave = 0
+    enduranceIslandCurrRaid.currentIsland = {type = nil, index = 0}
 
     Game.broadcastMessage("The endurance island has fallen slient.", MESSAGE_STATUS_WARNING)
 end
 
-local function trySpawnEI()
-    if Game.getPlayerCount() < EI_Config.requiredNumOfPlayers then
+local function trySpawnEnduranceIsland()
+    if Game.getPlayerCount() < enduranceIslandConfig.requiredNumOfPlayers then
         return true
     end
 
-    if EI_CurrRaid.activeRaid == true then
-        stopEvent(EI_CurrRaid.clearEvent)
-        stopEvent(EI_CurrRaid.waveEvent)
-        clearEI()
+    if enduranceIslandCurrRaid.activeRaid == true then
+        stopEvent(enduranceIslandCurrRaid.clearEvent)
+        stopEvent(enduranceIslandCurrRaid.waveEvent)
+        clearEnduranceIsland()
     end
 
     local totalLevel = 0
@@ -112,44 +112,44 @@ local function trySpawnEI()
 
     -- local averageLevel = totalLevel / playerAmount -- average level to be considered later
 
-    EI_CurrRaid.currentIsland.type = EI_Types[math.random(1,4)]
-    EI_CurrRaid.currentIsland.index = math.random(1, #EI_Raids[EI_CurrRaid.currentIsland.type])
-    local eiName = EI_Raids[EI_CurrRaid.currentIsland.type][EI_CurrRaid.currentIsland.index].name
+    enduranceIslandCurrRaid.currentIsland.type = enduranceIslandTypes[math.random(1,4)]
+    enduranceIslandCurrRaid.currentIsland.index = math.random(1, #enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type])
+    local eiName = enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type][enduranceIslandCurrRaid.currentIsland.index].name
 
     Game.broadcastMessage("The endurance island has awoken! " .. eiName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
 
-    createTeleport(EI_Config.teleportToIslandPos, EI_Areas[EI_CurrRaid.currentIsland.type].teleportPos)
+    createTeleport(enduranceIslandConfig.teleportToIslandPos, enduranceIslandAreas[enduranceIslandCurrRaid.currentIsland.type].teleportPos)
 
-    EI_CurrRaid.activeRaid = true
-    EI_CurrRaid.currentWave = 1
-    spawnEI_Wave()
+    enduranceIslandCurrRaid.activeRaid = true
+    enduranceIslandCurrRaid.currentWave = 1
+    spawnEnduranceIslandWave()
 
-    EI_CurrRaid.clearEvent = addEvent(clearEI, EI_Config.islandTotalTimer)
+    enduranceIslandCurrRaid.clearEvent = addEvent(clearEnduranceIsland, enduranceIslandConfig.islandTotalTimer)
 
 end
 
 
-local EI_Spawner = GlobalEvent("enduranceIslandSpawner")
+local enduranceIslandSpawner = GlobalEvent("enduranceIslandSpawner")
 
-function EI_Spawner.onThink(...)
-    trySpawnEI()
+function enduranceIslandSpawner.onThink(...)
+    trySpawnEnduranceIsland()
 	return true
 end
 
-EI_Spawner:interval(EI_Config.timeBetweenIslandRaids) -- will be executed every 1000ms
-EI_Spawner:register()
+enduranceIslandSpawner:interval(enduranceIslandConfig.timeBetweenIslandRaids) -- will be executed every 1000ms
+enduranceIslandSpawner:register()
 
 local EnduranceBossKill = CreatureEvent("EnduranceBossKill")
 
 function EnduranceBossKill.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
     local teleportPos = creature:getPosition()
     teleportPos = getClosestFreePosition(teleportPos) -- using closest free position so it doesnt spawn ON the boss (causing the corpse to teleport)
-    createTeleport(teleportPos, EI_Config.rewardRoomPosition)
+    createTeleport(teleportPos, enduranceIslandConfig.rewardRoomPosition)
 
-    local killMessage = "You've killed the endurance island boss! A teleport has been created but it will disappear in " .. formatTime(EI_Config.islandEndTimer) ..  "!"
+    local killMessage = "You've killed the endurance island boss! A teleport has been created but it will disappear in " .. formatTime(enduranceIslandConfig.islandEndTimer) ..  "!"
     creature:say(killMessage, TALKTYPE_MONSTER_SAY, false, nil, creature:getPosition())
 
-    addEvent(removeTeleport, EI_Config.islandEndTimer, teleportPos)
+    addEvent(removeTeleport, enduranceIslandConfig.islandEndTimer, teleportPos)
 
     return true
 end
@@ -164,7 +164,7 @@ function talk.onSay(player, words, param)
 		return true
 	end
     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Trying to spawn an endurance island")
-    trySpawnEI()
+    trySpawnEnduranceIsland()
 	return false
 
 end
