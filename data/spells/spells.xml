@@ -398,7 +398,7 @@
 		<vocation name="Elite Knight" />
 		<vocation name="Tester" />
 	</instant>
-	<instant group="healing" spellid="158" name="Intense Wound Cleansing" words="exura gran ico" level="80" mana="200" premium="1" selftarget="1" aggressive="0" cooldown="600000" groupcooldown="1000" needlearn="0" script="healing/intense_wound_cleansing.lua">
+	<instant group="healing" spellid="158" name="Intense Wound Cleansing" words="exura gran ico" level="80" mana="200" premium="1" selftarget="1" aggressive="0" cooldown="1000" groupcooldown="1000" needlearn="0" script="healing/intense_wound_cleansing.lua">
 		<vocation name="Knight" />
 		<vocation name="Elite Knight" />
 		<vocation name="Tester" />

@@ -13,8 +13,9 @@ uberMonsterTiers = {
         chance = 10000, -- chance is out of 100000
         skull = SKULL_WHITE, -- skull the mob has 
         effect = CONST_ME_MORTAREA, -- effect that happens when spawning the mob
+        lootBoost = 0.25,
         orbChanceMultiplier = 1, -- chance for extra orb
-        possibleExtraOrbs = 1, -- have 2 extra orbs ontop of the config.maxOrbs
+        possibleExtraOrbs = 1, -- have 1 extra orbs ontop of the config.maxOrbs
         healthMultiplier = 1.5, -- health multipler
         experienceMultipler = 1.5, -- exp multipler
         damageMultipler = 1.1 -- damage multiplier
@@ -23,6 +24,7 @@ uberMonsterTiers = {
         chance = 5000, -- chance is out of 100000
         skull = SKULL_GREEN, -- skull the mob has SKULL_RED
         effect = CONST_ME_MORTAREA, -- effect that happens when spawning the mob
+        lootBoost = 0.5,
         orbChanceMultiplier = 1,
         possibleExtraOrbs = 2,
         healthMultiplier = 2.5, -- health multipler
@@ -33,6 +35,7 @@ uberMonsterTiers = {
         chance = 1000, -- chance is out of 100000
         skull = SKULL_RED, -- skull the mob has SKULL_GREEN
         effect = CONST_ME_MORTAREA, -- effect that happens when spawning the mob
+        lootBoost = 0.75,
         orbChanceMultiplier = 1,
         possibleExtraOrbs = 3,
         healthMultiplier = 5, -- health multipler
@@ -43,6 +46,7 @@ uberMonsterTiers = {
         chance = 100, -- chance is out of 100000
         skull = SKULL_BLACK, -- skull the mob has SKULL_WHITE
         effect = CONST_ME_MORTAREA, -- effect that happens when spawning the mob
+        lootBoost = 1,
         orbChanceMultiplier = 2,
         possibleExtraOrbs = 4,
         healthMultiplier = 10, -- health multipler
@@ -89,7 +93,6 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
     if creature:getSkull() > SKULL_NONE then -- if it's an uber... don't spawn another
         return true
     end
-    
     local mobName = creature:getName():lower()
 
     if ignoredMobs[mobName] then

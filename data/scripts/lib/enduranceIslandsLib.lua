@@ -27,46 +27,96 @@ EI_Raids = {
         [1] = {
             name = "Undeads",
             averageLevel = 0,
-            waves = 15,
-            monsters = {"ghoul"},
+            waves = 10,
+            monsters = {"ghoul", "skeleton", "skeleton warrior"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
             bossWave = 10,
+            bossHealthMulti = 10,
+        },
+        [2] = {
+            name = "Strong Undeads",
+            averageLevel = 0,
+            waves = 15,
+            monsters = {"demon skeleton", "vampire", "mummy"},
+            maxMobs = 5, -- max mobs per spawn orb
+            boss = "vampire lord",
+            bossWave = 10,
+            bossHealthMulti = 10,
+        },
+        [3] = {
+            name = "Minotaurs",
+            averageLevel = 0,
+            waves = 10,
+            monsters = {"minotaur", "minotaur archer", "minotaur mage"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "minotaur guard",
+            bossWave = 8,
             bossHealthMulti = 10,
         }
     },
     ["fireisland"] = {
         [1] = {
-            name = "Undeads",
+            name = "Dragons",
+            averageLevel = 0,
+            waves = 10,
+            monsters = {"dragon hatchling", "dragon lord hatchling", "dragon"},
+            maxMobs = 5, -- max mobs per spawn orb
+            boss = "dragon lord",
+            bossWave = 8,
+            bossHealthMulti = 10,
+        },
+        [2] = {
+            name = "Firey Monsters",
             averageLevel = 0,
             waves = 15,
-            monsters = {"ghoul"},
-            maxMobs = 6, -- max mobs per spawn orb
-            boss = "demon skeleton",
+            monsters = {"fire elemental", "massive fire elemental"},
+            maxMobs = 5, -- max mobs per spawn orb
+            boss = "fury",
             bossWave = 10,
             bossHealthMulti = 10,
         }
     },
     ["iceisland"] = {
         [1] = {
-            name = "Undeads",
+            name = "Barbarian",
+            averageLevel = 0,
+            waves = 10,
+            monsters = {"barbarian bloodwalker", "barbarian brutetamer", "barbarian headsplitter"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "barbarian skullhunter",
+            bossWave = 8,
+            bossHealthMulti = 10,
+        },
+        [2] = {
+            name = "Frost Giants",
             averageLevel = 0,
             waves = 15,
-            monsters = {"ghoul"},
-            maxMobs = 6, -- max mobs per spawn orb
-            boss = "demon skeleton",
+            monsters = {"frost giant", "frost giantess", "frost dragon hatchling"},
+            maxMobs = 5, -- max mobs per spawn orb
+            boss = "frost dragon",
             bossWave = 10,
             bossHealthMulti = 10,
         }
     },
     ["grassisland"] = {
         [1] = {
-            name = "Undeads",
+            name = "Elves",
             averageLevel = 0,
             waves = 15,
-            monsters = {"ghoul"},
+            monsters = {"elf", "elf scout", "elf arcanist"},
             maxMobs = 6, -- max mobs per spawn orb
-            boss = "demon skeleton",
+            boss = "elf overseer",
+            bossWave = 10,
+            bossHealthMulti = 10,
+        },
+        [2] = {
+            name = "Orcs",
+            averageLevel = 0,
+            waves = 15,
+            monsters = {"orc", "orc warrior", "orc spearman", "orc shaman"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "orc leader",
             bossWave = 10,
             bossHealthMulti = 10,
         }
