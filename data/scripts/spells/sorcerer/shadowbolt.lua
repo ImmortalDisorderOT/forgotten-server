@@ -16,6 +16,8 @@ spell:isBlockingWalls(true)
 spell:needLearn(false)
 spell:vocation("Sorcerer")
 spell:vocation("Master Sorcerer")
+spell:vocation("Druid")
+spell:vocation("Elder Druid")
 
 local minMissiles = 2
 
