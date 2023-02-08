@@ -2,6 +2,7 @@
 <monsters>
 	<monster name="test" file="monsters/test.xml" />
 	<monster name="Training Dummy" file="monsters/trainingdummy.xml" />
+	<monster name="DPS Dummy" file="monsters/dpsdummy.xml" />
 	<monster name="a carved stone tile" file="monsters/a_carved_stone_tile.xml" />
 	<monster name="A Shielded Astral Glyph" file="monsters/a_shielded_astral_glyph.xml" />
 	<monster name="Abyssador" file="monsters/abyssador.xml" />

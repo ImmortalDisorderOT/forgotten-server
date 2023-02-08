@@ -102,16 +102,20 @@ end
 
 local MoveItemEvent = EventCallback
 MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
+    print("onMoveItem called")
     if not item:getType():isUpgradable() and not item:getType():canHaveItemLevel() or toPosition.y == CONST_SLOT_AMMO then
+        --print("onMoveItem return 1")
         return true
     end
 
     if not item:getType():usesSlot(toPosition.y) then
+        --print("onMoveItem return 2")
         return true
     end
 
     if item:isUnidentified() then
         if toPosition.y <= CONST_SLOT_AMMO and toPosition.y ~= CONST_SLOT_BACKPACK then
+            --print("onMoveItem return 3")
             player:sendTextMessage(MESSAGE_STATUS_SMALL, "You can't wear unidentified items.")
             return false
         end
@@ -120,6 +124,7 @@ MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPositio
     if US_CONFIG.REQUIRE_LEVEL == true then
         if player:getLevel() < item:getItemLevel() and not item:isLimitless() then
             if toPosition.y <= CONST_SLOT_AMMO and toPosition.y ~= CONST_SLOT_BACKPACK then
+                --print("onMoveItem return 4")
                 player:sendTextMessage(MESSAGE_STATUS_SMALL, "You need higher level to equip that item.")
                 return false
             end
@@ -135,6 +140,7 @@ MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPositio
                     if oldItem:getType():isUpgradable() then
                         local oldBonuses = oldItem:getBonusAttributes()
                         if oldBonuses then
+                            --tdump("onMoveItem OLD BONUSES TO REMOVE", oldBonuses)
                             local itemId = oldItem:getId()
                             for key, value in pairs(oldBonuses) do
                                 local attr = US_ENCHANTMENTS[value[1]]
@@ -161,6 +167,7 @@ MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPositio
                 if item:getType():isUpgradable() then
                     local newBonuses = item:getBonusAttributes()
                     if newBonuses then
+                       -- tdump("onMoveItem NEW BONUSES TO ADD", newBonuses)
                         addEvent(us_onEquip, 10, player:getId(), item:getUniqueId(), toPosition.y)
                     end
                 end
@@ -174,22 +181,30 @@ MoveItemEvent:register()
 
 local ItemMovedEvent = EventCallback
 ItemMovedEvent.onItemMoved = function(player, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
+    --print("onItemMoved was called")
     if not item:getType():isUpgradable() then
+        --print("return: not upgrade")
         return
     end
     if toPosition.y <= CONST_SLOT_AMMO and toPosition.y ~= CONST_SLOT_BACKPACK then
+        --print("onItemMoved return: 2")
         return
     end
     if fromPosition.y >= 64 and toPosition.y >= 64 then
+        --print("onItemMoved return: 3")
         return
     end
     if fromPosition.y >= 64 and toPosition.y == CONST_SLOT_BACKPACK then
+        --print("onItemMoved return: 4")
         return
     end
+   -- print("onItemMoved item was moved away from equipped while being equipped")
 
     local bonuses = item:getBonusAttributes()
     if bonuses then
         local itemId = item:getId()
+       -- print("onItemMoved item " .. itemId .. " has been moved - checking bonuses")
+        --tdump("onItemMoved BONUSES TO REMOVE", bonuses)
         for i = 1, #bonuses do
             local value = bonuses[i]
             local bonusId = value[1]

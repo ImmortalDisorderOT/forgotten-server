@@ -25,6 +25,8 @@ PlayerStorageKeys = {
 
 	usedOfflineSkillTrainer = 30100,
 
+	DPSStorage = 50392,
+
 	achievementsBase = 300000,
 	achievementsCounter = 20000,
 

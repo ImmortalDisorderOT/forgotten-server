@@ -10,4 +10,5 @@
 	<event type="extendedopcode" name="ExtendedOpcode" script="extendedopcode.lua" />
 	<event type="logout" name="TownPortalsLogout" script="town_portal.lua" />
 	<event type="ModalWindow" name="WaypointsModal" script="modal_windows.lua"/>
+	<event type="healthchange" name="EventDPS" script="dps.lua" />
 </creaturescripts>

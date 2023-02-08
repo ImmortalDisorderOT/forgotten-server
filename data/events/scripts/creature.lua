@@ -21,6 +21,9 @@ end
 
 function Creature:onTargetCombat(target)
 	if hasEventCallback(EVENT_CALLBACK_ONTARGETCOMBAT) then
+		if target:getName() == "DPS Dummy" then
+			target:registerEvent("EventDPS")
+		end
 		return EventCallback(EVENT_CALLBACK_ONTARGETCOMBAT, self, target)
 	else
 		return RETURNVALUE_NOERROR
