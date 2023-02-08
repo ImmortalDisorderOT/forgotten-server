@@ -18,7 +18,8 @@ uberMonsterTiers = {
         possibleExtraOrbs = 1, -- have 1 extra orbs ontop of the config.maxOrbs
         healthMultiplier = 1.5, -- health multipler
         experienceMultipler = 1.5, -- exp multipler
-        damageMultipler = 1.1 -- damage multiplier
+        damageMultipler = 1.1, -- damage multiplier
+        itemLevelBonus = 1.1 -- in percent
     },
     [SKULL_GREEN] = {
         chance = 5000, -- chance is out of 100000
@@ -29,7 +30,8 @@ uberMonsterTiers = {
         possibleExtraOrbs = 2,
         healthMultiplier = 2.5, -- health multipler
         experienceMultipler = 2.5, -- exp multipler
-        damageMultipler = 1.5 -- damage multiplier
+        damageMultipler = 1.5, -- damage multiplier
+        itemLevelBonus = 1.15 -- in percent
     },
     [SKULL_RED] = {
         chance = 1000, -- chance is out of 100000
@@ -40,7 +42,8 @@ uberMonsterTiers = {
         possibleExtraOrbs = 3,
         healthMultiplier = 5, -- health multipler
         experienceMultipler = 5, -- exp multipler
-        damageMultipler = 3 -- damage multiplier
+        damageMultipler = 3, -- damage multiplier
+        itemLevelBonus = 1.2 -- in percent
     },
     [SKULL_BLACK] = {
         chance = 100, -- chance is out of 100000
@@ -51,7 +54,8 @@ uberMonsterTiers = {
         possibleExtraOrbs = 4,
         healthMultiplier = 10, -- health multipler
         experienceMultipler = 10, -- exp multipler
-        damageMultipler = 5 -- damage multiplier
+        damageMultipler = 5, -- damage multiplier
+        itemLevelBonus = 1.25 -- in percent
     }
 }
 

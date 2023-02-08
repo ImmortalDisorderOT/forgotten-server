@@ -102,7 +102,7 @@ end
 
 local MoveItemEvent = EventCallback
 MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-    print("onMoveItem called")
+    --print("onMoveItem called")
     if not item:getType():isUpgradable() and not item:getType():canHaveItemLevel() or toPosition.y == CONST_SLOT_AMMO then
         --print("onMoveItem return 1")
         return true
@@ -588,7 +588,8 @@ function DeathEvent.onDeath(creature, corpse, lasthitkiller, mostdamagekiller, l
         10,
         creature:getType(),
         corpse:getPosition(),
-        lasthitkiller:getMaster() and lasthitkiller:getMaster():getId() or lasthitkiller:getId()
+        lasthitkiller:getMaster() and lasthitkiller:getMaster():getId() or lasthitkiller:getId(),
+        creature:getSkull()
     )
     return true
 end
@@ -666,7 +667,7 @@ GainExperienceEvent.onGainExperience = function(player, source, exp, rawExp)
 end
 GainExperienceEvent:register()
 
-function us_CheckCorpse(monsterType, corpsePosition, killerId)
+function us_CheckCorpse(monsterType, corpsePosition, killerId, skull)
     local killer = Player(killerId)
     local corpse = Tile(corpsePosition):getTopDownItem()
     if killer and killer:isPlayer() and corpse and corpse:isContainer() then
@@ -726,6 +727,9 @@ function us_CheckCorpse(monsterType, corpsePosition, killerId)
             end
         end
         local iLvl = monsterType:calculateItemLevel()
+        if skull > 0 and uberMonsterTiers[skull].itemLevelBonus then
+            iLvl = iLvl * uberMonsterTiers[skull].itemLevelBonus
+        end
         if iLvl >= US_CONFIG.CRYSTAL_FOSSIL_DROP_LEVEL then
             if math.random(US_CONFIG.CRYSTAL_FOSSIL_DROP_CHANCE) == 1 then
                 corpse:addItem(US_CONFIG.CRYSTAL_FOSSIL, 1)

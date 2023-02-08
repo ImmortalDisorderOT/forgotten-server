@@ -51,7 +51,7 @@ local function spawnEI_Wave()
         local bossSpawnPos = EI_Areas[currentIsland].bossSpawnPos
         local monster = Game.createMonster(EI_Raids[currentIsland][currentRaid].boss, bossSpawnPos, false, true)
         monster:registerEvent("EnduranceBossKill")
-        monster:setSkull(SKULL_BLACK)
+        monster:setSkull(EI_Raids[currentIsland][currentRaid].skull)
         monster:setMaxHealth(monster:getMaxHealth() * EI_Raids[currentIsland][currentRaid].bossHealthMulti)
         monster:setHealth(monster:getMaxHealth())
         Game.broadcastMessage("The endurance island guardian has awoken!", MESSAGE_STATUS_WARNING)
@@ -114,8 +114,9 @@ local function trySpawnEI()
 
     EI_CurrRaid.currentIsland.type = EI_Types[math.random(1,4)]
     EI_CurrRaid.currentIsland.index = math.random(1, #EI_Raids[EI_CurrRaid.currentIsland.type])
+    local eiName = EI_Raids[EI_CurrRaid.currentIsland.type][EI_CurrRaid.currentIsland.index].name
 
-    Game.broadcastMessage("The endurance island has awoken!", MESSAGE_STATUS_WARNING)
+    Game.broadcastMessage("The endurance island has awoken! " .. eiName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
 
     createTeleport(EI_Config.teleportToIslandPos, EI_Areas[EI_CurrRaid.currentIsland.type].teleportPos)
 

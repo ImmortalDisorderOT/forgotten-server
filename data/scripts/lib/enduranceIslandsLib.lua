@@ -31,6 +31,7 @@ EI_Raids = {
             monsters = {"ghoul", "skeleton", "skeleton warrior"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "demon skeleton",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
         },
@@ -41,6 +42,7 @@ EI_Raids = {
             monsters = {"demon skeleton", "vampire", "mummy"},
             maxMobs = 5, -- max mobs per spawn orb
             boss = "vampire lord",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
         },
@@ -51,6 +53,7 @@ EI_Raids = {
             monsters = {"minotaur", "minotaur archer", "minotaur mage"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "minotaur guard",
+            skull = SKULL_BLACK,
             bossWave = 8,
             bossHealthMulti = 10,
         }
@@ -60,31 +63,45 @@ EI_Raids = {
             name = "Dragons",
             averageLevel = 0,
             waves = 10,
-            monsters = {"dragon hatchling", "dragon lord hatchling", "dragon"},
+            monsters = {"dragon hatchling", "dragon lord hatchling", "dragon", "dragon lord"},
             maxMobs = 5, -- max mobs per spawn orb
-            boss = "dragon lord",
+            boss = "demodras",
+            skull = SKULL_BLACK,
             bossWave = 8,
             bossHealthMulti = 10,
         },
         [2] = {
-            name = "Firey Monsters",
+            name = "Firey Elementals",
             averageLevel = 0,
             waves = 15,
             monsters = {"fire elemental", "massive fire elemental"},
             maxMobs = 5, -- max mobs per spawn orb
             boss = "fury",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
+        },
+        [3] = {
+            name = "Demons",
+            averageLevel = 0,
+            waves = 15,
+            monsters = {"demon", "massive fire elemental"},
+            maxMobs = 5, -- max mobs per spawn orb
+            boss = "orshabaal",
+            skull = SKULL_WHITE,
+            bossWave = 10,
+            bossHealthMulti = 20,
         }
     },
     ["iceisland"] = {
         [1] = {
-            name = "Barbarian",
+            name = "Barbarians",
             averageLevel = 0,
             waves = 10,
             monsters = {"barbarian bloodwalker", "barbarian brutetamer", "barbarian headsplitter"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "barbarian skullhunter",
+            skull = SKULL_BLACK,
             bossWave = 8,
             bossHealthMulti = 10,
         },
@@ -95,6 +112,7 @@ EI_Raids = {
             monsters = {"frost giant", "frost giantess", "frost dragon hatchling"},
             maxMobs = 5, -- max mobs per spawn orb
             boss = "frost dragon",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
         }
@@ -107,6 +125,7 @@ EI_Raids = {
             monsters = {"elf", "elf scout", "elf arcanist"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "elf overseer",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
         },
@@ -117,6 +136,7 @@ EI_Raids = {
             monsters = {"orc", "orc warrior", "orc spearman", "orc shaman"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "orc leader",
+            skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
         }

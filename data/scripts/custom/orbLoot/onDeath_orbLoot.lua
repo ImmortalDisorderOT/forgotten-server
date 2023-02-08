@@ -152,7 +152,7 @@ local function rollOrbs(orbList, maxOrbs, skull)
         end
         local roll = math.random(100)
         if chance >= roll then
-            print("inserted orb to spawn")
+            --print("inserted orb to spawn")
             table.insert(orbs, orb)
         end
 	end
