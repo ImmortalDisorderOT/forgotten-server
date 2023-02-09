@@ -92,7 +92,7 @@ local function clearEnduranceIsland()
     Game.broadcastMessage("The endurance island has fallen slient.", MESSAGE_STATUS_WARNING)
 end
 
-local function trySpawnEnduranceIsland()
+local function trySpawnEnduranceIsland(island)
     if Game.getPlayerCount() < enduranceIslandConfig.requiredNumOfPlayers then
         return true
     end
@@ -111,12 +111,22 @@ local function trySpawnEnduranceIsland()
 	end
 
     -- local averageLevel = totalLevel / playerAmount -- average level to be considered later
+    if island then
+        enduranceIslandCurrRaid.currentIsland.type = island.type
+        enduranceIslandCurrRaid.currentIsland.index = island.index
+    else
+        enduranceIslandCurrRaid.currentIsland.type = enduranceIslandTypes[math.random(1,4)]
+        enduranceIslandCurrRaid.currentIsland.index = math.random(1, #enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type])
+    end
 
-    enduranceIslandCurrRaid.currentIsland.type = enduranceIslandTypes[math.random(1,4)]
-    enduranceIslandCurrRaid.currentIsland.index = math.random(1, #enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type])
-    local eiName = enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type][enduranceIslandCurrRaid.currentIsland.index].name
+    local enduranceIslandName = enduranceIslandRaids[enduranceIslandCurrRaid.currentIsland.type][enduranceIslandCurrRaid.currentIsland.index].name
 
-    Game.broadcastMessage("The endurance island has awoken! " .. eiName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
+    if not enduranceIslandName then
+        -- something went wrong, probably with someone trying the talk action
+        print("endurance island failed to spawn")
+        return false
+    end
+    Game.broadcastMessage("The endurance island has awoken! " .. enduranceIslandName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
 
     createTeleport(enduranceIslandConfig.teleportToIslandPos, enduranceIslandAreas[enduranceIslandCurrRaid.currentIsland.type].teleportPos)
 
@@ -126,13 +136,16 @@ local function trySpawnEnduranceIsland()
 
     enduranceIslandCurrRaid.clearEvent = addEvent(clearEnduranceIsland, enduranceIslandConfig.islandTotalTimer)
 
+    return true
 end
 
 
 local enduranceIslandSpawner = GlobalEvent("enduranceIslandSpawner")
 
 function enduranceIslandSpawner.onThink(...)
-    trySpawnEnduranceIsland()
+    if trySpawnEnduranceIsland() then
+        print("endurance island spawned")
+    end
 	return true
 end
 
@@ -164,7 +177,10 @@ function talk.onSay(player, words, param)
 		return true
 	end
     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Trying to spawn an endurance island")
-    trySpawnEnduranceIsland()
+    --@todo make into a little window that pops up to pick
+    if not trySpawnEnduranceIsland() then
+        player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "failed to spawn")
+    end
 	return false
 
 end
