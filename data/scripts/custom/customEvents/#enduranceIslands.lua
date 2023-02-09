@@ -20,6 +20,7 @@ local function getClosestFreePosition(position)
             end
 
             local tile = Tile(checkPosition)
+            --@todo CHECK FOR PZ
             if tile and not tile:hasProperty(CONST_PROP_IMMOVABLEBLOCKSOLID) and not tile:hasProperty(CONST_PROP_IMMOVABLEBLOCKPATH) then
                 return checkPosition 
             end
@@ -94,7 +95,7 @@ end
 
 local function trySpawnEnduranceIsland(island)
     if Game.getPlayerCount() < enduranceIslandConfig.requiredNumOfPlayers then
-        return true
+        return false
     end
 
     if enduranceIslandCurrRaid.activeRaid == true then
@@ -143,13 +144,13 @@ end
 local enduranceIslandSpawner = GlobalEvent("enduranceIslandSpawner")
 
 function enduranceIslandSpawner.onThink(...)
-    if trySpawnEnduranceIsland() then
+    if g_enduranceIsland:trySpawnEnduranceIsland() then
         print("endurance island spawned")
     end
 	return true
 end
 
-enduranceIslandSpawner:interval(enduranceIslandConfig.timeBetweenIslandRaids) -- will be executed every 1000ms
+enduranceIslandSpawner:interval(enduranceIslandConfig.timeBetweenIslandRaids) 
 enduranceIslandSpawner:register()
 
 local EnduranceBossKill = CreatureEvent("EnduranceBossKill")

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <creaturescripts>
+	<!-- custom things -->
+
+	<!-- DPS Dummy from Oen-->
+	<event type="healthchange" name="EventDPS" script="dps.lua" />
+
+	<!-- Endurance Island Boss onDeath -->
+	<event type="death" name="EnduranceBossKill" script="endurancebosskill.lua" />
+
 	<event type="login" name="PlayerLogin" script="login.lua" />
 	<event type="logout" name="PlayerLogout" script="logout.lua" />
 	<event type="login" name="FirstItems" script="firstitems.lua" />
@@ -10,5 +18,4 @@
 	<event type="extendedopcode" name="ExtendedOpcode" script="extendedopcode.lua" />
 	<event type="logout" name="TownPortalsLogout" script="town_portal.lua" />
 	<event type="ModalWindow" name="WaypointsModal" script="modal_windows.lua"/>
-	<event type="healthchange" name="EventDPS" script="dps.lua" />
 </creaturescripts>

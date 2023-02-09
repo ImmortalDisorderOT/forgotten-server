@@ -106,3 +106,32 @@ function annouceEvent(msg)
 		targetPlayer:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, msg)
 	end
 end
+
+function getRandomCloseFreePosition(position)
+    local maxRadius = 1
+
+    local checkPosition = Position(position)
+
+    checkPosition.x = checkPosition.x + sendRandom(1)
+    checkPosition.y = checkPosition.y + sendRandom(1)
+
+    for radius = 0, maxRadius do
+        checkPosition.x = checkPosition.x - math.min(1, radius)
+        checkPosition.y = checkPosition.y + math.min(1, radius)
+
+        local total = math.max(1, radius * 8)
+        for i = 1, total do
+            if radius > 0 then
+                local direction = math.floor((i - 1) / (radius * 2))
+                checkPosition:getNextPosition(direction)
+            end
+
+            local tile = Tile(checkPosition)
+            --@todo CHECK FOR PZ
+            if tile and not tile:hasProperty(CONST_PROP_IMMOVABLEBLOCKSOLID) and not tile:hasProperty(CONST_PROP_IMMOVABLEBLOCKPATH) then
+                return checkPosition 
+            end
+        end
+    end
+    return Position()
+end
