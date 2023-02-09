@@ -155,7 +155,8 @@ function CrystalsAction.onUse(player, item, fromPosition, target, toPosition, is
                     --TODO: Add below line to have ID scroll not infinite
                     --item:remove(1)
                     if target:getRarityId() > RARE then
-                        local annouceMsg = player:getName() .. " has identified a " .. target:getRarity() .. " " .. target:getName() .."!"
+                        local rarity = US_CONFIG.RARITY[target:getRarityId()].name
+                        local annouceMsg = player:getName() .. " has identified a " .. rarity .. " " .. target:getName() .."!"
                         annouceEvent(annouceMsg)
                     end
                 else
