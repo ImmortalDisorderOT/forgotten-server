@@ -380,7 +380,6 @@ g_enduranceIsland.enduranceIslandAreas = {
 g_enduranceIsland.enduranceIslandTypes = {"sandisland", "fireisland", "iceisland", "grassisland"}
 
 g_enduranceIsland.spawnEnduranceIslandWave = function(self)
-
     local currentIsland = self.currentRaid.currentIsland.type
     local currentRaid =self.currentRaid.currentIsland.index
     local mobs = self.enduranceIslandRaids[currentIsland][currentRaid].monsters
@@ -438,6 +437,9 @@ g_enduranceIsland.clearEnduranceIsland = function(self)
     self.currentRaid.activeRaid = false
     self.currentRaid.currentWave = 0
     self.currentRaid.currentIsland = {type = nil, index = 0}
+    if g_enduranceIsland.currentRaid.waveEvent then
+        stopEvent(g_enduranceIsland.currentRaid.waveEvent)
+    end
 
     Game.broadcastMessage("The endurance island has fallen slient.", MESSAGE_STATUS_WARNING)
 end
