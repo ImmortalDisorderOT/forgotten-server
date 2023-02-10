@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <globalevents>
 	<globalevent name="Endurance Island" interval="3600000" script="enduranceisland.lua" />
+	<globalevent name="CrossServerChat" interval="1000" script="discordandtibiacrosschat.lua" />
+
 	<globalevent type="startup" name="ServerStartup" script="startup.lua" />
 	<globalevent type="record" name="PlayerRecord" script="record.lua" />
 	<globalevent name="Server Save" time="09:55:00" script="serversave.lua" />

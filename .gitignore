@@ -188,3 +188,8 @@ TODO.txt
 
 ## Ignoring map file due to size (make sure you zip...)
 forgotten.otbm
+
+## ignoring bot files
+config.json
+node_modules/
+archive/

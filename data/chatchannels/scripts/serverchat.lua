@@ -18,5 +18,9 @@ function onSpeak(player, type, message)
 			type = TALKTYPE_CHANNEL_Y
 		end
 	end
+
+	local msgToSend = player:getName() .. " [" .. player:getLevel() .. "]: " .. message .. "\n"
+	table.insert(g_serverChat.messages, msgToSend)
+
 	return type
 end

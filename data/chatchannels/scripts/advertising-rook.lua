@@ -2,7 +2,7 @@ function canJoin(player)
 	return player:getVocation():getId() == VOCATION_NONE or player:getAccountType() >= ACCOUNT_TYPE_SENIORTUTOR
 end
 
-local CHANNEL_ADVERTISING_ROOK = 6
+local CHANNEL_ADVERTISING_ROOK = 5
 
 local muted = Condition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT)
 muted:setParameter(CONDITION_PARAM_SUBID, CHANNEL_ADVERTISING_ROOK)
