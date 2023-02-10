@@ -29,13 +29,16 @@ g_serverChat.readDiscordToTibiaChats = function(self)
         return
     end
     for line in io.lines(self.config.discordToTibiaFileName) do
-        sendChannelMessage(3, TALKTYPE_CHANNEL_Y, line) -- 3 is the server chat channel
+        sendChannelMessage(CHANNEL_SERVERCHAT, TALKTYPE_CHANNEL_Y, line) -- 3 is the server chat channel
     end
     discordToTibiaFile:close()
     io.open(self.config.discordToTibiaFileName,"w"):close()
 end
 
 function onThink(...)
+    if Game.getPlayerCount() == 0 then
+        return true
+    end
     if #g_serverChat.messages > 0 then
         g_serverChat:writeTibiaToDiscordChats()
     end
