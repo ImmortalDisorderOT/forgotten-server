@@ -7,7 +7,9 @@ if not g_enduranceIsland then
         currentIsland = {type = nil, index = 0},
         clearEvent = nil,
         waveEvent = nil,
-      }
+      },
+      monsterIds = {},
+      playerIds = {}
     }
 end
 
@@ -20,6 +22,9 @@ g_enduranceIsland.config = {
     teleportToIslandPos =  Position(1166, 1116, 7), -- this is the position for creating a teleport to get to the island
     requiredNumOfPlayers = 2, -- less then 2 players, no island
     spawnRadius = 3, -- radius from a position in enduranceIslandAreas
+    playerInIslandTrackerActionId = 15000,
+    playerOutIslandTrackerActionId = 15001,
+    teleportId = 1387,
 }
 
 -- change raid monster/bosses here
@@ -390,8 +395,8 @@ g_enduranceIsland.spawnEnduranceIslandWave = function(self)
         for i=1, maxMobs do
             local positionMob = getRandomCloseFreePosition(Position(spawn.x + sendRandom(spawnRadius), spawn.y + sendRandom(spawnRadius), spawn.z))
             local monster = Game.createMonster(mobs[math.random(#mobs)], positionMob, false, true)
-                if not monster then
-                    --print("failed to spawn ".. mobs[math.random(#mobs)] .. " at " .. positionMob.x .. ", " .. positionMob.y)
+                if monster then
+                    self.monsterIds[monster:getId()] = 1
                 end
         end
     end
@@ -415,21 +420,37 @@ end
 
 
 g_enduranceIsland.clearEnduranceIsland = function(self)
-    local centerPos = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].centerPos
-    local xRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].xRange
-    local yRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].yRange
+    --local centerPos = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].centerPos
+    --local xRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].xRange
+    --local yRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].yRange
 
-    local mobsLeft = getSpectators(centerPos, xRange, yRange)
+    --local mobsLeft = getSpectators(centerPos, xRange, yRange)
 
-    if mobsLeft ~= nil then
-        for _, cid in pairs(mobsLeft) do
-            local creature = Creature(cid)
-            if not creature:isPlayer() then
-                creature:remove()
-            else
-                creature:teleportTo(creature:getTown():getTemplePosition()) -- move the player to temple
-            end
+    --if mobsLeft ~= nil then
+    --    for _, cid in pairs(mobsLeft) do
+    --        local creature = Creature(cid)
+    --        if not creature:isPlayer() then
+    --            creature:remove()
+    --        else
+    --            creature:teleportTo(creature:getTown():getTemplePosition()) -- move the player to temple
+   --         end
+   --     end
+   -- end
+
+    for monsterId, _ in pairs(self.monsterIds) do
+        local monster = Creature(monsterId)
+        if monster then
+            monster:remove()
         end
+        self.monsterIds[monsterId] = nil -- make sure to delete entry from table to prevent memory leak
+    end
+
+    for playerId, _ in pairs(self.playerIds) do
+        local player = Creature(playerId)
+        if player then
+            player:teleportTo(player:getTown():getTemplePosition())
+        end
+        self.playerIds[playerId] = nil -- make sure to delete entry from table to prevent memory leak
     end
 
     removeTeleport(self.config.teleportToIslandPos)
@@ -480,7 +501,11 @@ g_enduranceIsland.trySpawnEnduranceIsland = function(self)
 
     Game.broadcastMessage("The endurance island has awoken! " .. enduranceIslandName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
 
-    createTeleport(self.config.teleportToIslandPos, self.enduranceIslandAreas[self.currentRaid.currentIsland.type].teleportPos)
+    --createTeleport(self.config.teleportToIslandPos, self.enduranceIslandAreas[self.currentRaid.currentIsland.type].teleportPos)
+
+    local teleportItem = Game.createItem(self.config.teleportId, 1, self.config.teleportToIslandPos)
+    teleportItem:setDestination(self.enduranceIslandAreas[self.currentRaid.currentIsland.type].teleportPos)
+    teleportItem:setActionId(self.config.playerInIslandTrackerActionId)
 
     self.currentRaid.activeRaid = true
     self.currentRaid.currentWave = 1

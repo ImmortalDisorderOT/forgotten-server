@@ -5,8 +5,8 @@ if not g_serverChat then
 end
 
 g_serverChat.config = {
-    tibiaToDiscordFileName = "../bot/tibia-to-discord.txt",
-    discordToTibiaFileName = "../bot/discord-to-tibia.txt"
+    tibiaToDiscordFileName = "bot/tibia-to-discord.txt",
+    discordToTibiaFileName = "bot/discord-to-tibia.txt"
 }
 
 g_serverChat.writeTibiaToDiscordChats = function(self)

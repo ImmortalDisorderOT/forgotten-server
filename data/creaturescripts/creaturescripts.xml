@@ -5,8 +5,9 @@
 	<!-- DPS Dummy from Oen-->
 	<event type="healthchange" name="EventDPS" script="dps.lua" />
 
-	<!-- Endurance Island Boss onDeath -->
+	<!-- Endurance Island onDeath -->
 	<event type="death" name="EnduranceBossKill" script="endurancebosskill.lua" />
+	<event type="death" name="EnduranceMonsterKill" script="endurancemonsterkill.lua" />
 
 	<event type="login" name="PlayerLogin" script="login.lua" />
 	<event type="logout" name="PlayerLogout" script="logout.lua" />
