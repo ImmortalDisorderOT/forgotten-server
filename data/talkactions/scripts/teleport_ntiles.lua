@@ -1,7 +1,8 @@
 function onSay(player, words, param)
-	if not player:getGroup():getAccess() then
-		return true
-	end
+	--@todo reenable after testing
+	--if not player:getGroup():getAccess() then 
+	--	return true
+	--end
 
 	local steps = tonumber(param)
 	if not steps then
