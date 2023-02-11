@@ -27,17 +27,11 @@ questChests = {
     levelReq = 0,
     storageUnique = 48001,
     rewards = {
-        [1] = {type = "item", itemid = 2160, count = 10},
-        [2] = {type = "experience", amount = 1000000}
+        [1] = {type = "item", itemid = 2160, count = 15},
+        [2] = {type = "experience", amount = 2000000},
+        [3] = {type = "title", titleName = "Maze Maniac", titleId = 1}
         }
     },
-    [48002] = {
-     levelReq = 0,
-     storageUnique = 48002,
-     rewards = {
-         [1] = {type = "title", titleName = "Maze Maniac", titleId = 1}
-        }
-     },
      [48003] = {
       levelReq = 0,
       storageUnique = 48003,
