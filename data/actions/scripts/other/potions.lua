@@ -50,14 +50,14 @@ local potions = {
 	},
 	[7589] = { -- strong mana potion
 		mana = {115, 185},
-		vocations = {1, 2, 3, 5, 6, 7},
+		vocations = {1, 2, 3, 4, 5, 6, 7, 8},
 		level = 50,
 		flask = 7634,
-		description = "Only sorcerers, druids and paladins of level 50 or above may drink this fluid."
+		description = "Only sorcerers, druids, knights, and paladins of level 50 or above may drink this fluid."
 	},
 	[7590] = { -- great mana potion
 		mana = {150, 250},
-		vocations = {1, 2, 5, 6},
+		vocations = {1, 2, 3, 5, 6, 7},
 		level = 80,
 		flask = 7635,
 		description = "Only druids and sorcerers of level 80 or above may drink this fluid."
