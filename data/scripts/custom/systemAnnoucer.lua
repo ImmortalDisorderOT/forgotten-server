@@ -70,5 +70,5 @@ function autoBroadcast.onThink(interval, lastExecution)
     return true
 end
 
-autoBroadcast:interval(600000)
+autoBroadcast:interval(6000000)
 autoBroadcast:register()
