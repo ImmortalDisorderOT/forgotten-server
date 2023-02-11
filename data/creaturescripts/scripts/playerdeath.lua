@@ -12,6 +12,11 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 		return
 	end
 
+	-- add for endurance island deaths
+	if g_enduranceIsland.playerIds[playerId] == 1 then
+		g_enduranceIsland.playerIds[playerId] = nil
+	end
+
 	local byPlayer = 0
 	local killerName
 	if killer then
