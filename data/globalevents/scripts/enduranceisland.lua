@@ -282,6 +282,12 @@ g_enduranceIsland.enduranceIslandAreas = {
             Position(1356, 925, 7),
             Position(1356, 925, 7),
             Position(1369, 933, 7),
+            Position(1363, 934, 7),
+            Position(1364, 927, 7),
+            Position(1370, 926, 7),
+            Position(1364, 956, 7),
+            Position(1371, 1008, 7),
+            Position(1350, 1015, 7),
         },
     },
     ["iceisland"] = {
@@ -431,23 +437,6 @@ end
 
 
 g_enduranceIsland.clearEnduranceIsland = function(self)
-    --local centerPos = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].centerPos
-    --local xRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].xRange
-    --local yRange = self.enduranceIslandAreas[self.currentRaid.currentIsland.type].yRange
-
-    --local mobsLeft = getSpectators(centerPos, xRange, yRange)
-
-    --if mobsLeft ~= nil then
-    --    for _, cid in pairs(mobsLeft) do
-    --        local creature = Creature(cid)
-    --        if not creature:isPlayer() then
-    --            creature:remove()
-    --        else
-    --            creature:teleportTo(creature:getTown():getTemplePosition()) -- move the player to temple
-   --         end
-   --     end
-   -- end
-
     for monsterId, _ in pairs(self.monsterIds) do
         local monster = Creature(monsterId)
         if monster then
@@ -511,8 +500,6 @@ g_enduranceIsland.trySpawnEnduranceIsland = function(self)
     end
 
     Game.broadcastMessage("The endurance island has awoken! " .. enduranceIslandName .. " has invaded the island!", MESSAGE_STATUS_WARNING)
-
-    --createTeleport(self.config.teleportToIslandPos, self.enduranceIslandAreas[self.currentRaid.currentIsland.type].teleportPos)
 
     local teleportItem = Game.createItem(self.config.teleportId, 1, self.config.teleportToIslandPos)
     teleportItem:setDestination(self.enduranceIslandAreas[self.currentRaid.currentIsland.type].teleportPos)
