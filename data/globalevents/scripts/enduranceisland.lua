@@ -102,7 +102,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             name = "A Threat to Civilization",
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
-            monsters = {"orshabaal", "minion of gaz'haragoth"},
+            monsters = {"choking fear", "minion of gaz'haragoth", "retching horror", "guzzlemaw"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "gaz'haragoth",
             skull = SKULL_WHITE,
