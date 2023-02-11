@@ -97,7 +97,18 @@ g_enduranceIsland.enduranceIslandRaids = {
             skull = SKULL_WHITE,
             bossWave = 10,
             bossHealthMulti = 15,
-        }
+        },
+        [4] = {
+            name = "A Threat to Civilization",
+            requiredLevel = {min = 0, max = 1}, -- for use when implemented
+            waves = 15,
+            monsters = {"orshabaal", "minion of gaz'haragoth"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "gaz'haragoth",
+            skull = SKULL_WHITE,
+            bossWave = 10,
+            bossHealthMulti = 15,
+        },
     },
     ["iceisland"] = {
         [1] = {
