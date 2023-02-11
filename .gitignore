@@ -194,3 +194,4 @@ config.json
 node_modules/
 archive/
 bot/
+discordandtibiacrosschat.lua
