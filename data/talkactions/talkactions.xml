@@ -35,7 +35,7 @@
 	<talkaction words="/reload" separator=" " script="reload.lua" />
 	<talkaction words="/raid" separator=" " script="force_raid.lua" />
 	<talkaction words="/spawnei" script="spawnenduranceisland.lua" />
-
+	<talkaction words="/lookwings" separator=" " script="lookwings.lua" />
 	<!-- player talkactions -->
 	<talkaction words="!buypremium" script="buyprem.lua" />
 	<talkaction words="!buyhouse" script="buyhouse.lua" />

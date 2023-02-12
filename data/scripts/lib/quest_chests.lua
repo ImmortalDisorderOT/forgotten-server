@@ -13,7 +13,9 @@
 --[3] = {type = "outfit", name = "assassin", femaleId = 156, maleId = 152}
 --[4] = {type = "addon", outfit = "nobleman", addonNumber = 1, femaleId = 140, maleId = 132}
 --[5] = {type = "mount", mountName = "Orc", mountId = 20}
---[6] = {type = "title", mountName = "Maxe Maniac", mountId = 1}
+--[6] = {type = "title", titleName = "Maze Maniac", titleId = 1}
+--[7] = {type = "wing", wingName = "Blacksteel Wing", wingId = 1}
+--[7] = {type = "aura", auraName = "Aura 1", auraId = 2}
 
 questChests = {
    [48000] = {

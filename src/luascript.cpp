@@ -2535,6 +2535,21 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "removeTitle", LuaScriptInterface::luaPlayerRemoveTitle);
 	registerMethod("Player", "hasTitle", LuaScriptInterface::luaPlayerHasTitle);
 
+	// adding / removing shaders
+	registerMethod("Player", "addShader", LuaScriptInterface::luaPlayerAddShader);
+	registerMethod("Player", "removeShader", LuaScriptInterface::luaPlayerRemoveShader);
+	registerMethod("Player", "hasShader", LuaScriptInterface::luaPlayerHasShader);
+
+	// adding / removing auras
+	registerMethod("Player", "addAura", LuaScriptInterface::luaPlayerAddAura);
+	registerMethod("Player", "removeAura", LuaScriptInterface::luaPlayerRemoveAura);
+	registerMethod("Player", "hasAura", LuaScriptInterface::luaPlayerHasAura);
+
+	// adding / removing wings
+	registerMethod("Player", "addWing", LuaScriptInterface::luaPlayerAddWing);
+	registerMethod("Player", "removeWing", LuaScriptInterface::luaPlayerRemoveWing);
+	registerMethod("Player", "hasWing", LuaScriptInterface::luaPlayerHasWing);
+
 	registerMethod("Player", "getStoreInbox", LuaScriptInterface::luaPlayerGetStoreInbox);
 
 	// Monster
@@ -9882,6 +9897,216 @@ int LuaScriptInterface::luaPlayerHasTitle(lua_State* L) {
 
 	if (title) {
 		pushBoolean(L, player->hasTitle(title));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Shaders
+int LuaScriptInterface::luaPlayerAddShader(lua_State* L) {
+	// player:addShader(shaderId or shaderName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t shaderId;
+	if (isNumber(L, 2)) {
+		shaderId = getNumber<uint8_t>(L, 2);
+	} else {
+		Shader* shader = g_game.shaders.getShaderByName(getString(L, 2));
+		if (!shader) {
+			lua_pushnil(L);
+			return 1;
+		}
+		shaderId = shader->id;
+	}
+	pushBoolean(L, player->addShader(shaderId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerRemoveShader(lua_State* L) {
+	// player:removeTitle(titleId or titleName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t shaderId;
+	if (isNumber(L, 2)) {
+		shaderId = getNumber<uint8_t>(L, 2);
+	} else {
+		Shader* shader = g_game.shaders.getShaderByName(getString(L, 2));
+		if (!shader) {
+			lua_pushnil(L);
+			return 1;
+		}
+		shaderId = shader->id;
+	}
+	pushBoolean(L, player->removeShader(shaderId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasShader(lua_State* L) {
+	// player:hasTitle(titleId or titleName)
+	const Player* player = getUserdata<const Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Shader* shader = nullptr;
+	if (isNumber(L, 2)) {
+		shader = g_game.shaders.getShaderByID(getNumber<uint8_t>(L, 2));
+	} else {
+		shader = g_game.shaders.getShaderByName(getString(L, 2));
+	}
+
+	if (shader) {
+		pushBoolean(L, player->hasShader(shader));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Wings
+int LuaScriptInterface::luaPlayerAddWing(lua_State* L) {
+	// player:addWing(wingId or wingName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t wingId;
+	if (isNumber(L, 2)) {
+		wingId = getNumber<uint8_t>(L, 2);
+	} else {
+		Wing* wing = g_game.wings.getWingByName(getString(L, 2));
+		if (!wing) {
+			lua_pushnil(L);
+			return 1;
+		}
+		wingId = wing->id;
+	}
+	pushBoolean(L, player->addWing(wingId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerRemoveWing(lua_State* L) {
+	// player:removeWing(wingId or wingName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t wingId;
+	if (isNumber(L, 2)) {
+		wingId = getNumber<uint8_t>(L, 2);
+	} else {
+		Wing* wing = g_game.wings.getWingByName(getString(L, 2));
+		if (!wing) {
+			lua_pushnil(L);
+			return 1;
+		}
+		wingId = wing->id;
+	}
+	pushBoolean(L, player->removeWing(wingId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasWing(lua_State* L) {
+	// player:hasWing(wingId or wingName)
+	const Player* player = getUserdata<const Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Wing* wing = nullptr;
+	if (isNumber(L, 2)) {
+		wing = g_game.wings.getWingByID(getNumber<uint8_t>(L, 2));
+	} else {
+		wing = g_game.wings.getWingByName(getString(L, 2));
+	}
+
+	if (wing) {
+		pushBoolean(L, player->hasWing(wing));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Auras
+int LuaScriptInterface::luaPlayerAddAura(lua_State* L) {
+	// player:addAura(auraId or auraName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t auraId;
+	if (isNumber(L, 2)) {
+		auraId = getNumber<uint8_t>(L, 2);
+	} else {
+		Aura* aura = g_game.auras.getAuraByName(getString(L, 2));
+		if (!aura) {
+			lua_pushnil(L);
+			return 1;
+		}
+		auraId = aura->id;
+	}
+	pushBoolean(L, player->addAura(auraId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerRemoveAura(lua_State* L) {
+	// player:removeAura(auraId or auraName)
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	uint8_t auraId;
+	if (isNumber(L, 2)) {
+		auraId = getNumber<uint8_t>(L, 2);
+	} else {
+		Aura* aura = g_game.auras.getAuraByName(getString(L, 2));
+		if (!aura) {
+			lua_pushnil(L);
+			return 1;
+		}
+		auraId = aura->id;
+	}
+	pushBoolean(L, player->removeAura(auraId));
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasAura(lua_State* L) {
+	// player:hasAura(auraId or auraName)
+	const Player* player = getUserdata<const Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Aura* aura = nullptr;
+	if (isNumber(L, 2)) {
+		aura = g_game.auras.getAuraByID(getNumber<uint8_t>(L, 2));
+	} else {
+		aura = g_game.auras.getAuraByName(getString(L, 2));
+	}
+
+	if (aura) {
+		pushBoolean(L, player->hasAura(aura));
 	} else {
 		lua_pushnil(L);
 	}

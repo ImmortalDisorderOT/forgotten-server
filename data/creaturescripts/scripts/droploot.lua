@@ -1,4 +1,5 @@
 function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
+	--[[ @TODO uncomment after testing
 	if player:hasFlag(PlayerFlag_NotGenerateLoot) or player:getVocation():getId() == VOCATION_NONE then
 		return true
 	end
@@ -38,5 +39,6 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 	if not player:getSlotItem(CONST_SLOT_BACKPACK) then
 		player:addItem(ITEM_BAG, 1, false, CONST_SLOT_BACKPACK)
 	end
+	]]
 	return true
 end

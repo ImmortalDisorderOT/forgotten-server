@@ -4337,6 +4337,55 @@ bool Player::hasWing(const Wing* wing) const
 	return ((1 << (tmpWingId % 31)) & value) != 0;
 }
 
+bool Player::addWing(uint8_t wingId)
+{
+	if (!g_game.wings.getWingByID(wingId)) {
+		return false;
+	}
+
+	const uint8_t tempWingId = wingId - 1;
+	const uint32_t key = PSTRG_WINGS_RANGE_START + (tempWingId / 31);
+
+	int32_t value;
+	if (getStorageValue(key, value)) {
+		value |= (1 << (tempWingId % 31));
+	} else {
+		value = (1 << (tempWingId % 31));
+	}
+
+	addStorageValue(key, value);
+	return true;
+}
+
+bool Player::removeWing(uint8_t wingId)
+{
+	if (!g_game.wings.getWingByID(wingId)) {
+		return false;
+	}
+
+	const uint8_t tempWingId = wingId - 1;
+	const uint32_t key = PSTRG_WINGS_RANGE_START + (tempWingId / 31);
+
+	int32_t value;
+	if (!getStorageValue(key, value)) {
+		return true;
+	}
+
+	value &= ~(1 << (tempWingId % 31));
+	addStorageValue(key, value);
+
+	if (getCurrentWing() == wingId) {
+		if (hasWings()) {
+			defaultOutfit.lookWings = 0;
+			g_game.internalCreatureChangeOutfit(this, defaultOutfit);
+		}
+		setCurrentWing(0);
+	}
+
+	return true;
+}
+
+
 uint8_t Player::getCurrentWing() const
 {
 	int32_t value;
@@ -4349,6 +4398,54 @@ uint8_t Player::getCurrentWing() const
 void Player::setCurrentWing(uint8_t wingId)
 {
 	addStorageValue(PSTRG_WINGS_CURRENTWINGS, wingId);
+}
+
+bool Player::addAura(uint8_t auraId)
+{
+	if (!g_game.auras.getAuraByID(auraId)) {
+		return false;
+	}
+
+	const uint8_t tempAuraId = auraId - 1;
+	const uint32_t key = PSTRG_AURAS_RANGE_START + (tempAuraId / 31);
+
+	int32_t value;
+	if (getStorageValue(key, value)) {
+		value |= (1 << (tempAuraId % 31));
+	} else {
+		value = (1 << (tempAuraId % 31));
+	}
+
+	addStorageValue(key, value);
+	return true;
+}
+
+bool Player::removeAura(uint8_t auraId)
+{
+	if (!g_game.auras.getAuraByID(auraId)) {
+		return false;
+	}
+
+	const uint8_t tempAuraId = auraId - 1;
+	const uint32_t key = PSTRG_AURAS_RANGE_START + (tempAuraId / 31);
+
+	int32_t value;
+	if (!getStorageValue(key, value)) {
+		return true;
+	}
+
+	value &= ~(1 << (tempAuraId % 31));
+	addStorageValue(key, value);
+
+	if (getCurrentAura() == auraId) {
+		if (hasAura()) {
+			defaultOutfit.lookAura = 0;
+			g_game.internalCreatureChangeOutfit(this, defaultOutfit);
+		}
+		setCurrentAura(0);
+	}
+
+	return true;
 }
 
 bool Player::hasAura(const Aura* aura) const
@@ -4383,6 +4480,54 @@ uint8_t Player::getCurrentAura() const
 void Player::setCurrentAura(uint8_t auraId)
 {
 	addStorageValue(PSTRG_AURAS_CURRENTAURA, auraId);
+}
+
+bool Player::addShader(uint8_t shaderId)
+{
+	if (!g_game.shaders.getShaderByID(shaderId)) {
+		return false;
+	}
+
+	const uint8_t tmpShaderId = shaderId - 1;
+	const uint32_t key = PSTRG_SHADERS_RANGE_START + (tmpShaderId / 31);
+
+	int32_t value;
+	if (getStorageValue(key, value)) {
+		value |= (1 << (tmpShaderId % 31));
+	} else {
+		value = (1 << (tmpShaderId % 31));
+	}
+
+	addStorageValue(key, value);
+	return true;
+}
+
+bool Player::removeShader(uint8_t shaderId)
+{
+	if (!g_game.shaders.getShaderByID(shaderId)) {
+		return false;
+	}
+
+	const uint8_t tmpShaderId = shaderId - 1;
+	const uint32_t key = PSTRG_SHADERS_RANGE_START + (tmpShaderId / 31);
+
+	int32_t value;
+	if (!getStorageValue(key, value)) {
+		return true;
+	}
+
+	value &= ~(1 << (tmpShaderId % 31));
+	addStorageValue(key, value);
+
+	if (getCurrentShader() == shaderId) {
+		if (hasShader()) {
+			defaultOutfit.lookShader = 0;
+			g_game.internalCreatureChangeOutfit(this, defaultOutfit);
+		}
+		setCurrentShader(0);
+	}
+
+	return true;
 }
 
 bool Player::hasShader(const Shader* shader) const

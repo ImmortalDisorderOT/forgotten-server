@@ -139,6 +139,37 @@ function advanceChest.onUse(player, item, fromPosition, itemEx, toPosition)
             player:addTitle(titleId)
             player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You have unlocked the "..titleName.." title.")
         end
+
+        -----------------------------------------------------------------------------------
+        -- Shader Type Reward --
+        -----------------------------------------------------------------------------------
+        if rewardType == "shader" then
+            local shaderName = questChests[questChestId].rewards[i].shaderName
+            local shaderId = questChests[questChestId].rewards[i].shaderId
+            player:addShader(shaderId)
+            player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You have unlocked the "..shaderName.." shader.")
+        end
+
+        -----------------------------------------------------------------------------------
+        -- Aura Type Reward --
+        -----------------------------------------------------------------------------------
+        if rewardType == "aura" then
+            local auraName = questChests[questChestId].rewards[i].auraName
+            local auraId = questChests[questChestId].rewards[i].auraId
+            player:addAura(auraId)
+            player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You have unlocked the "..auraName.." aura.")
+        end
+
+        -----------------------------------------------------------------------------------
+        -- Wing Type Reward --
+        -----------------------------------------------------------------------------------
+        if rewardType == "wing" then
+            local wingName = questChests[questChestId].rewards[i].wingName
+            local wingId = questChests[questChestId].rewards[i].wingId
+            player:addWing(wingId)
+            player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "You have unlocked the "..wingName.." shader.")
+        end
+
         -----------------------------------------------------------------------------------
         -- Add in any cooldowns/storages --
         -----------------------------------------------------------------------------------

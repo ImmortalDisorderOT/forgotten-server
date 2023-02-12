@@ -1,4 +1,4 @@
-local deathListEnabled = true
+local deathListEnabled = false
 local maxDeathRecords = 5
 
 function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
@@ -6,16 +6,16 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 	if nextUseStaminaTime[playerId] then
 		nextUseStaminaTime[playerId] = nil
 	end
+	-- add for endurance island deaths
+	if g_enduranceIsland.playerIds[playerId] == 1 then
+		g_enduranceIsland.playerIds[playerId] = nil
+	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are dead.")
 	if not deathListEnabled then
 		return
 	end
 
-	-- add for endurance island deaths
-	if g_enduranceIsland.playerIds[playerId] == 1 then
-		g_enduranceIsland.playerIds[playerId] = nil
-	end
 
 	local byPlayer = 0
 	local killerName

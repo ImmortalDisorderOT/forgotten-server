@@ -1004,6 +1004,18 @@ class LuaScriptInterface
 		static int luaPlayerRemoveTitle(lua_State* L);
 		static int luaPlayerHasTitle(lua_State* L);
 
+		static int luaPlayerAddShader(lua_State* L);
+		static int luaPlayerRemoveShader(lua_State* L);
+		static int luaPlayerHasShader(lua_State* L);
+
+		static int luaPlayerAddWing(lua_State* L);
+		static int luaPlayerRemoveWing(lua_State* L);
+		static int luaPlayerHasWing(lua_State* L);
+
+		static int luaPlayerAddAura(lua_State* L);
+		static int luaPlayerRemoveAura(lua_State* L);
+		static int luaPlayerHasAura(lua_State* L);
+
 		static int luaPlayerGetPremiumEndsAt(lua_State* L);
 		static int luaPlayerSetPremiumEndsAt(lua_State* L);
 

@@ -171,16 +171,24 @@ class Player final : public Creature, public Cylinder
 		bool untameMount(uint8_t mountId);
 		bool hasMount(const Mount* mount) const;
 		void dismount();
-
+		//Wings
 		bool hasWing(const Wing* wing) const;
-		uint8_t getCurrentAura() const;
-		void setCurrentAura(uint8_t auraId);
-		bool hasAura(const Aura* aura) const;
 		uint8_t getCurrentWing() const;
 		void setCurrentWing(uint8_t wingId);
+		bool addWing(uint8_t wingId);
+		bool removeWing(uint8_t wingId);
+		//Auras
+		bool hasAura(const Aura* aura) const;
+		uint8_t getCurrentAura() const;
+		void setCurrentAura(uint8_t auraId);
+		bool addAura(uint8_t auraId);
+		bool removeAura(uint8_t auraId);
+		//Shaders
 		bool hasShader(const Shader* shader) const;
 		uint16_t getCurrentShader() const;
 		void setCurrentShader(uint16_t shaderId);
+		bool addShader(uint8_t shaderId);
+		bool removeShader(uint8_t shaderId);
 		//Titles
 		bool hasTitle(const Title* title) const;
 		uint16_t getCurrentTitle() const;
