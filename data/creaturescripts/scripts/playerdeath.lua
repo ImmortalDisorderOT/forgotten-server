@@ -7,9 +7,7 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 		nextUseStaminaTime[playerId] = nil
 	end
 	-- add for endurance island deaths
-	if g_enduranceIsland.playerIds[playerId] == 1 then
-		g_enduranceIsland.playerIds[playerId] = nil
-	end
+	g_enduranceIsland:onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are dead.")
 	if not deathListEnabled then

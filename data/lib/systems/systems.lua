@@ -1,0 +1,1 @@
+dofile('data/lib/systems/enduranceisland.lua')

@@ -144,7 +144,7 @@ end
 local enduranceIslandSpawner = GlobalEvent("enduranceIslandSpawner")
 
 function enduranceIslandSpawner.onThink(...)
-    if g_enduranceIsland:trySpawnEnduranceIsland() then
+    if g_enduranceIsland:spawnEnduranceIsland() then
         print("endurance island spawned")
     end
 	return true
