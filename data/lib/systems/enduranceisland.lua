@@ -37,7 +37,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 10,
             monsters = {"ghoul", "skeleton", "skeleton warrior"},
-            maxMobs = 6, -- max mobs per spawn orb
+            maxMobs = 8, -- max mobs per spawn orb
             boss = "demon skeleton",
             skull = SKULL_BLACK,
             bossWave = 10,
@@ -48,7 +48,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
             monsters = {"demon skeleton", "vampire", "mummy"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "vampire lord",
             skull = SKULL_BLACK,
             bossWave = 10,
@@ -59,10 +59,21 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 10,
             monsters = {"minotaur", "minotaur archer", "minotaur mage", "minotaur guard"},
-            maxMobs = 6, -- max mobs per spawn orb
+            maxMobs = 8, -- max mobs per spawn orb
             boss = "general murius",
             skull = SKULL_BLACK,
             bossWave = 8,
+            bossHealthMulti = 15,
+        },
+        [3] = {
+            name = "Pharaohs",
+            requiredLevel = {min = 0, max = 1}, -- for use when implemented
+            waves = 15,
+            monsters = {"ashmunrah", "dipthrah", "mahrdis", "morguthis", "omruc", "rahemos", "thalas", "vashresamun"},
+            maxMobs = 7, -- max mobs per spawn orb
+            boss = "the ravager",
+            skull = SKULL_RED,
+            bossWave = 10,
             bossHealthMulti = 15,
         }
     },
@@ -72,7 +83,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 10,
             monsters = {"dragon hatchling", "dragon lord hatchling", "dragon", "dragon lord"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "demodras",
             skull = SKULL_BLACK,
             bossWave = 8,
@@ -83,7 +94,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
             monsters = {"fire elemental", "massive fire elemental"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 7, -- max mobs per spawn orb
             boss = "fury",
             skull = SKULL_BLACK,
             bossWave = 10,
@@ -94,7 +105,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
             monsters = {"demon", "massive fire elemental"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "orshabaal",
             skull = SKULL_WHITE,
             bossWave = 10,
@@ -129,11 +140,22 @@ g_enduranceIsland.enduranceIslandRaids = {
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
             monsters = {"frost giant", "frost giantess", "frost dragon hatchling"},
-            maxMobs = 5, -- max mobs per spawn orb
+            maxMobs = 6, -- max mobs per spawn orb
             boss = "frost dragon",
             skull = SKULL_BLACK,
             bossWave = 10,
             bossHealthMulti = 10,
+        },
+        [3] = {
+            name = "Frost Dragons",
+            requiredLevel = {min = 0, max = 1}, -- for use when implemented
+            waves = 15,
+            monsters = {"frost dragon", "ice dragon", "frost dragon hatchling"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "gelidrazah the frozen",
+            skull = SKULL_BLACK,
+            bossWave = 10,
+            bossHealthMulti = 15,
         }
     },
     ["grassisland"] = {
@@ -160,6 +182,28 @@ g_enduranceIsland.enduranceIslandRaids = {
             bossHealthMulti = 10,
         },
         [3] = {
+            name = "Elite Orcs",
+            requiredLevel = {min = 0, max = 1}, -- for use when implemented
+            waves = 15,
+            monsters = {"orc beserker", "orc shaman", "orc rider", "orc leader"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "orc warlord",
+            skull = SKULL_BLACK,
+            bossWave = 10,
+            bossHealthMulti = 20,
+        },
+        [4] = {
+            name = "Swamp Monsters",
+            requiredLevel = {min = 0, max = 1}, -- for use when implemented
+            waves = 15,
+            monsters = {"bog raider", "giant spider", "devourer"},
+            maxMobs = 6, -- max mobs per spawn orb
+            boss = "defiler",
+            skull = SKULL_BLACK,
+            bossWave = 10,
+            bossHealthMulti = 15,
+        },   
+        [5] = {
             name = "Wizards",
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
@@ -169,18 +213,13 @@ g_enduranceIsland.enduranceIslandRaids = {
             skull = SKULL_WHITE,
             bossWave = 10,
             bossHealthMulti = 15,
-        }
+        },
     }
 }
 
 -- only edit if island changes
 g_enduranceIsland.enduranceIslandAreas = {
     ["sandisland"] = {
-        topLeft = Position(1219, 916, 7),
-        bottomRight = Position(1278, 1043, 7),
-        centerPos = Position(1248, 971, 7),
-        xRange = 40,
-        yRange = 75,
         bossSpawnPos = Position(1245, 1023, 7),
         teleportPos = Position(1236, 925, 7),
         monsterSpawns = {
@@ -234,11 +273,6 @@ g_enduranceIsland.enduranceIslandAreas = {
         },
     },
     ["fireisland"] = {
-        topLeft = Position(1335, 916, 7),
-        bottomRight = Position(1378, 1028, 7),
-        centerPos = Position(1357, 973, 7),
-        xRange = 40,
-        yRange = 75,
         bossSpawnPos = Position(1358, 931, 7),
         teleportPos = Position(1340, 1023, 7),
         monsterSpawns = {
@@ -293,11 +327,6 @@ g_enduranceIsland.enduranceIslandAreas = {
         },
     },
     ["iceisland"] = {
-        topLeft = Position(1444, 897, 7),
-        bottomRight = Position(1502, 1041, 7),
-        centerPos = Position(1473, 970, 7),
-        xRange = 40,
-        yRange = 75,
         bossSpawnPos = Position(1472, 924, 7),
         teleportPos = Position(1449, 1023, 7),
         monsterSpawns = {
@@ -339,11 +368,6 @@ g_enduranceIsland.enduranceIslandAreas = {
         },
     },
     ["grassisland"] = {
-        topLeft = Position(1566, 896, 7),
-        bottomRight = Position(1628, 1056, 7),
-        centerPos = Position(1600, 968, 7),
-        xRange = 40,
-        yRange = 75,
         bossSpawnPos = Position(1594, 1036, 7),
         teleportPos = Position(1576, 903, 7),
         monsterSpawns = {
