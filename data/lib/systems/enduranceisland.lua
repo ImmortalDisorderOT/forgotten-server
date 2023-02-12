@@ -185,7 +185,7 @@ g_enduranceIsland.enduranceIslandRaids = {
             name = "Elite Orcs",
             requiredLevel = {min = 0, max = 1}, -- for use when implemented
             waves = 15,
-            monsters = {"orc beserker", "orc shaman", "orc rider", "orc leader"},
+            monsters = {"orc berserker", "orc shaman", "orc rider", "orc leader"},
             maxMobs = 6, -- max mobs per spawn orb
             boss = "orc warlord",
             skull = SKULL_BLACK,
