@@ -7,12 +7,12 @@ end
 
 function formatTime(time)
     if time >= 60000 then
-        local returnTime = math.floor( (time / 1000) / 60)
-        local returnString = returnTime .. " minutes"
+        local returnTime = math.floor((time / 1000) / 60)
+        local returnString = string.format("%d minute%s", returnTime, returnTime > 1 and "s" or "")
         return returnString
     else
         local returnTime = time / 1000
-        local returnString = returnTime .. " seconds"
+        local returnString = string.format("%d second%s", returnTime, returnTime > 1 and "s" or "")
         return returnString
     end
 end

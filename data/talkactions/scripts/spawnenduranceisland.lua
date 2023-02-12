@@ -4,7 +4,7 @@ function onSay(player, words, param)
 	end
     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Trying to spawn an endurance island")
     --@todo make into a little window that pops up to pick
-    if not g_enduranceIsland:trySpawnEnduranceIsland() then
+    if not g_enduranceIsland:spawnEnduranceIsland() then
         player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "failed to spawn")
     end
 	return false

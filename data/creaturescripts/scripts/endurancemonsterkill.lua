@@ -1,4 +1,4 @@
 function onDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
-    g_enduranceIsland.monsterIds[creature:getId()] = nil
+    g_enduranceIsland:onMonsterDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
     return true
 end
