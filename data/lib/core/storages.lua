@@ -4,6 +4,10 @@ Reserved storage ranges:
 - 20000 to 21000+ reserved for achievement progress
 - 10000000 to 20000000 reserved for outfits and mounts on source
 ]]--
+
+AccountStorageKeys = {
+}
+
 PlayerStorageKeys = {
 	annihilatorReward = 30015,
 	promotion = 30018,

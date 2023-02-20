@@ -337,8 +337,6 @@ function Player.getTotalMoney(self)
 	return self:getMoney() + self:getBankBalance()
 end
 
-
-
 function Player.JumpCreature(self, creatureID, jumpHeight, jumpDuration, jumpStraight)
     local networkMessage = NetworkMessage()
     networkMessage:addByte(0x36) -- 54 : OTC
@@ -349,4 +347,14 @@ function Player.JumpCreature(self, creatureID, jumpHeight, jumpDuration, jumpStr
     networkMessage:sendToPlayer(self)
     networkMessage:delete()
     return true
+end
+
+function Player.addBankBalance(self, amount)
+	self:setBankBalance(self:getBankBalance() + amount)
+end
+
+function Player.isPromoted(self)
+	local vocation = self:getVocation()
+	local fromVocId = vocation:getDemotion():getId()
+	return vocation:getId() ~= fromVocId
 end

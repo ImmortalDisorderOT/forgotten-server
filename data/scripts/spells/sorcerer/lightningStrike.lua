@@ -40,12 +40,10 @@ end
 combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
 
 
-local function doStrike(player, targetId, variant)
+local function doStrike(targetId)
     local target = Creature(targetId)
     local targetPos = target:getPosition()
     targetPos:sendMagicEffect(config.effect)
-
-    combat:execute(player, variant)
 end
 
 
@@ -64,13 +62,15 @@ function spell.onCastSpell(creature, variant)
 
             startPos:sendDistanceEffect(targetPos, config.distanceEffect)
 
-            addEvent(doStrike, 300, creature:getId(), spectators[i]:getId(), variant)
+            addEvent(doStrike, 300, spectators[i]:getId())
         end
     end
     if not mobFound then
         creature:sendCancelMessage("No monsters in range")
         playerPos:sendMagicEffect(CONST_ME_POFF)
         return false
+    else
+        combat:execute(player, variant)
     end
     return true
 end

@@ -244,6 +244,8 @@ bool ConfigManager::load()
 	boolean[ONLY_INVITED_CAN_MOVE_HOUSE_ITEMS] = getGlobalBoolean(L, "onlyInvitedCanMoveHouseItems", true);
 	boolean[REMOVE_ON_DESPAWN] = getGlobalBoolean(L, "removeOnDespawn", true);
 	boolean[PLAYER_CONSOLE_LOGS] = getGlobalBoolean(L, "showPlayerLogInConsole", true);
+	boolean[CHECK_DUPLICATE_STORAGE_KEYS] = getGlobalBoolean(L, "checkDuplicateStorageKeys", false);
+	boolean[MONSTER_OVERSPAWN] = getGlobalBoolean(L, "monsterOverspawn", false);
 
 	string[DEFAULT_PRIORITY] = getGlobalString(L, "defaultPriority", "high");
 	string[SERVER_NAME] = getGlobalString(L, "serverName", "");
@@ -287,6 +289,10 @@ bool ConfigManager::load()
 	integer[VIP_PREMIUM_LIMIT] = getGlobalNumber(L, "vipPremiumLimit", 100);
 	integer[DEPOT_FREE_LIMIT] = getGlobalNumber(L, "depotFreeLimit", 2000);
 	integer[DEPOT_PREMIUM_LIMIT] = getGlobalNumber(L, "depotPremiumLimit", 10000);
+
+	integer[STATS_DUMP_INTERVAL] = getGlobalNumber(L, "statsDumpInterval", 30000);
+	integer[STATS_SLOW_LOG_TIME] = getGlobalNumber(L, "statsSlowLogTime", 10);
+	integer[STATS_VERY_SLOW_LOG_TIME] = getGlobalNumber(L, "statsVerySlowLogTime", 50);
 
 	floating[MLVL_BONUSDMG] = getGlobalFloat(L, "monsterBonusDamage", 0);
 	floating[MLVL_BONUSSPEED] = getGlobalFloat(L, "monsterBonusSpeed", 0);

@@ -140,6 +140,9 @@ void Game::setGameState(GameState_t newState)
 			g_scheduler.stop();
 			g_databaseTasks.stop();
 			g_dispatcher.stop();
+#ifdef STATS_ENABLED
+			g_stats.stop();
+#endif
 			break;
 		}
 
@@ -164,7 +167,7 @@ void Game::setGameState(GameState_t newState)
 	}
 }
 
-void Game::saveGameState()
+void Game::saveGameState(bool crash)
 {
 	if (gameState == GAME_STATE_NORMAL) {
 		setGameState(GAME_STATE_MAINTAIN);
@@ -176,10 +179,16 @@ void Game::saveGameState()
 		std::cout << "[Error - Game::saveGameState] Failed to save account-level storage values." << std::endl;
 	}
 
-	for (const auto& it : players) {
-		it.second->loginPosition = it.second->getPosition();
-		IOLoginData::savePlayer(it.second);
-	}
+    for (const auto& it : players) {
+        if (crash) {
+            it.second->loginPosition = it.second->getTown()->getTemplePosition();
+        } else {
+            it.second->loginPosition = it.second->getPosition();
+        }
+
+        IOLoginData::savePlayer(it.second);
+    }
+
 
 	Map::save();
 
@@ -3803,6 +3812,9 @@ void Game::checkCreatures(size_t index)
 	}
 
 	cleanup();
+#ifdef STATS_ENABLED
+	g_stats.playersOnline = getPlayersOnline();
+#endif
 }
 
 void Game::changeSpeed(Creature* creature, int32_t varSpeedDelta)
@@ -4707,6 +4719,9 @@ void Game::shutdown()
 	g_scheduler.shutdown();
 	g_databaseTasks.shutdown();
 	g_dispatcher.shutdown();
+#ifdef STATS_ENABLED
+	g_stats.shutdown();
+#endif
 	map.spawns.clear();
 	raids.clear();
 

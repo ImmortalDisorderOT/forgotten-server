@@ -114,9 +114,9 @@ local function sendOrbEffect(orbPosition, pid, orb, tick)
         return true -- player somehow disconnected
     end
 
-    if tick % 3 == 0 then -- only need it every 3 ticks ( if you have a tick time of 1000 )
-        player:say(orb.text, TALKTYPE_MONSTER_SAY, false, player, orbPosition)
-    end
+    --if tick % 3 == 0 then -- only need it every 3 ticks ( if you have a tick time of 1000 )
+    --    player:say(orb.text, TALKTYPE_MONSTER_SAY, false, player, orbPosition)
+    --end
     -- send magic effect
     orbPosition:sendMagicEffect(orb.effect, player)
 
@@ -207,7 +207,10 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
         pid = killer:getId()
     elseif config.looter == 4 then
         for cid, _ in pairs(creature:getDamageMap()) do
-            table.insert(pids, cid)
+            local tempPlayer = Player(cid)
+            if tempPlayer then -- people can die but still be on damage map
+                table.insert(pids, cid)
+            end
         end
     end -- pid is now set to the player who gets the orb
 
@@ -245,7 +248,7 @@ function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastH
                 local orbPos = getRndOrbPosition(position, creature)
                 local orbPlayer = Player(playerId)
 
-                orbPlayer:say(orb.text, TALKTYPE_MONSTER_SAY, false, orbPlayer, orbPos)
+                --orbPlayer:say(orb.text, TALKTYPE_MONSTER_SAY, false, orbPlayer, orbPos)
                 orbPos:sendMagicEffect(orb.effect, orbPlayer)
 
                 addEvent(sendOrbEffect, config.timeBetweenOrbs, orbPos, playerId, orb)

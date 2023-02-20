@@ -201,6 +201,7 @@ class LuaScriptInterface
 		int32_t loadFile(const std::string& file, Npc* npc = nullptr);
 
 		const std::string& getFileById(int32_t scriptId);
+		const std::string& getFileByIdForStats(int32_t scriptId);
 		int32_t getEvent(const std::string& eventName);
 		int32_t getEvent();
 		int32_t getMetaEvent(const std::string& globalName, const std::string& eventName);
@@ -548,8 +549,10 @@ class LuaScriptInterface
 		// Game
 		static int luaGameGetSpectators(lua_State* L);
 		static int luaGameGetPlayers(lua_State* L);
+		static int luaGameGetNpcs(lua_State* L);
+		static int luaGameGetMonsters(lua_State* L);
 		static int luaGameLoadMap(lua_State* L);
-		static int luaGameLoadMapChunk(lua_State* L);
+		//static int luaGameLoadMapChunk(lua_State* L);
 
 		static int luaGameGetExperienceStage(lua_State* L);
 		static int luaGameGetExperienceForLevel(lua_State* L);
@@ -1106,6 +1109,8 @@ class LuaScriptInterface
 
 		static int luaNpcGetSpeechBubble(lua_State* L);
 		static int luaNpcSetSpeechBubble(lua_State* L);
+
+		static int luaNpcGetSpectators(lua_State* L);
 
 		// Guild
 		static int luaGuildCreate(lua_State* L);

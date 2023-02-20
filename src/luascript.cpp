@@ -423,6 +423,16 @@ const std::string& LuaScriptInterface::getFileById(int32_t scriptId)
 	return it->second;
 }
 
+const std::string& LuaScriptInterface::getFileByIdForStats(int32_t scriptId)
+{
+	auto it = cacheFiles.find(scriptId);
+	if (it == cacheFiles.end()) {
+		static const std::string& unk = "(Unknown scriptfile)";
+		return unk;
+	}
+	return it->second;
+}
+
 std::string LuaScriptInterface::getStackTrace(lua_State* L, const std::string& error_desc)
 {
 	lua_getglobal(L, "debug");
@@ -528,6 +538,14 @@ int LuaScriptInterface::luaErrorHandler(lua_State* L)
 
 bool LuaScriptInterface::callFunction(int params)
 {
+#ifdef STATS_ENABLED
+	int32_t scriptId;
+	int32_t callbackId;
+	bool timerEvent;
+	LuaScriptInterface* scriptInterface;
+	getScriptEnv()->getEventInfo(scriptId, scriptInterface, callbackId, timerEvent);
+	std::chrono::high_resolution_clock::time_point time_point = std::chrono::high_resolution_clock::now();
+#endif
 	bool result = false;
 	int size = lua_gettop(luaState);
 	if (protectedCall(luaState, params, 1) != 0) {
@@ -541,6 +559,10 @@ bool LuaScriptInterface::callFunction(int params)
 		LuaScriptInterface::reportError(nullptr, "Stack size changed!");
 	}
 
+#ifdef STATS_ENABLED
+	uint64_t ns = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - time_point).count();
+	g_stats.addLuaStats(new Stat(ns, getFileByIdForStats(scriptId), ""));
+#endif
 	resetScriptEnv();
 	return result;
 }
@@ -2012,6 +2034,8 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::EXP_FROM_PLAYERS_LEVEL_RANGE)
 	registerEnumIn("configKeys", ConfigManager::MAX_PACKETS_PER_SECOND)
 	registerEnumIn("configKeys", ConfigManager::PLAYER_CONSOLE_LOGS)
+	registerEnumIn("configKeys", ConfigManager::CHECK_DUPLICATE_STORAGE_KEYS);
+	registerEnumIn("configKeys", ConfigManager::MONSTER_OVERSPAWN);
 
 	// os
 	registerMethod("os", "mtime", LuaScriptInterface::luaSystemTime);
@@ -2025,8 +2049,10 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Game", "getSpectators", LuaScriptInterface::luaGameGetSpectators);
 	registerMethod("Game", "getPlayers", LuaScriptInterface::luaGameGetPlayers);
+	registerMethod("Game", "getNpcs", LuaScriptInterface::luaGameGetNpcs);
+	registerMethod("Game", "getMonsters", LuaScriptInterface::luaGameGetMonsters);
 	registerMethod("Game", "loadMap", LuaScriptInterface::luaGameLoadMap);
-	registerMethod("Game", "loadMapChunk", LuaScriptInterface::luaGameLoadMapChunk);
+	//registerMethod("Game", "loadMapChunk", LuaScriptInterface::luaGameLoadMapChunk);
 
 	registerMethod("Game", "getExperienceStage", LuaScriptInterface::luaGameGetExperienceStage);
 	registerMethod("Game", "getExperienceForLevel", LuaScriptInterface::luaGameGetExperienceForLevel);
@@ -2599,6 +2625,8 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Npc", "getSpeechBubble", LuaScriptInterface::luaNpcGetSpeechBubble);
 	registerMethod("Npc", "setSpeechBubble", LuaScriptInterface::luaNpcSetSpeechBubble);
+
+	registerMethod("Npc", "getSpectators", LuaScriptInterface::luaNpcGetSpectators);
 
 	// Guild
 	registerClass("Guild", "", LuaScriptInterface::luaGuildCreate);
@@ -4285,6 +4313,37 @@ int LuaScriptInterface::luaGameGetPlayers(lua_State* L)
 	return 1;
 }
 
+
+int LuaScriptInterface::luaGameGetNpcs(lua_State* L)
+{
+	// Game.getNpcs()
+	lua_createtable(L, g_game.getNpcsOnline(), 0);
+
+	int index = 0;
+	for (const auto& npcEntry : g_game.getNpcs()) {
+		pushUserdata<Npc>(L, npcEntry.second);
+		setMetatable(L, -1, "Npc");
+		lua_rawseti(L, -2, ++index);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaGameGetMonsters(lua_State* L)
+{
+	// Game.getMonsters()
+	lua_createtable(L, g_game.getMonstersOnline(), 0);
+
+	int index = 0;
+	for (const auto& monsterEntry : g_game.getMonsters()) {
+		pushUserdata<Monster>(L, monsterEntry.second);
+		setMetatable(L, -1, "Monster");
+		lua_rawseti(L, -2, ++index);
+	}
+	return 1;
+}
+
+
+
 int LuaScriptInterface::luaGameLoadMap(lua_State* L)
 {
 	// Game.loadMap(path)
@@ -4300,7 +4359,7 @@ int LuaScriptInterface::luaGameLoadMap(lua_State* L)
 	}));
 	return 0;
 }
-
+/**
 int LuaScriptInterface::luaGameLoadMapChunk(lua_State* L)
 {
 	// Game.loadMapChunk(path, position, remove)
@@ -4320,6 +4379,7 @@ int LuaScriptInterface::luaGameLoadMapChunk(lua_State* L)
 	}));
 	return 0;
 }
+*/
 
 
 int LuaScriptInterface::luaGameGetExperienceStage(lua_State* L)
@@ -11111,6 +11171,24 @@ int LuaScriptInterface::luaNpcSetSpeechBubble(lua_State* L)
 		npc->setSpeechBubble(getNumber<uint8_t>(L, 2));
 	}
 	return 0;
+}
+
+int LuaScriptInterface::luaNpcGetSpectators(lua_State* L)
+{
+	// npc:getSpectators()
+	Npc* npc = getUserdata<Npc>(L, 1);
+	if (!npc) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	int index = 0;
+	for (Creature* spectator : npc->getSpectators()) {
+		pushUserdata<Creature>(L, spectator);
+		setCreatureMetatable(L, -1, spectator);
+		lua_rawseti(L, -2, ++index);
+	}
+	return 1;
 }
 
 // Guild

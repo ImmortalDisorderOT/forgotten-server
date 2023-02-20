@@ -28,6 +28,7 @@
 DatabaseTasks g_databaseTasks;
 Dispatcher g_dispatcher;
 Scheduler g_scheduler;
+Stats g_stats;
 
 Game g_game;
 ConfigManager g_config;
@@ -71,6 +72,9 @@ int main(int argc, char* argv[])
 
 	g_dispatcher.start();
 	g_scheduler.start();
+#ifdef STATS_ENABLED
+	g_stats.start();
+#endif
 
 	g_dispatcher.addTask(createTask(std::bind(mainLoader, argc, argv, &serviceManager)));
 
@@ -84,16 +88,25 @@ int main(int argc, char* argv[])
 		g_scheduler.shutdown();
 		g_databaseTasks.shutdown();
 		g_dispatcher.shutdown();
+#ifdef STATS_ENABLED
+		g_stats.shutdown();
+#endif
 	}
 
 	g_scheduler.join();
 	g_databaseTasks.join();
 	g_dispatcher.join();
+#ifdef STATS_ENABLED
+	g_stats.join();
+#endif
 	return 0;
 }
 
 void printServerVersion()
 {
+#ifdef STATS_ENABLED
+	std::cout << "OTS Stats is enabled! - by kondra (otclient@otclient ovh)"
+#endif
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	std::cout << STATUS_SERVER_NAME << " - Version " << GIT_DESCRIBE << std::endl;
 	std::cout << "Git SHA1 " << GIT_SHORT_SHA1  << " dated " << GIT_COMMIT_DATE_ISO8601 << std::endl;
@@ -352,3 +365,10 @@ bool argumentsHandler(const StringVector& args)
 
 	return true;
 }
+
+#ifndef _WIN32
+__attribute__ ((used)) void saveServer() {
+    if(g_game.getPlayersOnline() > 0)
+        g_game.saveGameState(true);
+}
+#endif

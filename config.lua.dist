@@ -79,6 +79,7 @@ mysqlSock = ""
 -- may cause high CPU usage with many players and potentially affect performance!
 -- NOTE: forceMonsterTypesOnLoad loads all monster types on startup to validate them.
 -- You can disable it to save some memory if you don't see any errors at startup.
+ -- checkDuplicateStorageKeys checks the values stored in the variables for duplicates.
 allowChangeOutfit = true
 freePremium = true
 kickIdlePlayerAfterMinutes = 15
@@ -94,6 +95,7 @@ forceMonsterTypesOnLoad = true
 cleanProtectionZones = false
 luaItemDesc = false
 showPlayerLogInConsole = true
+checkDuplicateStorageKeys = false
 
 -- VIP and Depot limits
 -- NOTE: you can set custom limits per group in data/XML/groups.xml
@@ -142,9 +144,12 @@ rateSpawn = 1
 -- despawnRadius is how many tiles away it can be from its spawn position
 -- removeOnDespawn will remove the monster if true or teleport it back to its spawn position if false
 -- walkToSpawnRadius is the allowed distance that the monster will stay away from spawn position when left with no targets, 0 to disable
+-- monsterOverspawn can be used instead of removeOnDespawn option, this will start respawn process of the monster when it goes out of deSpawn* boundaries.
+-- Setting both removeOnDespawn and monsterOverspawn to true prioritizes the latter.
 deSpawnRange = 2
 deSpawnRadius = 50
 removeOnDespawn = true
+monsterOverspawn = false
 walkToSpawnRadius = 15
 
 -- Stamina
@@ -165,3 +170,12 @@ ownerName = "Avaji"
 ownerEmail = ""
 url = "https://immortaldisorder.xyz"
 location = "Canada"
+
+
+-- Server Statistics
+-- time in seconds: 30 = 30 seconds, 0 = disabled
+statsDumpInterval = 30
+-- time in milliseconds: 10 = 0.01 sec, 0 = disabled
+statsSlowLogTime = 10
+-- time in milliseconds: 50 = 0.05 sec, 0 = disabled
+statsVerySlowLogTime = 50

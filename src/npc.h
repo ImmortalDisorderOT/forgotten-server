@@ -170,6 +170,8 @@ class Npc final : public Creature
 
 		static uint32_t npcAutoID;
 
+		const auto& getSpectators() { return spectators; }
+
 	private:
 		explicit Npc(const std::string& name);
 

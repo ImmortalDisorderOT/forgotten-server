@@ -195,3 +195,6 @@ node_modules/
 archive/
 bot/
 discordandtibiacrosschat.lua
+*.log
+start.sh
+antirollback_config
