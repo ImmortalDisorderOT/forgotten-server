@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 void printServerVersion()
 {
 #ifdef STATS_ENABLED
-	std::cout << "OTS Stats is enabled! - by kondra (otclient@otclient ovh)"
+	std::cout << "OTS Stats is enabled! - by kondra (otclient@otclient ovh)";
 #endif
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	std::cout << STATUS_SERVER_NAME << " - Version " << GIT_DESCRIBE << std::endl;
